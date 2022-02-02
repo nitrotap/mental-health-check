@@ -26,26 +26,26 @@ let responseType = { // an object with distinct types
 */
 
 let depressionQuestions = [ // an array of objects depressionQuestions[0].question, depressionQuestions[1].response
-    {question: "How difficult have these problems made it for you to work, at home, or with others?",
-    response: responseType.frequency},
     {question: "How often are you having thoughts that you would be better off dead, or of hurting yourself?",
-    response: responseType.frequency},
+        response: responseType.frequency},
     {question: "How often are you moving or speaking so slowly that other people have noticed",
-    response: responseType.frequency},
+        response: responseType.frequency},
     {question: "How often are you having trouble concentrating on things such as reading the newspaper or watching TV?",
-    response: responseType.frequency},
+        response: responseType.frequency},
     {question: "How often are you feeling bad about yourself (feel like a failure or let your family down)",
-    response: responseType.frequency},
+        response: responseType.frequency},
     {question: "How often do you have a poor appetite or overeating?",
-    response: responseType.frequency},
+        response: responseType.frequency},
     {question: "How often are you feeling tired or having little energy?",
-    response: responseType.frequency},
+        response: responseType.frequency},
     {question: "How often are you having trouble falling or staying asleep, or sleeping too much?",
-    response: responseType.frequency},
+        response: responseType.frequency},
     {question: "How often are you feeling down, depressed, or hopeless?",
-    response: responseType.frequency},
+        response: responseType.frequency},
     {question: "Do you have little interest or please in doing things?",
-    response: responseType.frequency},
+        response: responseType.frequency},
+    {question: "How difficult have these problems made it for you to work, at home, or with others?",
+        response: responseType.frequency}
 ]
 
 let otherQuestions = [ // an array of objects
@@ -81,20 +81,50 @@ let anxietyQuestions = [  // an array of objects
 let titleDivEl = document.createElement("div")
 let titleTextEl = document.createElement("h1")
 
-for (let i = 0; i < depressionQuestions.length; i++) {
+function dQuestion(questionObj) { // takes {question, response}
     let contentDivEl = document.querySelector("#content");
-    console.log("hi")
-    let a = document.createElement("li");
-    a.textContent = depressionQuestions[i].question;
-    contentDivEl.appendChild(a)
+    let questionTextDivEl = document.createElement("div")
+    let questionTextEl = document.createElement("h3")
+    questionTextEl.textContent = questionObj.question;
+    questionTextDivEl.appendChild(questionTextEl)
+    contentDivEl.appendChild(questionTextDivEl)
 
-    //console.log(depressionQuestions[i].response.length)
-    for (let j = 0; j < depressionQuestions[i].response.length; j++) {
-        let b = document.createElement("li");
-        b.textContent = depressionQuestions[i].response[j]
-        contentDivEl.appendChild(b)
+    let questionResponseDivEl = document.createElement("div")
+    for (let i = 0; i < questionObj.response.length; i++) {
+        let questionResponseInputEl = document.createElement("input")
+        questionResponseInputEl.setAttribute("type", "radio")
+        questionResponseInputEl.setAttribute("id", questionObj.response[i])
+        questionResponseInputEl.setAttribute("value", questionObj.response[i])
+
+        let questionResponseLabelEl = document.createElement("label")
+        questionResponseLabelEl.setAttribute("for", questionObj.response[i])
+        questionResponseLabelEl.textContent = questionObj.response[i]
+
+
+        questionResponseDivEl.appendChild(questionResponseInputEl)
+        questionResponseDivEl.appendChild(questionResponseLabelEl)
     }
+    contentDivEl.appendChild(questionResponseDivEl)
+
+
+} // displays single question and answers
+
+
+function main() {
+
+    for (let i = 0; i < otherQuestions.length; i++) {
+        dQuestion(otherQuestions[i])
+    }
+
+
+    /*
+    for (let i = 0; i < depressionQuestions.length; i++) {
+        dQuestion(depressionQuestions[i])
+    }*/
+    /*
+    for (let i = 0; i < anxietyQuestions.length; i++) {
+        dQuestion(anxietyQuestions[i])
+    }*/
 }
 
-
-
+main();
