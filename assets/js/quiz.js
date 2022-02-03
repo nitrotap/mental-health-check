@@ -142,14 +142,17 @@ function questionDisplay(questionObj) {
 
     for (let i = 0; i < questionObj.length; i++) {
         let impairmentQuestionDivEl = document.createElement("div")
+        let impairmentSpanEl = document.createElement("span")
+        impairmentSpanEl.className = "checkbox-wrapper"
         let impairmentQuestionInputEl = document.createElement("input")
         impairmentQuestionInputEl.setAttribute("type", "checkbox")
         impairmentQuestionInputEl.setAttribute("name", questionObj[i].question)
         let impairmentQuestionLabelEl = document.createElement("label")
         impairmentQuestionLabelEl.setAttribute("for", questionObj[i].question)
         impairmentQuestionLabelEl.textContent = questionObj[i].question
-        impairmentQuestionDivEl.appendChild(impairmentQuestionInputEl)
-        impairmentQuestionDivEl.appendChild(impairmentQuestionLabelEl)
+        impairmentSpanEl.appendChild(impairmentQuestionInputEl)
+        impairmentSpanEl.appendChild(impairmentQuestionLabelEl)
+        impairmentQuestionDivEl.appendChild(impairmentSpanEl)
         contentDivEl.appendChild(impairmentQuestionDivEl)
 
     }
