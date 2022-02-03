@@ -41,33 +41,33 @@ let depressionQuestions = [ // an array of objects depressionQuestions[0].questi
 ]
 
 let otherQuestions = [ // an array of objects
-      {question: "Are the happy thoughts speeding up your thought process?", response: responseType.yesNo},
-      {question: "Are the sad thoughts slowing down your thought process?", response: responseType.yesNo},
-      {question: "How much brain fog are you experiencing?", response: responseType.frequency},
-      {question: "Have you had any grandiose thoughts?", response: responseType.frequency}
-    ];
+    {question: "Are the happy thoughts speeding up your thought process?", response: responseType.yesNo},
+    {question: "Are the sad thoughts slowing down your thought process?", response: responseType.yesNo},
+    {question: "How much brain fog are you experiencing?", response: responseType.frequency},
+    {question: "Have you had any grandiose thoughts?", response: responseType.frequency}
+];
 
 let impairmentQuestions = [ // an array of objects
-      {question: "What is the Weekday?", response: responseType.weekday},
-      {question: "Type in the first three things you see", response: responseType.userInput},
-      {question: "What is the year?", response: responseType.userInput}
-    ];
+    {question: "What is the Weekday?", response: responseType.weekday},
+    {question: "Type in the first three things you see", response: responseType.userInput},
+    {question: "What is the year?", response: responseType.userInput}
+];
 
 let anxietyQuestions = [  // an array of objects
     {question: "How often have you been feeling nervous, anxious, or on edge",
-    response: responseType.frequency},
+        response: responseType.frequency},
     {question: "How often have you been not able to stop or control worrying",
-    response: responseType.frequency},
+        response: responseType.frequency},
     {question: "How often have you been worrying too much about different things",
-    response: responseType.frequency},
+        response: responseType.frequency},
     {question: "How often have you been having trouble relaxing",
-    response: responseType.frequency},
+        response: responseType.frequency},
     {question: "How often have you been so restless that it is hard to sit still",
-    response: responseType.frequency},
+        response: responseType.frequency},
     {question: "How often have you been easily annoyed or irritable",
-    response: responseType.frequency},
+        response: responseType.frequency},
     {question: "How often have you been feeling as if something awful might happen?",
-    response: responseType.frequency},
+        response: responseType.frequency},
 ];
 
 function radioQuestion(questionObj) { // takes {question, response}
@@ -156,6 +156,61 @@ function questionDisplay(questionObj) {
 }
 
 questionOptions = [];
+
+function questionChooserButtonHandler (userQuestions) {
+    let contentDivEl = document.querySelector("#content");
+
+    // need to compare names with objects and create quiz questions
+    // compare userQuestions[] with impairment
+    for (let i = 0; i < userQuestions.length; i++) { // loop through selected questions
+        for (let j = 0; j < impairmentQuestions.length; j++) {
+            if (userQuestions[i] === impairmentQuestions[j].question) {
+                questionOptions.push(impairmentQuestions[j])
+            }
+        }
+    }
+    for (let i = 0; i < userQuestions.length; i++) { // loop through selected questions
+        for (let j = 0; j < depressionQuestions.length; j++) {
+            if (userQuestions[i] === depressionQuestions[j].question) {
+                questionOptions.push(depressionQuestions[j])
+            }
+        }
+    }
+    for (let i = 0; i < userQuestions.length; i++) { // loop through selected questions
+        for (let j = 0; j < otherQuestions.length; j++) {
+            if (userQuestions[i] === otherQuestions[j].question) {
+                questionOptions.push(otherQuestions[j])
+            }
+        }
+    }
+    // console.log(questionOptions)
+
+    // loop through selected questions and display them
+    for (let i = 0; i < questionOptions.length; i++) {
+        console.log(questionOptions[i])
+        questionParser(questionOptions[i])
+    }
+
+    // create button for end of quiz
+    let submitButtonEl = document.createElement("button")
+    submitButtonEl.textContent = "Submit"
+    contentDivEl.appendChild(submitButtonEl)
+    submitButtonEl.addEventListener("click", function() {
+        // grade quiz todo
+        // direct to resources based on grade
+        quizSubmitButtonHandler();
+
+    })
+}
+
+function quizSubmitButtonHandler() {
+    // grade quiz
+    // capture quiz responses
+        // grade based on illness
+        // link to content generator function
+    
+}
+
 function questionChooser() { // user picks and stores relevant questions
     let contentDivEl = document.querySelector("#content");
     questionDisplay(impairmentQuestions)
@@ -175,46 +230,12 @@ function questionChooser() { // user picks and stores relevant questions
             }
         }
         // console.log(userQuestions)
-
-        // need to compare names with objects and create quiz questions
-        // compare userQuestions[] with impairment
-        for (let i = 0; i < userQuestions.length; i++) { // loop through selected questions
-            for (let j = 0; j < impairmentQuestions.length; j++) {
-                if (userQuestions[i] === impairmentQuestions[j].question) {
-                    questionOptions.push(impairmentQuestions[j])
-                }
-            }
-        }
-        for (let i = 0; i < userQuestions.length; i++) { // loop through selected questions
-            for (let j = 0; j < depressionQuestions.length; j++) {
-                if (userQuestions[i] === depressionQuestions[j].question) {
-                    questionOptions.push(depressionQuestions[j])
-                }
-            }
-        }
-        for (let i = 0; i < userQuestions.length; i++) { // loop through selected questions
-            for (let j = 0; j < otherQuestions.length; j++) {
-                if (userQuestions[i] === otherQuestions[j].question) {
-                    questionOptions.push(otherQuestions[j])
-                }
-            }
-        }
-
-
-        // console.log(questionOptions)
-        // return questionOptions;
-
-
-        for (let i = 0; i < questionOptions.length; i++) {
-            console.log(questionOptions[i])
-            questionParser(questionOptions[i])
-        }
-
-
+        questionChooserButtonHandler(userQuestions);
     })
-
     contentDivEl.appendChild(questionChooserSubmitButton)
-} // returns array of question names
+}
+
+
 
 
 function main() {
