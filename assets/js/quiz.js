@@ -137,9 +137,97 @@ function displayAll() {
 
 } // TEST FUNCTION displays all questions TODO remove
 
+function questionDisplay(questionObj) {
+    let contentDivEl = document.querySelector("#content");
+
+    for (let i = 0; i < questionObj.length; i++) {
+        let impairmentQuestionDivEl = document.createElement("div")
+        let impairmentQuestionInputEl = document.createElement("input")
+        impairmentQuestionInputEl.setAttribute("type", "checkbox")
+        impairmentQuestionInputEl.setAttribute("name", questionObj[i].question)
+        let impairmentQuestionLabelEl = document.createElement("label")
+        impairmentQuestionLabelEl.setAttribute("for", questionObj[i].question)
+        impairmentQuestionLabelEl.textContent = questionObj[i].question
+        impairmentQuestionDivEl.appendChild(impairmentQuestionInputEl)
+        impairmentQuestionDivEl.appendChild(impairmentQuestionLabelEl)
+        contentDivEl.appendChild(impairmentQuestionDivEl)
+
+    }
+}
+
+questionOptions = [];
+function questionChooser() { // user picks and stores relevant questions
+    let contentDivEl = document.querySelector("#content");
+    questionDisplay(impairmentQuestions)
+    questionDisplay(depressionQuestions)
+    questionDisplay(otherQuestions)
+
+    // add checked object to array
+    let questionChooserSubmitButton = document.createElement("button")
+    questionChooserSubmitButton.textContent = "submit"
+    let userQuestions = [];
+    questionChooserSubmitButton.addEventListener("click", function() {
+        let checkbox = document.querySelectorAll("input[type=checkbox]")
+        // loop through all checkboxes
+        for (let i = 0; i < checkbox.length; i++) {
+            if (checkbox[i].checked) {  // if input element is selected on button click, then save object into questions array
+                userQuestions.push(checkbox[i].name)  // save checked boxes into array
+            }
+        }
+        // console.log(userQuestions)
+
+        // need to compare names with objects and create quiz questions
+        // compare userQuestions[] with impairment
+        for (let i = 0; i < userQuestions.length; i++) { // loop through selected questions
+            for (let j = 0; j < impairmentQuestions.length; j++) {
+                if (userQuestions[i] === impairmentQuestions[j].question) {
+                    questionOptions.push(impairmentQuestions[j])
+                }
+            }
+        }
+        for (let i = 0; i < userQuestions.length; i++) { // loop through selected questions
+            for (let j = 0; j < depressionQuestions.length; j++) {
+                if (userQuestions[i] === depressionQuestions[j].question) {
+                    questionOptions.push(depressionQuestions[j])
+                }
+            }
+        }
+        for (let i = 0; i < userQuestions.length; i++) { // loop through selected questions
+            for (let j = 0; j < otherQuestions.length; j++) {
+                if (userQuestions[i] === otherQuestions[j].question) {
+                    questionOptions.push(otherQuestions[j])
+                }
+            }
+        }
+
+
+        // console.log(questionOptions)
+        // return questionOptions;
+
+
+        for (let i = 0; i < questionOptions.length; i++) {
+            console.log(questionOptions[i])
+            questionParser(questionOptions[i])
+        }
+
+
+    })
+
+    contentDivEl.appendChild(questionChooserSubmitButton)
+} // returns array of question names
+
 
 function main() {
-    displayAll()
+    // displayAll()
+
+
+    questionChooser();
+    // console.log(questionOptions)
+    /*
+    for (let i = 0; i < questionOptions.length; i++) {
+        questionParser(questionOptions[i])
+    }*/
+
 }
 
 main();
