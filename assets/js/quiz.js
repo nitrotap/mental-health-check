@@ -4,6 +4,7 @@
 
 // variable declarations
 let weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+let seasons = ["Spring", "Summer", "Winter", "Fall"]
 
 // building questions
 // response types
@@ -12,6 +13,7 @@ let responseType = { // an object with distinct types
     weekday: weekdays,
     frequency: ["Not at all", "Not frequently", "A couple times a month", "A couple times a week", "Every Day"],
     userInput: [],
+    season: seasons
 }
 /*  Questions in this format
     {question: "",
@@ -50,7 +52,9 @@ let otherQuestions = [ // an array of objects
 let impairmentQuestions = [ // an array of objects
     {question: "What is the Weekday?", response: responseType.weekday},
     {question: "Type in the first three things you see", response: responseType.userInput},
-    {question: "What is the year?", response: responseType.userInput}
+    {question: "What is the year?", response: responseType.userInput},
+    {question: "What is the season?", response: responseType.season},
+    {question: "Spell 'WORLD' backwards", response: responseType.userInput},
 ];
 
 let anxietyQuestions = [  // an array of objects
@@ -73,6 +77,8 @@ let anxietyQuestions = [  // an array of objects
 function radioQuestion(questionObj) { // takes {question, response}
     let contentDivEl = document.querySelector("#content");
     let questionTextDivEl = document.createElement("div")
+    // let questionSpanEl = document.createElement("span") todo span element
+    // questionSpanEl.className = "radio-wrapper";
     let questionTextEl = document.createElement("h3")
     questionTextEl.textContent = questionObj.question;
     questionTextDivEl.appendChild(questionTextEl)
@@ -82,14 +88,12 @@ function radioQuestion(questionObj) { // takes {question, response}
     for (let i = 0; i < questionObj.response.length; i++) {
         let questionResponseInputEl = document.createElement("input")
         questionResponseInputEl.setAttribute("type", "radio")
-        questionResponseInputEl.setAttribute("id", questionObj.response[i])
-        questionResponseInputEl.setAttribute("value", questionObj.response[i])
         questionResponseInputEl.setAttribute("name", questionObj.question)
+        // questionResponseInputEl.setAttribute()
 
         let questionResponseLabelEl = document.createElement("label")
         questionResponseLabelEl.setAttribute("for", questionObj.response[i])
         questionResponseLabelEl.textContent = questionObj.response[i]
-
 
         questionResponseDivEl.appendChild(questionResponseInputEl)
         questionResponseDivEl.appendChild(questionResponseLabelEl)
@@ -120,7 +124,7 @@ function questionParser(questionObj) {
         radioQuestion(questionObj)
     }
 
-} // takes a question object and parses its type
+} // takes a question object and parses its response type
 
 function displayAll() {
     for (let i = 0; i < impairmentQuestions.length; i++) {
@@ -140,7 +144,6 @@ function displayAll() {
 
 function questionDisplay(questionObj) {
     let contentDivEl = document.querySelector("#content");
-
     for (let i = 0; i < questionObj.length; i++) {
         let questionDivEl = document.createElement("div")
         let questionSpanEl = document.createElement("span")
@@ -155,7 +158,6 @@ function questionDisplay(questionObj) {
         questionSpanEl.appendChild(questionLabelEl)
         questionDivEl.appendChild(questionSpanEl)
         contentDivEl.appendChild(questionDivEl)
-
     }
 }
 
@@ -191,12 +193,13 @@ function questionChooserButtonHandler (userQuestions) {
 
     // loop through selected questions and display them
     for (let i = 0; i < questionOptions.length; i++) {
-        console.log(questionOptions[i])
+        // console.log(questionOptions[i])
         questionParser(questionOptions[i])
     }
 
     // create button for end of quiz
     let submitButtonEl = document.createElement("button")
+    submitButtonEl.id = "quizSubmitButton"
     submitButtonEl.textContent = "Submit"
     contentDivEl.appendChild(submitButtonEl)
     submitButtonEl.addEventListener("click", function() {
@@ -212,8 +215,21 @@ function quizSubmitButtonHandler() {
     // capture quiz responses
         // grade based on illness
         // link to content generator function
-
-    
+    let quizResults = [];
+    let quizSubmitButtonEl = document.querySelector("#quizSubmitButton")
+    quizSubmitButtonEl.addEventListener("click", function() {
+        // loop through questions and get selected
+        console.log("click")
+        let quizAnswers = document.querySelector("input[type=radio]")
+        console.log(quizAnswers.length)
+        for (let i = 0; i < quizAnswers.length; i++) {
+            console.log(quizAnswers)
+            if (quizAnswers[i].checked) {
+                quizResults.push(quizAnswers[i])
+                console.log(quizResults)
+            }
+        }
+    });
 }
 
 function questionChooser() { // user picks and stores relevant questions
@@ -240,17 +256,6 @@ function questionChooser() { // user picks and stores relevant questions
     contentDivEl.appendChild(questionChooserSubmitButton)
 }
 
-function quizGrader() {  // takes quiz results and grades
-    // get quiz selected radio
-    //todo multiple radio groups selected
-    let quizSubmitButtonEl = document.querySelector("#quizSubmitButton")
-    quizSubmitButtonEl.addEventListener("click", function() {
-
-    })
-
-}
-
-
 function main() {
     // displayAll()
 
@@ -261,6 +266,8 @@ function main() {
     for (let i = 0; i < questionOptions.length; i++) {
         questionParser(questionOptions[i])
     }*/
+
+
 
 }
 
