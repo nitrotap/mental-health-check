@@ -84,6 +84,7 @@ function radioQuestion(questionObj) { // takes {question, response}
         questionResponseInputEl.setAttribute("type", "radio")
         questionResponseInputEl.setAttribute("id", questionObj.response[i])
         questionResponseInputEl.setAttribute("value", questionObj.response[i])
+        questionResponseInputEl.setAttribute("name", questionObj.question)
 
         let questionResponseLabelEl = document.createElement("label")
         questionResponseLabelEl.setAttribute("for", questionObj.response[i])
@@ -141,19 +142,19 @@ function questionDisplay(questionObj) {
     let contentDivEl = document.querySelector("#content");
 
     for (let i = 0; i < questionObj.length; i++) {
-        let impairmentQuestionDivEl = document.createElement("div")
-        let impairmentSpanEl = document.createElement("span")
-        impairmentSpanEl.className = "checkbox-wrapper"
-        let impairmentQuestionInputEl = document.createElement("input")
-        impairmentQuestionInputEl.setAttribute("type", "checkbox")
-        impairmentQuestionInputEl.setAttribute("name", questionObj[i].question)
-        let impairmentQuestionLabelEl = document.createElement("label")
-        impairmentQuestionLabelEl.setAttribute("for", questionObj[i].question)
-        impairmentQuestionLabelEl.textContent = questionObj[i].question
-        impairmentSpanEl.appendChild(impairmentQuestionInputEl)
-        impairmentSpanEl.appendChild(impairmentQuestionLabelEl)
-        impairmentQuestionDivEl.appendChild(impairmentSpanEl)
-        contentDivEl.appendChild(impairmentQuestionDivEl)
+        let questionDivEl = document.createElement("div")
+        let questionSpanEl = document.createElement("span")
+        questionSpanEl.className = "checkbox-wrapper"
+        let questionInputEl = document.createElement("input")
+        questionInputEl.setAttribute("type", "checkbox")
+        questionInputEl.setAttribute("name", questionObj[i].question)
+        let questionLabelEl = document.createElement("label")
+        questionLabelEl.setAttribute("for", questionObj[i].question)
+        questionLabelEl.textContent = questionObj[i].question
+        questionSpanEl.appendChild(questionInputEl)
+        questionSpanEl.appendChild(questionLabelEl)
+        questionDivEl.appendChild(questionSpanEl)
+        contentDivEl.appendChild(questionDivEl)
 
     }
 }
@@ -211,6 +212,7 @@ function quizSubmitButtonHandler() {
     // capture quiz responses
         // grade based on illness
         // link to content generator function
+
     
 }
 
@@ -238,7 +240,15 @@ function questionChooser() { // user picks and stores relevant questions
     contentDivEl.appendChild(questionChooserSubmitButton)
 }
 
+function quizGrader() {  // takes quiz results and grades
+    // get quiz selected radio
+    //todo multiple radio groups selected
+    let quizSubmitButtonEl = document.querySelector("#quizSubmitButton")
+    quizSubmitButtonEl.addEventListener("click", function() {
 
+    })
+
+}
 
 
 function main() {
