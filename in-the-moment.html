@@ -24,14 +24,16 @@
   <div id="results"></div>
 
   <section id="recorder-controls">
-    <canvas class="visualizer" height="75px"></canvas>
+    <canvas id="visualizer" height="75px"></canvas>
     <div id="recorder-buttons">
-      <button class="recordButton">Record</button>
-      <button class="stopButton">Stop Recording</button>
+      <button id="mic-check">Get Microphone Access</button>
+      <button id="recordButton">Start Recording</button>
+      <button id="stopButton">Stop Recording</button>
+      <button id="mic-drop">Revoke Mic Access</button>
     </div>
   </section>
 
-  <section class="previous-recordings"></section>
+  <section id="past-recordings"></section>
 
 
   <!-- footer -->
