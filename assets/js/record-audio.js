@@ -90,12 +90,14 @@ function startRecorder() {
 
             getMicAccessButtonEl.disabled = true;
             record.disabled = false;
-            revokeMicAccessButtonEl.disabled = false;
+            revokeMicAccessButtonEl.disabled = true;
 
 
             revokeMicAccessButtonEl.addEventListener("click", function() {
                 stream.getTracks().forEach(track => track.stop())
                 revokeMicAccessButtonEl.disabled = true;
+                getMicAccessButtonEl.disabled = false;
+
             })
 
 
@@ -126,7 +128,8 @@ function startRecorder() {
             mediaRecorder.onstop = function (e) {
                 console.log("data available after MediaRecorder.stop() called.");
 
-                const clipName = prompt('Enter a name for your sound clip?', 'My unnamed clip');
+                const clipName = prompt('Enter a name for your sound clip?', 'Clip');
+
 
                 const clipContainer = document.createElement('article');
                 const clipLabel = document.createElement('p');
@@ -164,14 +167,21 @@ function startRecorder() {
                 deleteButton.onclick = function (e) {
                     let evtTgt = e.target;
                     evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
-                    localStorage.removeItem(clipNames[i])
-                    clipNames.splice(i,1)
-                    console.log(clipNames)
-                    localStorage.setItem("clipNames", JSON.stringify(clipNames))
+                    // if it's saved into localStorage, then delete it from there
+                    // check if name is found in localStorage
+                    for (let i = 0; i < clipNames.length; i++) {
+                        if (clipName === clipNames[i]) {
+                            localStorage.removeItem(clipNames[i])
+                            clipNames.splice(i,1)
+                            console.log(clipNames)
+                            // clipNames[i] = "";
+                            localStorage.setItem("clipNames", JSON.stringify(clipNames))
+                        }
+                    }
 
                 }
 
-                saveButton.onclick = function(e) {
+                saveButton.onclick = function (e) {
                     const reader = new window.FileReader();
                     reader.onload = function (e) {
                         localStorage.setItem(clipName, event.target.result)
@@ -190,6 +200,7 @@ function startRecorder() {
                     }
                 }
             }
+
 
             mediaRecorder.ondataavailable = function (e) {
                 chunks.push(e.data);
