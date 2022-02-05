@@ -1,5 +1,6 @@
 /*
  * js file for quiz logic
+ * symptoms array has active/inactive options for each test type
 */
 
 // variable declarations
@@ -253,6 +254,25 @@ function questionChooserButtonHandler (userQuestions) {
     })
 }
 
+
+let symptoms = [] // symptoms[i] returns active symptoms for each quiz type
+function quizGraderHandler(symptomArray) {
+    console.log(symptomArray[0])
+    if (symptomArray[0] === "Active") {
+        // display resources for applicable symptoms
+        // todo remove placeholder
+        let a = document.createElement("div")
+        let b = document.createElement("h3")
+        let contentDivEl = document.querySelector("#content");
+
+        b.textContent = symptomArray[0]
+        a.appendChild(b)
+        contentDivEl.appendChild(a)
+    }
+
+
+}
+
 function quizSubmitButtonHandler() {
     // grade quiz
     // capture quiz responses
@@ -264,12 +284,13 @@ function quizSubmitButtonHandler() {
     let contentDivEl = document.querySelector("#content");
     contentDivEl.appendChild(quizSubmitButtonEl)
 
-
     quizSubmitButtonEl.addEventListener("click", function() {
         // loop through questions and get selected
         // console.log("click")
         let quizAnswers = document.querySelectorAll("input[type=radio]:checked")
         // giving me the next area element, not the object behind it.
+
+
 
         let score = 0;
         console.log(quizAnswers)
@@ -286,15 +307,15 @@ function quizSubmitButtonHandler() {
         console.log(score)
         console.log(quizLength)
 
-        if (score/quizLength > .5) {
-            console.log("Active Symptoms")
-        } else {
-            console.log("No Active Symptoms")
-        }
 
         // loop through quiz results, for every yes, add one
-
-
+        // todo add other quiz categories
+        if (score/quizLength > .5) { // simple comparison - if over half questions are marked 'yes', then it's active
+            symptoms[0] = "Active";
+        } else {
+            symptoms[0] = "Inactive";
+        }
+        console.log(symptoms)
 
         // Depression 10 questions
         // if 1-4 minimal depression
@@ -302,10 +323,11 @@ function quizSubmitButtonHandler() {
         // if 10-14 moderate depression
         // if 15-19 moderately severe depression
         // if 20-27 severe depression
-
         // Anxiety 7 questions
+
+        quizGraderHandler(symptoms);
     });
-}
+} // grades symptoms based on quiz answers
 
 function questionChooser() {
     let contentDivEl = document.querySelector("#content");
@@ -345,16 +367,15 @@ function loadQuestions() {
 }
 
 function main() {
-    // displayAll()
-    // quizSubmitButtonHandler()
+    displayAll()
+    // questionChooser()
+    quizSubmitButtonHandler()
+
+
 
     // saveQuestions();
     // questionChooser();
     // console.log(questionOptions)
-    /*
-    for (let i = 0; i < questionOptions.length; i++) {
-        questionParser(questionOptions[i])
-    }*/
 }
 
 main();

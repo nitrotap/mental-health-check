@@ -143,7 +143,7 @@ function startRecorder() {
 
 
                 if (clipName === null) {
-                    clipLabel.textContent = 'My unnamed clip';
+                    clipLabel.textContent = 'Clip';
                 } else {
                     clipLabel.textContent = clipName;
                 }
@@ -263,7 +263,7 @@ function loadAudioFiles() {
 
 
             if (clipNames[i] === null) {
-                clipLabel.textContent = 'My unnamed clip';
+                clipLabel.textContent = 'Clip';
             } else {
                 clipLabel.textContent = clipNames[i];
             }
