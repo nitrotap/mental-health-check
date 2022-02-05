@@ -164,6 +164,11 @@ function startRecorder() {
                 deleteButton.onclick = function (e) {
                     let evtTgt = e.target;
                     evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+                    localStorage.removeItem(clipNames[i])
+                    clipNames.splice(i,1)
+                    console.log(clipNames)
+                    localStorage.setItem("clipNames", JSON.stringify(clipNames))
+
                 }
 
                 saveButton.onclick = function(e) {
@@ -278,6 +283,11 @@ function loadAudioFiles() {
             deleteButton.onclick = function (e) {
                 let evtTgt = e.target;
                 evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+                localStorage.removeItem(clipNames[i])
+                clipNames.splice(i,1)
+                console.log(clipNames)
+                // clipNames[i] = "";
+                localStorage.setItem("clipNames", JSON.stringify(clipNames))
             }
 
             saveButton.onclick = function (e) {
