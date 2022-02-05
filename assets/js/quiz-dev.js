@@ -71,7 +71,7 @@ let schQuestions = [ // an array of objects
 ];
 
 
-let kartikQuestions = [
+let kartikQuestions = [ // icebox
     {question: "Are you experiencing any shimmering?", response: responseType.yesNo},
     {question: "Are the pieces scattered?", response: responseType.yesNo}
 ];
@@ -127,6 +127,7 @@ function radioQuestion(questionObj) { // takes {question, response}
         let questionResponseInputEl = document.createElement("input")
         questionResponseInputEl.setAttribute("type", "radio")
         questionResponseInputEl.setAttribute("name", questionObj.question)
+        questionResponseInputEl.setAttribute("id", questionObj.response[i].text)
         // questionResponseInputEl.setAttribute()
 
         let questionResponseLabelEl = document.createElement("label")
@@ -270,14 +271,33 @@ function quizSubmitButtonHandler() {
         // loop through questions and get selected
         // console.log("click")
         let quizAnswers = document.querySelectorAll("input[type=radio]:checked")
-        console.log(quizAnswers.length)
-        for (let i = 0; i < quizAnswers.length; i++) {
+        // giving me the next area element, not the object behind it.
+
+
+        let score = 0;
+        console.log(quizAnswers)
+        let quizLength = quizAnswers.length
+        for (let i = 0; i < quizLength; i++) {
             // console.log(quizAnswers)
-            if (quizAnswers[i].checked) {
-                quizResults.push(quizAnswers[i])
-                console.log(quizResults)
+            if (quizAnswers[i].id === "Yes") {
+                score++;
             }
         }
+        // console.log(quizResults[0].id)
+        // console.log(quizResults[0].checked)
+        console.log(quizResults)
+        console.log(score)
+        console.log(quizLength)
+
+        if (score/quizLength > .5) {
+            console.log("Active Symptoms")
+        } else {
+            console.log("No Active Symptoms")
+        }
+
+        // loop through quiz results, for every yes, add one
+
+
 
         // Depression 10 questions
         // if 1-4 minimal depression
