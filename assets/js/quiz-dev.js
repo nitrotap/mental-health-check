@@ -273,7 +273,6 @@ function quizSubmitButtonHandler() {
         let quizAnswers = document.querySelectorAll("input[type=radio]:checked")
         // giving me the next area element, not the object behind it.
 
-
         let score = 0;
         console.log(quizAnswers)
         let quizLength = quizAnswers.length
@@ -336,10 +335,26 @@ function questionChooser() {
     contentDivEl.appendChild(questionChooserSubmitButton)
 } // user picks and stores relevant questions
 
+function saveQuestions() {
+    localStorage.setItem("questions", JSON.stringify(questionOptions))
+}
+
+function loadQuestions() {
+    let questionList = JSON.parse(localStorage.getItem("questions"));
+    if (!questionList) {
+        questionList = [];
+    }
+}
+
+function saveQuestions() {
+    localStorage.setItem("questions", JSON.stringify(questionOptions));
+}
+
 function main() {
     displayAll()
     quizSubmitButtonHandler()
 
+    saveQuestions();
     // questionChooser();
     // console.log(questionOptions)
     /*
