@@ -10,8 +10,13 @@ let pastRecordings = document.querySelector("#past-recordings")
 let canvas = document.querySelector("#visualizer")
 let mainSection = document.querySelector("#recorder-controls")
 let revokeMicAccessButtonEl = document.querySelector("#mic-drop")
-let clipNames = []
 
+
+let clipNames = JSON.parse(localStorage.getItem("clipNames"))
+if (!clipNames) {
+    let clipNames = []
+    localStorage.setItem("clipNames", JSON.stringify(clipNames))
+}
 
 stop.disabled = true;
 record.disabled = true;
@@ -174,7 +179,6 @@ function startRecorder() {
                             localStorage.removeItem(clipNames[i])
                             clipNames.splice(i,1)
                             console.log(clipNames)
-                            // clipNames[i] = "";
                             localStorage.setItem("clipNames", JSON.stringify(clipNames))
                         }
                     }
