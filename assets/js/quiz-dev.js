@@ -70,12 +70,6 @@ let schQuestions = [ // an array of objects
     {question: "Are you having any grandiose thoughts?", response: responseType.yesNo},
 ];
 
-
-let kartikQuestions = [ // icebox
-    {question: "Are you experiencing any shimmering?", response: responseType.yesNo},
-    {question: "Are the pieces scattered?", response: responseType.yesNo}
-];
-
 let impairmentQuestions = [ // an array of objects -
     {question: "What is the Weekday?", response: responseType.weekday},
     {question: "Type in the first three things you see", response: responseType.userInput},
@@ -111,6 +105,10 @@ let anxietyQuestions = [  // an array of objects GAD-7
     {question: "Are you feeling as if something awful might happen?",
         response: responseType.yesNo},
 ]; // 7 questions
+
+let questionBank = [
+    depressionQuestions, anxietyQuestions, addictionQuestions, impairmentQuestions, schQuestions, ptsdQuestions
+]
 
 function radioQuestion(questionObj) { // takes {question, response}
     let contentDivEl = document.querySelector("#content");
@@ -346,15 +344,11 @@ function loadQuestions() {
     }
 }
 
-function saveQuestions() {
-    localStorage.setItem("questions", JSON.stringify(questionOptions));
-}
-
 function main() {
-    displayAll()
-    quizSubmitButtonHandler()
+    // displayAll()
+    // quizSubmitButtonHandler()
 
-    saveQuestions();
+    // saveQuestions();
     // questionChooser();
     // console.log(questionOptions)
     /*
