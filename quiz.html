@@ -32,8 +32,11 @@
 
       <!-- Quiz Question Text Area -->
       <div class="row">
-        <div class="col s12 center-align">
-          <h3 id="current-question">What day is it currently?</h3>
+        <div class="col s6 offset-s3">
+          <h3 id="current-question">
+            Do you feel that your substance use significantly decreases your
+            ability to function?
+          </h3>
         </div>
       </div>
       <!-- Answer Buttons. Page should be able to easily handle generating 
@@ -41,22 +44,12 @@
       <div class="row" id="answer-section">
         <div class="col s12 center-align">
           <a class="waves-effect waves-light btn-large center-align" id="answer"
-            >Answer Option 1</a
+            >Yes</a
           >
         </div>
         <div class="col s12 center-align">
           <a class="waves-effect waves-light btn-large center-align" id="answer"
-            >Answer Option 2</a
-          >
-        </div>
-        <div class="col s12 center-align">
-          <a class="waves-effect waves-light btn-large center-align" id="answer"
-            >Answer Option 3</a
-          >
-        </div>
-        <div class="col s12 center-align">
-          <a class="waves-effect waves-light btn-large center-align" id="answer"
-            >Answer Option 4</a
+            >No</a
           >
         </div>
       </div>
@@ -80,38 +73,46 @@
           <div class="category-select center-align">
             <h5>Categories</h5>
           </div>
-          <form action="#" class="center-align">
-            <p>
-              <label>
-                <input type="checkbox" />
-                <span>Category Name</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" />
-                <span>Category Name</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" />
-                <span>Category Name</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" />
-                <span>Category Name</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <input type="checkbox" />
-                <span>Category Name</span>
-              </label>
-            </p>
-          </form>
+          <div class="row">
+            <form action="#" class="category-list left-align col s4 offset-s4">
+              <p>
+                <label>
+                  <input type="checkbox" id="depression" />
+                  <span>Depression</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input type="checkbox" id="anxiety" />
+                  <span>Anxiety</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input type="checkbox" id="ptsd" />
+                  <span>Post Traumatic Stress Disorder (PTSD)</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input type="checkbox" id="sch" />
+                  <span>Schizophrenia</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input type="checkbox" id="impairment" />
+                  <span>Impairment</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input type="checkbox" id="addiction" />
+                  <span>Addiction</span>
+                </label>
+              </p>
+            </form>
+          </div>
         </div>
 
         <div class="modal-footer">
@@ -143,6 +144,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <!-- Link our scripts here -->
-    <script src="assets/js/quizCreatorModal.js"></script>
+    <script src="assets/js/quiz-creation-modal.js"></script>
   </body>
 </html>

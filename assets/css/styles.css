@@ -66,6 +66,10 @@ header h1 {
   margin: 1%;
 }
 
+.category-list p {
+  margin: 0;
+}
+
 footer {
   margin: 0;
   padding: 0;
