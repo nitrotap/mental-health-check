@@ -3,13 +3,19 @@
 
 var quizCreationModal = $(".modal");
 
+// launch modal
+var interval = "";
 // Launch modal whem page finished loading
 $(document).ready(function () {
   // modal must be initialized before opening
   $(".modal").modal();
-  // launch modal
-  $(".modal").modal("open");
+  interval = setInterval(openModal, "300");
 });
+
+const openModal = function () {
+  clearInterval(interval);
+  $(".modal").modal("open");
+};
 
 // listener for modal buttons
 quizCreationModal.on("click", ".quiz-begin", function () {
