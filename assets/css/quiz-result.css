@@ -1,3 +1,13 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
 header {
   border-radius: 0px;
   margin: 0;
@@ -45,8 +55,19 @@ header h1 {
   padding: 2%;
 }
 
+.category-select {
+  padding: 2% 0;
+}
 .btn {
   margin: 5%;
+}
+
+.btn-large {
+  margin: 1%;
+}
+
+.category-list p {
+  margin: 0;
 }
 
 footer {
@@ -54,9 +75,17 @@ footer {
   padding: 0;
 }
 
+.footer-item {
+  text-align: center;
+}
+
 footer h6 {
-  margin: 0;
-  padding: 1%;
+  color: white;
+}
+
+footer a {
+  text-decoration: none;
+  color: white;
 }
 
 iframe {
@@ -64,7 +93,7 @@ iframe {
   margin: 0 auto;
 }
 
-[type="radio"]:not(:checked),
+/* [type="radio"]:not(:checked),
 [type="radio"]:checked {
   position: static;
   opacity: 1;
@@ -80,4 +109,4 @@ label {
 
 .yesNo {
   text-align: center;
-}
+} */
