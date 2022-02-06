@@ -2,42 +2,83 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Compiled and minified MaterializeCSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="./assets/css/styles.css" />
 
-    <title>Mental Health Check</title>
+    <title>Quiz | Mental Health Check</title>
   </head>
-
   <body>
-    <!-- Header -->
-    <header>
-      <h1 id="page-title">Quiz</h1>
+    <header class="indigo darken-4 nav-wrapper">
+      <!-- Header Section -->
+      <a href="./index.html" class="brand-logo center"
+        ><h1>Mental Health Check</h1></a
+      >
     </header>
 
-    <!-- Main Section -->
-    <main>
-      <div id="content"></div>
+    <main class="container">
+      <div class="row">
+        <div class="col s12">
+          <h2>Mental Health Quiz!</h2>
+        </div>
+      </div>
+      <!-- Quiz Question Text Area -->
+      <div class="row">
+        <div class="col s12 center-align">
+          <h3 id="current-question">What day is it currently?</h3>
+        </div>
+      </div>
 
-      <!-- footer -->
-      <footer>
-        <h2>
-          Made with <span style="color: red">&#x2764;</span> in MN, ID, and CO.
-        </h2>
-      </footer>
+      <div class="row" id="answer-section">
+        <div class="col s12 center-align">
+          <a class="waves-effect waves-light btn-large center-align"
+            >Answer Option 1</a
+          >
+        </div>
+        <div class="col s12 center-align">
+          <a class="waves-effect waves-light btn-large center-align"
+            >Answer Option 1</a
+          >
+        </div>
+        <div class="col s12 center-align">
+          <a class="waves-effect waves-light btn-large center-align"
+            >Answer Option 1</a
+          >
+        </div>
+        <div class="col s12 center-align">
+          <a class="waves-effect waves-light btn-large center-align"
+            >Answer Option 1</a
+          >
+        </div>
+      </div>
     </main>
 
+    <footer class="indigo darken-4 page-footer">
+      <div class="row">
+        <h6 class="col s4 footer-item"><a href="./legal.html">Legal</a></h6>
+
+        <h6 class="col s4 footer-item"></h6>
+
+        <h6 class="col s4 footer-item">
+          Made with <span style="color: red">&#x2764;</span> in MN, ID, and CO.
+        </h6>
+      </div>
+    </footer>
+    <!-- Link Necessary Scripts for Semantic-UI -->
     <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
-      referrerpolicy="no-referrer"
     ></script>
-    <script src="./assets/js/quiz.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- Link our scripts here -->
   </body>
 </html>
