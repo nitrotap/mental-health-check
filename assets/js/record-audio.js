@@ -251,7 +251,7 @@ function loadAudioFiles() {
 
         for (let i = 0; i < clipNames.length; i++) {
 
-            let clip = localStorage.getItem(clipNames[0])
+            let clip = localStorage.getItem(clipNames[i])
             let b64AudioFile = clip.slice(36)
             // console.log(clip)
             const byteCharacters = atob(b64AudioFile);
@@ -324,31 +324,7 @@ function loadAudioFiles() {
                 }
             }
         }
-/*
-        let jsonString = clipNames[0]
-        const parsed = JSON.parse(jsonString);
-        const blob = await fetch(parsed.blob).then(res => res.blob());
-        console.log(blob);*/
     }
 }
 
 loadAudioFiles()
-
-// loadAudioFiles().then(r => startRecorder())
-
-/*
-const blobToBase64 = (blob) => {
-    return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(blob);
-        reader.onloadend = function () {
-            resolve(reader.result);
-        };
-    });
-};
-
-(async () => {
-    const b64 = await blobToBase64(blob);
-    const jsonString = JSON.stringify({blob: b64});
-    console.log(jsonString);
-})();*/
