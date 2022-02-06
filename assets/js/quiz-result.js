@@ -109,6 +109,7 @@ function radioQuestion(questionObj) {
   contentDivEl.appendChild(questionTextDivEl);
 
   let questionResponseDivEl = document.createElement("div");
+  // questionResponseDivEl.classList.add("ui", "checkbox");
   for (let i = 0; i < questionObj.response.length; i++) {
     let questionResponseInputEl = document.createElement("input");
     questionResponseInputEl.setAttribute("type", "radio");
