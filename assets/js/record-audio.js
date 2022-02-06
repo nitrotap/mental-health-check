@@ -10,8 +10,13 @@ let pastRecordings = document.querySelector("#past-recordings")
 let canvas = document.querySelector("#visualizer")
 let mainSection = document.querySelector("#recorder-controls")
 let revokeMicAccessButtonEl = document.querySelector("#mic-drop")
-let clipNames = []
 
+
+let clipNames = JSON.parse(localStorage.getItem("clipNames"))
+if (!clipNames) {
+    let clipNames = []
+    localStorage.setItem("clipNames", JSON.stringify(clipNames))
+}
 
 stop.disabled = true;
 record.disabled = true;
@@ -90,12 +95,14 @@ function startRecorder() {
 
             getMicAccessButtonEl.disabled = true;
             record.disabled = false;
-            revokeMicAccessButtonEl.disabled = false;
+            revokeMicAccessButtonEl.disabled = true;
 
 
             revokeMicAccessButtonEl.addEventListener("click", function() {
                 stream.getTracks().forEach(track => track.stop())
                 revokeMicAccessButtonEl.disabled = true;
+                getMicAccessButtonEl.disabled = false;
+
             })
 
 
@@ -126,7 +133,8 @@ function startRecorder() {
             mediaRecorder.onstop = function (e) {
                 console.log("data available after MediaRecorder.stop() called.");
 
-                const clipName = prompt('Enter a name for your sound clip?', 'My unnamed clip');
+                const clipName = prompt('Enter a name for your sound clip?', 'Clip');
+
 
                 const clipContainer = document.createElement('article');
                 const clipLabel = document.createElement('p');
@@ -164,14 +172,20 @@ function startRecorder() {
                 deleteButton.onclick = function (e) {
                     let evtTgt = e.target;
                     evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
-                    localStorage.removeItem(clipNames[i])
-                    clipNames.splice(i,1)
-                    console.log(clipNames)
-                    localStorage.setItem("clipNames", JSON.stringify(clipNames))
+                    // if it's saved into localStorage, then delete it from there
+                    // check if name is found in localStorage
+                    for (let i = 0; i < clipNames.length; i++) {
+                        if (clipName === clipNames[i]) {
+                            localStorage.removeItem(clipNames[i])
+                            clipNames.splice(i,1)
+                            console.log(clipNames)
+                            localStorage.setItem("clipNames", JSON.stringify(clipNames))
+                        }
+                    }
 
                 }
 
-                saveButton.onclick = function(e) {
+                saveButton.onclick = function (e) {
                     const reader = new window.FileReader();
                     reader.onload = function (e) {
                         localStorage.setItem(clipName, event.target.result)
@@ -190,6 +204,7 @@ function startRecorder() {
                     }
                 }
             }
+
 
             mediaRecorder.ondataavailable = function (e) {
                 chunks.push(e.data);
@@ -236,7 +251,7 @@ function loadAudioFiles() {
 
         for (let i = 0; i < clipNames.length; i++) {
 
-            let clip = localStorage.getItem(clipNames[0])
+            let clip = localStorage.getItem(clipNames[i])
             let b64AudioFile = clip.slice(36)
             // console.log(clip)
             const byteCharacters = atob(b64AudioFile);
@@ -309,31 +324,7 @@ function loadAudioFiles() {
                 }
             }
         }
-/*
-        let jsonString = clipNames[0]
-        const parsed = JSON.parse(jsonString);
-        const blob = await fetch(parsed.blob).then(res => res.blob());
-        console.log(blob);*/
     }
 }
 
 loadAudioFiles()
-
-// loadAudioFiles().then(r => startRecorder())
-
-/*
-const blobToBase64 = (blob) => {
-    return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(blob);
-        reader.onloadend = function () {
-            resolve(reader.result);
-        };
-    });
-};
-
-(async () => {
-    const b64 = await blobToBase64(blob);
-    const jsonString = JSON.stringify({blob: b64});
-    console.log(jsonString);
-})();*/
