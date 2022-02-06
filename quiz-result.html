@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <link rel="stylesheet" href="./assets/css/quiz-result.css" />
 
     <title>Mental Health Check - Saved Past Results</title>
   </head>
@@ -20,54 +20,53 @@
     </header>
 
     <!-- Main Section -->
-    <main>
-      <section class="container">
-        <div class="row">
-          <div class="col">
-            <h2 id="page-title">Quiz Results</h2>
-          </div>
-          <!-- <div class="col">
-            <iframe class="materialboxed offset-s1 z-depth-3" width="560" height="315" src="https://www.youtube.com/embed/EtH9Yllzjcc" title="YouTube video player" frameborder="1" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div> -->
+    <section class="container">
+      <div class="row">
+        <div class="col">
+          <h2 id="page-title">Quiz Results</h2>
         </div>
-        <div class="slider">
-          <ul class="slides">
-            <li>
-              <iframe class="materialboxed offset-s1 z-depth-3" width="743" height="399" src="https://www.youtube.com/embed/EtH9Yllzjcc" title="YouTube video player" frameborder="1" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              <div class="caption center-align">
-                <h3></h3>
-                <h5 class="light grey-text text-lighten-3"></h5>
-              </div>
-            </li>
-            <li>
-              <iframe class="materialboxed offset-s1 z-depth-3" width="743" height="399" src="https://www.youtube.com/embed/P1qu6bPkRz4" title="YouTube video player" frameborder="1" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              <div class="caption left-align">
-                <h3></h3>
-                <h5 class="light grey-text text-lighten-3"></h5>
-              </div>
-            </li>
-            <li>
-              <iframe class="materialboxed offset-s1 z-depth-3" width="743" height="399" src="https://www.youtube.com/embed/83fE5YCpvbo" title="YouTube video player" frameborder="1" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              <div class="caption right-align">
-                <h3></h3>
-                <h5 class="light grey-text text-lighten-3"></h5>
-              </div>
-            </li>
-            <li>
-              <iframe class="materialboxed offset-s1 z-depth-3" width="743" height="399" src="https://www.youtube.com/embed/g_Y9ZV-y3bM" title="YouTube video player" frameborder="1" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              <div class="caption center-align">
-                <h3></h3>
-                <h5 class="light grey-text text-lighten-3"></h5>
-              </div>
-            </li>
-          </ul>
+      </div>
+      <div class="slider">
+        <ul class="slides">
+          <li>
+            <iframe class="offset-s1 z-depth-3" width="743" height="400" src="https://www.youtube.com/embed/EtH9Yllzjcc" title="YouTube video player" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </li>
+          <li>
+            <iframe class="offset-s1 z-depth-3" width="743" height="400" src="https://www.youtube.com/embed/P1qu6bPkRz4" title="YouTube video player" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </li>
+          <li>
+            <iframe class="offset-s1 z-depth-3" width="743" height="400" src="https://www.youtube.com/embed/83fE5YCpvbo" title="YouTube video player" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </li>
+          <li>
+            <iframe class="offset-s1 z-depth-3" width="743" height="400" src="https://www.youtube.com/embed/g_Y9ZV-y3bM" title="YouTube video player" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </li>
+        </ul>
+      </div>
+
+      <div class="row" id="resultContainer"></div>
+
+      <div class="row" id="links">
+        <div class="col s10">
+          <h5>Reading Suggestion</h5>
+          <a href="https://www.google.com/">Visit Google.com!</a>
         </div>
+        <div class="col s10">
+          <h5>Reading Suggestion</h5>
+          <a href="https://www.google.com/">Visit Google.com!</a>
+        </div>
+        <div class="col s10">
+          <h5>Reading Suggestion</h5>
+          <a href="https://www.google.com/">Visit Google.com!</a>
+        </div>
+      </div>
 
-        <div class="row" id="resultContainer"></div>
+      <div>
+        <h4>Music Sample</h4>
+        <iframe class="offset-s1 z-depth-3" id="sc-widget" width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/842545075&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+        <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
+      </div>
 
-        <div class="row" id="links"></div>
-
-        <div class="row" id="content">
+      <!-- <div class="row" id="">
           <div class="card col s10 offset-s1 z-depth-3">
             <h4>HTML VERSION Are you experiencing any brain fog?</h4>
             <div class="yesNo">
@@ -77,14 +76,22 @@
               <label for="Are you experiencing any brain fog?" class="red-text">No</label>
             </div>
           </div>
+        </div> -->
+      <!-- <div class="row" id="content"></div> -->
+      <div class="row">
+        <div class="col s6 offset-s1">
+          <a class="waves-effect waves-light indigo darken-4 btn">Take the Quiz!</a>
         </div>
-      </section>
+        <div class="col s4 offset-s1">
+          <a class="waves-effect waves-light indigo darken-4 btn">View previous results</a>
+        </div>
+      </div>
+    </section>
 
-      <!-- footer -->
-      <footer class="indigo darken-4">
-        <h6>Made with <span style="color: red">&#x2764;</span> in MN, ID, and CO.</h6>
-      </footer>
-    </main>
+    <!-- footer -->
+    <footer class="indigo darken-4">
+      <h6 class="item">Made with Love</h6>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

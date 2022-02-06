@@ -1,0 +1,83 @@
+header {
+  border-radius: 0px;
+  margin: 0;
+  padding: 0.25%;
+}
+
+header a {
+  text-decoration: none;
+  color: white;
+}
+
+header h1 {
+  color: white;
+  font-size: 36px;
+  margin: 0;
+}
+
+.ui.menu {
+  margin: 0;
+  border-radius: 0;
+}
+
+.jumbo {
+  background-image: url("../images/jumbo.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: 30%;
+  height: 25em;
+}
+
+.about {
+  padding: 2%;
+}
+
+.card {
+  margin: 5%;
+}
+
+.card h3 {
+  padding: 2%;
+}
+
+.card p {
+  padding: 2%;
+}
+
+.btn {
+  margin: 5%;
+}
+
+footer {
+  margin: 0;
+  padding: 0;
+}
+
+footer h6 {
+  margin: 0;
+  padding: 1%;
+}
+
+iframe {
+  display: block;
+  margin: 0 auto;
+}
+
+[type="radio"]:not(:checked),
+[type="radio"]:checked {
+  position: static;
+  opacity: 1;
+  pointer-events: fill;
+  width: 2em;
+  height: 1.5em;
+}
+
+label {
+  font-size: 2em;
+  position: unset;
+}
+
+.yesNo {
+  text-align: center;
+}

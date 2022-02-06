@@ -262,6 +262,8 @@ function quizSubmitButtonHandler() {
   // link to content generator function
   let quizResults = [];
   let quizSubmitButtonEl = document.createElement("button");
+  // add style to the submit button
+  quizSubmitButtonEl.className = "waves-effect waves-light indigo darken-4 btn";
   quizSubmitButtonEl.textContent = "submit";
   let contentDivEl = document.querySelector("#content");
   contentDivEl.appendChild(quizSubmitButtonEl);
@@ -352,9 +354,6 @@ function main() {
   // questionChooser()
   quizSubmitButtonHandler();
 
-  // emded video
-  $(".ui.embed").embed();
-
   // saveQuestions();
   // questionChooser();
   // console.log(questionOptions)
@@ -365,21 +364,20 @@ let resultInfo = document.createElement("p");
 resultInfo.id = "resultInfo";
 resultInfo.textContent = "SOME TEXT";
 document.querySelector("#resultContainer").innerHTML = "<h3>" + "Take Your Mental Health Quiz!" + "</h3>";
-document.querySelector("#resultContainer").innerHTML = "<p>" + "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae sequi, illo omnis quod delectus reiciendis facilis deserunt vel ea atque facere corrupti, quos vero in dolor cum provident, sunt hic." + "</p>";
+document.querySelector("#resultContainer").innerHTML = "<p>" + "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae sequi, illo omnis quod delectus reiciendis facilis deserunt vel ea atque facere corrupti, quos vero in dolor cum provident, sunt hic. Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae sequi, illo omnis quod delectus reiciendis facilis deserunt vel ea atque facere corrupti, quos vero in dolor cum provident, sunt hic." + "</p>";
 
-// reference links suggestions
-let linkElement = document.createElement("p");
-let text1 = "Read Suggestions 1";
-document.querySelector("#links").innerHTML = text1.link("https://www.google.com");
-
-// style video
-$(document).ready(function () {
-  $(".materialboxed").materialbox();
-});
+// // reference links suggestions
+// let text1 = "Read Suggestions 1";
+// document.querySelector("#links").innerHTML = text1.link("https://www.google.com");
+// let linkElement = document.createElement("h4");
+// linkElement.textContent = "Read Suggestion";
+// let linkList = document.querySelector("#links");
+// linkList.appendChild(linkElement);
 
 // other option for video
 $(document).ready(function () {
-  $(".slider").slider();
+  $(".slider").slider({ full_width: true, duration: 1000 });
+  $(".slider").slider("pause");
 });
 
 main();
