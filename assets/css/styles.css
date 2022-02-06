@@ -59,6 +59,10 @@ header h1 {
   margin: 5%;
 }
 
+.btn-large {
+  margin: 1%;
+}
+
 footer {
   margin: 0;
   padding: 0;
