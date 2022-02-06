@@ -1,5 +1,21 @@
 header {
+  border-radius: 0px;
   margin: 0;
+  padding: 0.25%;
+}
+
+header a {
+  text-decoration: none;
+  color: white;
+}
+
+header h1 {
+  color: white;
+  font-size: 36px;
+  margin: 0;
+}
+
+h2 {
 }
 .ui.menu {
   margin: 0;
@@ -14,6 +30,34 @@ header {
   background-position-y: 30%;
   height: 25em;
 }
+
+.about {
+  padding: 2%;
+}
+
+.card {
+  margin: 5%;
+}
+
+.card h3 {
+  padding: 2%;
+}
+.card p {
+  padding: 2%;
+}
+.btn {
+  margin: 5%;
+}
+
+footer {
+  margin: 0;
+  padding: 0;
+}
+footer h6 {
+  margin: 0;
+  padding: 1%;
+}
+
 iframe {
   display: block;
   margin: 0 auto;
