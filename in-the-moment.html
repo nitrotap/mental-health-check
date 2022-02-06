@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+
+  <title>Mental Health Check</title>
+</head>
+
+<body>
+<!-- Header -->
+<header>
+  <h1 id="page-title">Mental Health Check</h1>
+</header>
+
+<!-- Main Section -->
+<main>
+  <div id="content"></div>
+  <div id="results">
+
+  </div>
+
+  <section id="recorder-controls">
+    <canvas id="visualizer" height="75px"></canvas>
+    <div id="recorder-buttons">
+      <button id="mic-check">Get Microphone Access</button>
+      <button id="recordButton">Start Recording</button>
+      <button id="stopButton">Stop Recording</button>
+      <button id="mic-drop">Revoke Mic Access</button>
+    </div>
+  </section>
+
+  <section id="past-recordings"></section>
+
+
+  <!-- footer -->
+  <footer>
+    <h2>
+      Made with <span style="color: red;">&#x2764;</span> in MN, ID, and CO.
+    </h2>
+  </footer>
+</main>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="./assets/js/record-audio.js"></script>
+<script src="./assets/js/script.js"></script>
+
+
+</body>
+</html>
