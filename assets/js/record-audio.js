@@ -11,7 +11,6 @@ let canvas = document.querySelector("#visualizer")
 let mainSection = document.querySelector("#recorder-controls")
 let revokeMicAccessButtonEl = document.querySelector("#mic-drop")
 
-
 let clipNames = JSON.parse(localStorage.getItem("clipNames"))
 if (!clipNames) {
     let clipNames = []
@@ -95,13 +94,14 @@ function startRecorder() {
 
             getMicAccessButtonEl.disabled = true;
             record.disabled = false;
-            revokeMicAccessButtonEl.disabled = true;
+            // revokeMicAccessButtonEl.disabled = true;
 
 
             revokeMicAccessButtonEl.addEventListener("click", function() {
                 stream.getTracks().forEach(track => track.stop())
                 revokeMicAccessButtonEl.disabled = true;
                 getMicAccessButtonEl.disabled = false;
+                record.disabled = true;
 
             })
 
@@ -248,7 +248,6 @@ window.onresize();
 function loadAudioFiles() {
     let clipNames = JSON.parse(localStorage.getItem("clipNames"));
     if (clipNames) {
-
         for (let i = 0; i < clipNames.length; i++) {
 
             let clip = localStorage.getItem(clipNames[i])
