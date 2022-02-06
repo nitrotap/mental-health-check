@@ -1,3 +1,19 @@
+header {
+  margin: 0;
+}
+.ui.menu {
+  margin: 0;
+  border-radius: 0;
+}
+
+.jumbo {
+  background-image: url("../images/jumbo.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: 30%;
+  height: 25em;
+}
 iframe {
   display: block;
   margin: 0 auto;
