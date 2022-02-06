@@ -109,7 +109,7 @@ function radioQuestion(questionObj) {
   contentDivEl.appendChild(questionTextDivEl);
 
   let questionResponseDivEl = document.createElement("div");
-  // questionResponseDivEl.classList.add("ui", "checkbox");
+  // questionResponseDivEl.classList.add("");
   for (let i = 0; i < questionObj.response.length; i++) {
     let questionResponseInputEl = document.createElement("input");
     questionResponseInputEl.setAttribute("type", "radio");
@@ -361,16 +361,26 @@ function main() {
 }
 
 // create div with some information
-let resultInfo = document.createElement("h3");
+let resultInfo = document.createElement("p");
 resultInfo.id = "resultInfo";
 resultInfo.textContent = "SOME TEXT";
-document.querySelector("#resultInfo").innerHTML = "SOME INFORMATIVE TEXT";
+document.querySelector("#resultContainer").innerHTML = "<h3>" + "Take Your Mental Health Quiz!" + "</h3>";
+document.querySelector("#resultContainer").innerHTML = "<p>" + "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae sequi, illo omnis quod delectus reiciendis facilis deserunt vel ea atque facere corrupti, quos vero in dolor cum provident, sunt hic." + "</p>";
 
 // reference links suggestions
 let linkElement = document.createElement("p");
-let text1 = "Read Suggestions1";
-let result1 = text1.link("https://www.google.com");
-document.querySelector("#links").innerHTML = result1;
+let text1 = "Read Suggestions 1";
+document.querySelector("#links").innerHTML = text1.link("https://www.google.com");
+
+// style video
+$(document).ready(function () {
+  $(".materialboxed").materialbox();
+});
+
+// other option for video
+$(document).ready(function () {
+  $(".slider").slider();
+});
 
 main();
 

@@ -40,9 +40,11 @@ header h1 {
 .card h3 {
   padding: 2%;
 }
+
 .card p {
   padding: 2%;
 }
+
 .btn {
   margin: 5%;
 }
@@ -51,6 +53,7 @@ footer {
   margin: 0;
   padding: 0;
 }
+
 footer h6 {
   margin: 0;
   padding: 1%;
@@ -59,4 +62,26 @@ footer h6 {
 iframe {
   display: block;
   margin: 0 auto;
+}
+
+[type="radio"]:not(:checked),
+[type="radio"]:checked {
+  position: static;
+  opacity: 1;
+  pointer-events: fill;
+  width: 2em;
+  height: 1.5em;
+}
+
+label {
+  font-size: 2em;
+  position: unset;
+}
+
+.yesNo {
+  text-align: center;
+}
+
+.row .col {
+  float: none;
 }

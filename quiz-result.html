@@ -4,9 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <!-- Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
     <link rel="stylesheet" href="./assets/css/styles.css" />
 
     <title>Mental Health Check - Saved Past Results</title>
@@ -14,35 +15,79 @@
 
   <body>
     <!-- Header -->
-    <header class="ui header center aligned blue inverted segment">
-      <h1 id="page-title">Mental Health Check</h1>
+    <header class="indigo darken-4 nav-wrapper">
+      <a href="#" class="brand-logo center"><h1 id="page-title">Mental Health Check</h1></a>
     </header>
 
     <!-- Main Section -->
     <main>
-      <div>
-        <h1 class="ui header center aligned" id="page-title">Quiz Results</h1>
-      </div>
+      <section class="container">
+        <div class="row">
+          <div class="col">
+            <h2 id="page-title">Quiz Results</h2>
+          </div>
+          <!-- <div class="col">
+            <iframe class="materialboxed offset-s1 z-depth-3" width="560" height="315" src="https://www.youtube.com/embed/EtH9Yllzjcc" title="YouTube video player" frameborder="1" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div> -->
+        </div>
+        <div class="slider">
+          <ul class="slides">
+            <li>
+              <iframe class="materialboxed offset-s1 z-depth-3" width="743" height="399" src="https://www.youtube.com/embed/EtH9Yllzjcc" title="YouTube video player" frameborder="1" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <div class="caption center-align">
+                <h3></h3>
+                <h5 class="light grey-text text-lighten-3"></h5>
+              </div>
+            </li>
+            <li>
+              <iframe class="materialboxed offset-s1 z-depth-3" width="743" height="399" src="https://www.youtube.com/embed/P1qu6bPkRz4" title="YouTube video player" frameborder="1" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <div class="caption left-align">
+                <h3></h3>
+                <h5 class="light grey-text text-lighten-3"></h5>
+              </div>
+            </li>
+            <li>
+              <iframe class="materialboxed offset-s1 z-depth-3" width="743" height="399" src="https://www.youtube.com/embed/83fE5YCpvbo" title="YouTube video player" frameborder="1" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <div class="caption right-align">
+                <h3></h3>
+                <h5 class="light grey-text text-lighten-3"></h5>
+              </div>
+            </li>
+            <li>
+              <iframe class="materialboxed offset-s1 z-depth-3" width="743" height="399" src="https://www.youtube.com/embed/g_Y9ZV-y3bM" title="YouTube video player" frameborder="1" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <div class="caption center-align">
+                <h3></h3>
+                <h5 class="light grey-text text-lighten-3"></h5>
+              </div>
+            </li>
+          </ul>
+        </div>
 
-      <div class="video-container">
-        <iframe class="" width="560" height="315" src="https://www.youtube.com/embed/EtH9Yllzjcc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
+        <div class="row" id="resultContainer"></div>
 
-      <div class="ui header center aligned" id="resultInfo"></div>
+        <div class="row" id="links"></div>
 
-      <div class="ui header center aligned" id="links"></div>
-
-      <div class="ui header center aligned" id="content"></div>
+        <div class="row" id="content">
+          <div class="card col s10 offset-s1 z-depth-3">
+            <h4>HTML VERSION Are you experiencing any brain fog?</h4>
+            <div class="yesNo">
+              <input type="radio" class="with-gap" name="Are you experiencing any brain fog?" id="Yes" />
+              <label for="Are you experiencing any brain fog?" class="blue-text">Yes</label>
+              <input type="radio" class="with-gap" name="Are you experiencing any brain fog?" id="No" />
+              <label for="Are you experiencing any brain fog?" class="red-text">No</label>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- footer -->
-      <footer>
-        <h2>Made with <span style="color: red">&#x2764;</span> in MN, ID, and CO.</h2>
+      <footer class="indigo darken-4">
+        <h6>Made with <span style="color: red">&#x2764;</span> in MN, ID, and CO.</h6>
       </footer>
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- <script src="./assets/js/quiz-dev.js"></script> -->
     <script src="./assets/js/quiz-result.js"></script>
     <script src="./assets/js/script.js"></script>
