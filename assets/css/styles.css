@@ -1,3 +1,13 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
 header {
   border-radius: 0px;
   margin: 0;
@@ -54,9 +64,17 @@ footer {
   padding: 0;
 }
 
+.footer-item {
+  text-align: center;
+}
+
 footer h6 {
-  margin: 0;
-  padding: 1%;
+  color: white;
+}
+
+footer a {
+  text-decoration: none;
+  color: white;
 }
 
 iframe {
