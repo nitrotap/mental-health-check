@@ -1,0 +1,11 @@
+header {
+  border-radius: 0px;
+}
+
+header a {
+  text-decoration: none;
+}
+
+header h1 {
+  color: white;
+}

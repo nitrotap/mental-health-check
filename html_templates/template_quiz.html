@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Linking Semantic UI CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+      integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="ui modal">
+      <i class="close icon"></i>
+      <div class="header">Create Your Quiz</div>
+      <div class="content">
+        <div class="description">
+          <div class="ui header"></div>
+          <div class="slider slider1">
+            <div class="slides">
+              <div class="ui celled relaxed list">
+                <h4>Select which Categories you would like in your quiz.</h4>
+                <div class="item">
+                  <div class="ui child checkbox">
+                    <input type="checkbox" name="category1Name" />
+                    <label>Category 1</label>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="ui child checkbox">
+                    <input type="checkbox" name="category1Name" />
+                    <label>Category 1</label>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="ui child checkbox">
+                    <input type="checkbox" name="category1Name" />
+                    <label>Category 1</label>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="ui child checkbox">
+                    <input type="checkbox" name="category1Name" />
+                    <label>Category 1</label>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="ui child checkbox">
+                    <input type="checkbox" name="category1Name" />
+                    <label>Category 1</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <div class="ui black deny button">Cancel</div>
+        <div class="ui blue deny button">Begin Quiz!</div>
+      </div>
+    </div>
+    <!-- Link Necessary Scripts for Semantic-UI -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"
+      integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- Link our scripts here -->
+    <script src="../assets/js/quizCreatorModal.js"></script>
+  </body>
+</html>
