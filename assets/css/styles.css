@@ -54,6 +54,10 @@ header h1 {
 .card p {
   padding: 2%;
 }
+
+.category-select {
+  padding: 2% 0;
+}
 .btn {
   margin: 5%;
 }
