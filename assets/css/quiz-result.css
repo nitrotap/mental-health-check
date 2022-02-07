@@ -70,20 +70,6 @@ header h1 {
   margin: 0;
 }
 
-.modal {
-  max-width: 50%;
-  max-height: 65%;
-}
-
-.modal p {
-  margin: 0;
-  padding: 0;
-}
-
-#suggestions {
-  padding: 2%;
-}
-
 footer {
   margin: 0;
   padding: 0;
@@ -107,7 +93,7 @@ iframe {
   margin: 0 auto;
 }
 
-[type="radio"]:not(:checked),
+/* [type="radio"]:not(:checked),
 [type="radio"]:checked {
   position: static;
   opacity: 1;
@@ -123,4 +109,4 @@ label {
 
 .yesNo {
   text-align: center;
-}
+} */
