@@ -70,6 +70,20 @@ header h1 {
   margin: 0;
 }
 
+.modal {
+  max-width: 50%;
+  max-height: 65%;
+}
+
+.modal p {
+  margin: 0;
+  padding: 0;
+}
+
+#bookSuggestions {
+  padding: 1%;
+}
+
 footer {
   margin: 0;
   padding: 0;
