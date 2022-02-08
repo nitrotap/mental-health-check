@@ -15,23 +15,23 @@ async function getApiQueries (results) {
   // console.log(results);
   fetchBooks (results);
   if (results == "depression") {
-    console.log("The result was positive for depression")
+    // console.log("The result was positive for depression")
     // fetchVideos ("dogs");
   }
   else if (results == "anxiety") {
-    console.log("The result was positive for anxiety")
+    // console.log("The result was positive for anxiety")
   }
   else if (results == "ptsd") {
-    console.log("The result was positive for ptsd")
+    // console.log("The result was positive for ptsd")
   }
   else if (results == "sch") {
-    console.log("The result was positive for sch")
+    // console.log("The result was positive for sch")
   }
   else if (results == "addiction") {
-    console.log("The result was positive for addiction")
+    // console.log("The result was positive for addiction")
   }
   else {
-    console.log("Negative for symptoms on all checked counts")
+    // console.log("Negative for symptoms on all checked counts")
   }
 };
 

@@ -14,7 +14,7 @@ function loadSavedResources () {
   // console.log(savedResources);
   if (localStorage.getItem("previousResources")) {
     savedResources = JSON.parse(localStorage.getItem("previousResources"));
-    console.log(savedResources);
+    // console.log(savedResources);
     seperateResources(savedResources);
   }
   else {
@@ -34,7 +34,7 @@ function seperateResources (resources) {
 
 // functions for printing content to screen
 function displayBook (bookInfo, i) {
-  console.log(bookInfo, i);
+  // console.log(bookInfo, i);
   let bookEl = $("#r" + i + "b" + i);
   let bookLink = $("<a>");
   bookLink.attr("href", bookInfo.infoLink);
