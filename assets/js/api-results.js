@@ -5,42 +5,77 @@
 
 // funciton to bring in/parse quiz results will eventually test with full array ["depression", "sch", "ptsd", "addiction"];
 let quizResults = ["depression"];
+let videosToDisplay = [];
+let booksToDisplay = [];
 
 // function to translate into api searches
 // figure out better search terms
 function getApiQueries (results) {
   // console.log(results);
   fetchBooks (results);
-  getVideos (results);
+  if (results == "depression") {
+    console.log("The result was positive for depression")
+    getVideos ("dogs");
+  }
+  else if (results == "anxiety") {
+    console.log("The result was positive for anxiety")
+  }
+  else if (results == "ptsd") {
+    console.log("The result was positive for ptsd")
+  }
+  else if (results == "sch") {
+    console.log("The result was positive for sch")
+  }
+  else if (results == "addiction") {
+    console.log("The result was positive for addiction")
+  }
+  else {
+    console.log("Negative for symptoms on all checked counts")
+  }
 };
 
 // function for youtube api fetch
 function getVideos (searchTerm) {
-  fetch("https://www.googleapis.com/youtube/v3/search?q=dogs&key=AIzaSyApk2KxjyUh_kVnvLVoPNRgeDIW5eXZmXM")
-    .then(function (res) {
-      // console.log(searchTerm);
-      console.log(res);
+  // want to find a way to check for only embeddable videos
+  fetch("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" + searchTerm + "&safeSearch=moderate&format=5&key=AIzaSyApk2KxjyUh_kVnvLVoPNRgeDIW5eXZmXM")
+    .then(function (result) {
+      return result.json();
     })
+    .then(function (result) {
+      // find random 4 videos out of the 10 generated
+      for ( i = 0; i < 4; i++) { 
+        let a = Math.floor(Math.random() * 10);
+        let video = result.items[a].id.videoId;
+        // console.log(video);
+        // to check for duplicates
+        if (videosToDisplay.includes(video)) {
+          i--
+        }
+        else {
+          videosToDisplay.push(video);
+          displayVideo(video, i);
+          // console.log(video)
+        };
+      };
+    }).catch(function(error) {
+      // logs error if a problem occurs
+      console.log(error);
+    });
 };
 
 // function for google books api fetch
 function fetchBooks (searchTerm) {
   // currently grabs a lot of academic books, want to get rid of those eventually I think
   fetch("https://www.googleapis.com/books/v1/volumes?q=" + searchTerm)
-    .then(function (res) {
-      return res.json();
+    .then(function (result) {
+      return result.json();
     })
     .then(function (result) {
-      // array to stop duplicates
-      let booksToDisplay = [];
-      // retrieves random volume from response and calls displayBook to output to viewport
-      // currently allows duplicates to be printed
+      // retrieves random 3 books from response and calls displayBook to output to viewport
       for ( i = 0; i < 3; i++) { 
         let a = Math.floor(Math.random() * 10);
-        book = result.items[a].volumeInfo;
-        // console.log(result);
-        // console.log(book);
-        // console.log(a);
+        let book = result.items[a].volumeInfo;
+
         // to check for duplicates
         if (booksToDisplay.includes(book)) {
           i--
@@ -56,7 +91,7 @@ function fetchBooks (searchTerm) {
     });
 };
 
-// function for printing content to screen
+// functions for printing content to screen
 function displayBook (bookInfo, i) {
   let bookEl = $("#suggestion-" + i);
   let bookLink = $("<a>");
@@ -69,7 +104,11 @@ function displayBook (bookInfo, i) {
   bookEl.append(bookLink);
 };
 
-// function to update recent searches, (maybe keep 5 recent searches?
+function displayVideo (video, i) {
+  $("#video-" + i).attr("src", "https://www.youtube.com/embed/" + video)
+}
+
+// function to save recents, (maybe keep 5 recent results?)
 
 
 getApiQueries(quizResults);
