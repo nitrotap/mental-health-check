@@ -7,15 +7,16 @@
 let quizResults = ["depression"];
 let videosToDisplay = [];
 let booksToDisplay = [];
+let savedResources = [];
 
 // function to translate into api searches
 // figure out better search terms
-function getApiQueries (results) {
+async function getApiQueries (results) {
   // console.log(results);
   fetchBooks (results);
   if (results == "depression") {
     console.log("The result was positive for depression")
-    getVideos ("dogs");
+    // fetchVideos ("dogs");
   }
   else if (results == "anxiety") {
     console.log("The result was positive for anxiety")
@@ -35,7 +36,7 @@ function getApiQueries (results) {
 };
 
 // function for youtube api fetch
-function getVideos (searchTerm) {
+async function fetchVideos (searchTerm) {
   // want to find a way to check for only embeddable videos
   fetch("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" + searchTerm + "&safeSearch=moderate&format=5&key=AIzaSyApk2KxjyUh_kVnvLVoPNRgeDIW5eXZmXM")
     .then(function (result) {
@@ -64,7 +65,7 @@ function getVideos (searchTerm) {
 };
 
 // function for google books api fetch
-function fetchBooks (searchTerm) {
+async function fetchBooks (searchTerm) {
   // currently grabs a lot of academic books, want to get rid of those eventually I think
   fetch("https://www.googleapis.com/books/v1/volumes?q=" + searchTerm)
     .then(function (result) {
@@ -109,6 +110,35 @@ function displayVideo (video, i) {
 }
 
 // function to save recents, (maybe keep 5 recent results?)
+function save () {
 
+  let savedResults = {
+    "books" : booksToDisplay,
+    "videos" : videosToDisplay
+  };
+
+  savedResources.unshift(savedResults);
+
+  if (savedResources.length <= 3) {
+    localStorage.setItem("previousResources", JSON.stringify(savedResources))
+    // console.log("saved is less than or eqaual to 3");
+  }
+  else {
+    savedResources.pop();
+    localStorage.setItem("previousResources", JSON.stringify(savedResources))
+    // console.log(savedResources);
+  };
+}
+
+function loadSavedResources () {
+  // console.log(savedResources);
+  if (localStorage.getItem("previousResources")) {
+    savedResources = JSON.parse(localStorage.getItem("previousResources"));
+  }
+  else {
+    savedResources = [];
+  }
+}
 
 getApiQueries(quizResults);
+loadSavedResources();
