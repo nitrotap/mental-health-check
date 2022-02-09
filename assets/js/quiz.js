@@ -44,8 +44,8 @@ quizCreationModal.on("click", ".quiz-begin", function () {
   // Generate and begin quiz AFTER closing modal!
   console.log(userQuestions);
 
-  // take my array and generate questions from it
-
+  // take mcheckboxy array and generate questions from it
+  // addiction quiz
   let addQuiz = function () {
     let addCheck = false;
     if (userQuestions.includes("addiction")) {
@@ -93,7 +93,7 @@ quizCreationModal.on("click", ".quiz-begin", function () {
             } else {
               console.log("addDone");
               console.log("score" + score);
-              if (score > 4) {
+              if (score > 3) {
                 symptoms.push("addiction");
               }
               // todo quiz results
@@ -111,6 +111,7 @@ quizCreationModal.on("click", ".quiz-begin", function () {
     }
   };
 
+  // impairment quiz
   let impQuiz = function () {
     let impCheck = false;
     if (userQuestions.includes("impairment")) {
@@ -138,7 +139,7 @@ quizCreationModal.on("click", ".quiz-begin", function () {
             } else {
               console.log("impDone");
               console.log("score" + score);
-              if (score > 4) {
+              if (score > 3) {
                 symptoms.push("imp");
               }
               addQuiz();
@@ -156,7 +157,7 @@ quizCreationModal.on("click", ".quiz-begin", function () {
             } else {
               console.log("impDone");
               console.log("score" + score);
-              if (score > 4) {
+              if (score > 3) {
                 symptoms.push("imp");
               }
               addQuiz();
@@ -171,6 +172,7 @@ quizCreationModal.on("click", ".quiz-begin", function () {
     }
   };
 
+  // schizophrenia and related disorders quiz
   let sQuiz = function () {
     let schCheck = false;
     if (userQuestions.includes("sch")) {
@@ -231,6 +233,7 @@ quizCreationModal.on("click", ".quiz-begin", function () {
     }
   };
 
+  // ptsd quiz
   let pQuiz = function () {
     let ptsdCheck = false;
     if (userQuestions.includes("ptsd")) {
@@ -277,7 +280,7 @@ quizCreationModal.on("click", ".quiz-begin", function () {
             } else {
               console.log("ptsdDone");
               console.log("score" + score);
-              if (score > 4) {
+              if (score > 2) {
                 symptoms.push("ptsd");
               }
               sQuiz();
@@ -292,6 +295,7 @@ quizCreationModal.on("click", ".quiz-begin", function () {
     }
   };
 
+  // anxiety quiz
   let aQuiz = function () {
     let anxietyCheck = false;
     if (userQuestions.includes("anxiety")) {
@@ -422,7 +426,7 @@ quizCreationModal.on("click", ".cancel", function () {
   quizCreationModal.modal("close");
   // Will redirect back to homepage after closing.
   // disabled for now.
-  //window.location.replace("index.html");
+  //window.location.replace("index.html"); TODO UN-COMMENT
 });
 
 var displayQuestion = function (questionObj) {
@@ -446,6 +450,17 @@ var displayQuestion = function (questionObj) {
   answerRowEl.id = "answer-section";
   let answerDivEl = document.createElement("div");
   answerDivEl.className = "col s12 center-align";
+
+  for (let i = 0; i < questionObj.response.length; i++) {
+    let answerButtonEl = document.createElement("button")
+    answerButtonEl.className =
+      "waves-effect waves-light btn-large center-align";
+
+    // console.log(questionObj.response[0].text)
+    answerButtonEl.id = "answer-" + questionObj.response[i].text.toLowerCase()
+    answerButtonEl.textContent = questionObj.response[i].text
+    answerDivEl.appendChild(answerButtonEl)
+  }
   let answerYesButtonEl = document.createElement("button");
   answerYesButtonEl.className =
     "waves-effect waves-light btn-large center-align";
@@ -458,8 +473,8 @@ var displayQuestion = function (questionObj) {
     "waves-effect waves-light btn-large center-align";
   answerNoButtonEl.textContent = "No";
 
-  answerDivEl.appendChild(answerYesButtonEl);
-  answerDivEl.appendChild(answerNoButtonEl);
+  //answerDivEl.appendChild(answerYesButtonEl);
+  //answerDivEl.appendChild(answerNoButtonEl);
   answerRowEl.appendChild(answerDivEl);
   questionContainerEl.appendChild(answerRowEl);
   contentDivEl.appendChild(questionContainerEl);
@@ -467,15 +482,15 @@ var displayQuestion = function (questionObj) {
 
 
 
-let quizEndHandler = function() {
-    let depQueryParam = ''
-    let anxQueryParam = ''
-    let ptsdQueryParam = ''
-    let schQueryParam = ''
-    let impQueryParam = ''
-    let addQueryParam = ''
+let quizEndHandler = function () {
+  let depQueryParam = ''
+  let anxQueryParam = ''
+  let ptsdQueryParam = ''
+  let schQueryParam = ''
+  let impQueryParam = ''
+  let addQueryParam = ''
 
-    console.log(symptoms)
+  console.log(symptoms)
 
   if (symptoms.includes('depression')) {
     depQueryParam = 'true'
@@ -509,12 +524,13 @@ let quizEndHandler = function() {
   }
 
   let queryString = "?" + "depression=" + depQueryParam + "+" +
-  "anxiety=" + anxQueryParam + "+" +
-  "ptsd=" + ptsdQueryParam + "+" +
-  "sch=" + schQueryParam + "+" +
-  "imp=" + impQueryParam +  "+" +
-  "add=" + addQueryParam;
-  
-  window.location.replace("quiz-result.html" + queryString)
+    "anxiety=" + anxQueryParam + "+" +
+    "ptsd=" + ptsdQueryParam + "+" +
+    "sch=" + schQueryParam + "+" +
+    "imp=" + impQueryParam + "+" +
+    "add=" + addQueryParam;
+  console.log(queryString)
+
+  // window.location.replace("quiz-result.html" + queryString) TODO UN-COMMENT
   //console.log("index.html" + queryString)
 }

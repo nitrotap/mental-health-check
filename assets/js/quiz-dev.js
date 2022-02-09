@@ -1,6 +1,6 @@
 /*
  * js file for quiz logic
- * symptoms array has active/inactive options for each test type
+ * returns query parameters for each diagnosis type
 */
 
 // variable declarations
@@ -30,7 +30,7 @@ let depressionQuestions = [ // an array of objects depressionQuestions[0].questi
         response: responseType.yesNo},
     {question: "Are you having trouble concentrating on things such as reading the newspaper or watching TV?",
         response: responseType.yesNo},
-    {question: "Are you feeling bad about yourself (feel like a failure or let your family down)",
+    {question: "Are you feeling bad about yourself (ex. feel like a failure or let your family down)?",
         response: responseType.yesNo},
     {question: "Do you have a poor appetite or are you overeating?",
         response: responseType.yesNo},
