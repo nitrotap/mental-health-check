@@ -101,6 +101,8 @@ function displayBook (bookInfo, i) {
   let bookImg = $("<img>");
   bookImg.attr("alt", bookInfo.title + " image preview");
   bookImg.attr("src", bookInfo.imageLinks.thumbnail);
+  bookImg.attr("class", "offset-s1, z-depth-3"); // add class/style
+
   bookLink.append(bookImg);
   bookEl.append(bookLink);
 };
