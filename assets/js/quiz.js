@@ -515,6 +515,6 @@ let quizEndHandler = function() {
   "imp=" + impQueryParam +  "+" +
   "add=" + addQueryParam;
   
-  // window.location.replace("index.html" + queryString)
-  console.log("index.html" + queryString)
+  window.location.replace("quiz-result.html" + queryString)
+  //console.log("index.html" + queryString)
 }
