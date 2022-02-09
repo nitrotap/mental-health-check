@@ -30,29 +30,9 @@
         </div>
       </div>
 
-      <!-- Quiz Question Text Area -->
-      <div class="row">
-        <div class="col s6 offset-s3">
-          <h3 id="current-question">
-            Do you feel that your substance use significantly decreases your
-            ability to function?
-          </h3>
-        </div>
-      </div>
-      <!-- Answer Buttons. Page should be able to easily handle generating 
-        however many buttons we need for each question -->
-      <div class="row" id="answer-section">
-        <div class="col s12 center-align">
-          <a class="waves-effect waves-light btn-large center-align" id="answer"
-            >Yes</a
-          >
-        </div>
-        <div class="col s12 center-align">
-          <a class="waves-effect waves-light btn-large center-align" id="answer"
-            >No</a
-          >
-        </div>
-      </div>
+      <div id="content"></div>
+
+     
 
       <!-- Progress Feedback -->
       <div class="row">
@@ -116,10 +96,8 @@
         </div>
 
         <div class="modal-footer">
-          <a href="#!" class="cancel waves-effect red lighten-1 btn">Cancel</a>
-          <a href="#!" class="quiz-begin waves-effect indigo darken-4 btn"
-            >Begin</a
-          >
+          <a id="questionCancelButton" class="cancel waves-effect red lighten-1 btn">Cancel</a>
+          <a id="questionSubmitButton" class="quiz-begin waves-effect indigo darken-4 btn">Begin</a>
         </div>
       </div>
     </main>
@@ -144,6 +122,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <!-- Link our scripts here -->
+    <script src="assets/js/quiz-dev.js"></script>
     <script src="assets/js/quiz-creation-modal.js"></script>
+    <script src="assets/js/quiz.js"></script>
   </body>
 </html>
