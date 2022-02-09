@@ -44,7 +44,7 @@ quizCreationModal.on("click", ".quiz-begin", function () {
   // Generate and begin quiz AFTER closing modal!
   console.log(userQuestions);
 
-  // take mcheckboxy array and generate questions from it
+  // take checkbox array and generate questions from it
   // addiction quiz
   let addQuiz = function () {
     let addCheck = false;
