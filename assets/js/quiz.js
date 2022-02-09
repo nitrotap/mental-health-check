@@ -508,7 +508,7 @@ let quizEndHandler = function() {
     addQueryParam = 'false'
   }
 
-  let queryString = "?=" + "depression=" + depQueryParam + "+" +
+  let queryString = "?" + "depression=" + depQueryParam + "+" +
   "anxiety=" + anxQueryParam + "+" +
   "ptsd=" + ptsdQueryParam + "+" +
   "sch=" + schQueryParam + "+" +
