@@ -108,7 +108,7 @@ let anxietyQuestions = [  // an array of objects GAD-7
 ]; // 7 questions
 
 let questionBank = [
-    depressionQuestions, anxietyQuestions, addictionQuestions, impairmentQuestions, schQuestions, ptsdQuestions
+    depressionQuestions, anxietyQuestions, ptsdQuestions, schQuestions, impairmentQuestions, addictionQuestions
 ]
 
 function radioQuestion(questionObj) { // takes {question, response}
@@ -188,41 +188,371 @@ function displayAll() {
 } // TEST FUNCTION displays all questions TODO remove
 
 function questionDisplay(questionObj) {
-    let contentDivEl = document.querySelector("#content");
-    for (let i = 0; i < questionObj.length; i++) {
-        let questionDivEl = document.createElement("div")
-        let questionSpanEl = document.createElement("span")
-        questionSpanEl.className = "checkbox-wrapper"
-        let questionInputEl = document.createElement("input")
-        questionInputEl.setAttribute("type", "checkbox")
-        questionInputEl.setAttribute("name", questionObj[i].question)
-        let questionLabelEl = document.createElement("label")
-        questionLabelEl.setAttribute("for", questionObj[i].question)
-        questionLabelEl.textContent = questionObj[i].question
-        questionSpanEl.appendChild(questionInputEl)
-        questionSpanEl.appendChild(questionLabelEl)
-        questionDivEl.appendChild(questionSpanEl)
-        contentDivEl.appendChild(questionDivEl)
-    }
+    let currentQuestion = document.querySelector("#current-question")
+    questionParser(questionObj)
 }
 
-questionOptions = [];
-function questionChooserButtonHandler (userQuestions) {
-    let contentDivEl = document.querySelector("#content");
+questionOptions = [];     // array of question objects
+symptoms = [] // symptoms[i] returns active symptoms for each quiz type
 
-    // need to compare names with objects and create quiz questions
+
+function depressionQuiz() {
+    let score = 0;
+    let counter = 0;
+    let checker = false;
+    for (let i = 0; i < userQuestions.length; i++) {
+        if (userQuestions[i] === "depression") {
+            checker = true;
+        }
+    }
+    if (checker) {
+        questionDisplay(depressionQuestions[counter])
+    } else {
+        anxietyQuiz()
+    }
+
+}
+
+function anxietyQuiz() {
+    let score = 0;
+    let counter = 0;
+    let checker = false;
+    for (let i = 0; i < userQuestions.length; i++) {
+        if (userQuestions[i] === "anxiety") {
+            checker = true;
+        }
+    }
+    if (checker) {
+        questionDisplay(anxietyQuestions[counter])
+        let a = document.querySelector("#answerYes")
+        let b = document.querySelector("#answerNo")
+        a.addEventListener("click", function () {
+            counter++
+            score++
+            console.log(score)
+            console.log(counter)
+            if (counter < anxietyQuestions.length) {
+                questionDisplay(anxietyQuestions[counter])
+                console.log(score)
+                console.log(counter)
+            } else {
+                if (score > 3) {
+                    symptoms.push({"anxiety": true})
+                    console.log(symptoms)
+                    ptsdQuiz()
+
+                } else {
+                    symptoms.push({"anxiety": false})
+                    console.log(symptoms)
+                    ptsdQuiz()
+                }
+            }
+        })
+        b.addEventListener("click", function () {
+            counter++
+            if (counter < anxietyQuestions.length) {
+                questionDisplay(anxietyQuestions[counter])
+                console.log(score)
+                console.log(counter)
+            } else {
+                if (score > 3) {
+                    symptoms.push({"anxiety": true})
+                    console.log(symptoms)
+                    ptsdQuiz()
+                } else {
+                    symptoms.push({"anxiety": false})
+                    console.log(symptoms)
+                    ptsdQuiz()
+                }
+            }
+        })
+    } else {
+        ptsdQuiz()
+    }
+
+}
+
+function ptsdQuiz() {
+    let score = 0;
+    let counter = 0;
+    let checker = false;
+    for (let i = 0; i < userQuestions.length; i++) {
+        if (userQuestions[i] === "ptsd") {
+            checker = true;
+        }
+    }
+    if (checker) {
+        questionDisplay(ptsdQuestions[counter])
+        let a = document.querySelector("#answerYes")
+        let b = document.querySelector("#answerNo")
+        a.addEventListener("click", function () {
+            counter++
+            score++
+            console.log(score)
+            console.log(counter)
+            if (counter < ptsdQuestions.length) {
+                questionDisplay(ptsdQuestions[counter])
+                console.log(score)
+                console.log(counter)
+            } else {
+                if (score > 3) {
+                    symptoms.push({"ptsd": true})
+                    console.log(symptoms)
+                    schQuiz()
+                } else {
+                    symptoms.push({"ptsd": false})
+                    console.log(symptoms)
+                    schQuiz()
+                }
+            }
+            return score;
+        })
+        b.addEventListener("click", function () {
+            counter++
+            if (counter < ptsdQuestions.length) {
+                questionDisplay(ptsdQuestions[counter])
+                console.log(score)
+                console.log(counter)
+            } else {
+                if (score > 3) {
+                    symptoms.push({"ptsd": true})
+                    console.log(symptoms)
+                    schQuiz()
+                } else {
+                    symptoms.push({"ptsd": false})
+                    console.log(symptoms)
+                    schQuiz()
+                }
+            }
+            return score;
+        })
+    } else {
+        schQuiz()
+    }
+
+}
+
+function schQuiz() {
+    let score = 0;
+    let counter = 0;
+    let checker = false;
+    for (let i = 0; i < userQuestions.length; i++) {
+        if (userQuestions[i] === "sch") {
+            checker = true;
+        }
+    }
+    if (checker) {
+        questionDisplay(schQuestions[counter])
+        let a = document.querySelector("#answerYes")
+        let b = document.querySelector("#answerNo")
+        a.addEventListener("click", function () {
+            counter++
+            score++
+            console.log(score)
+            console.log(counter)
+            if (counter < schQuestions.length) {
+                questionDisplay(schQuestions[counter])
+                console.log(score)
+                console.log(counter)
+            } else {
+                if (score > 3) {
+                    symptoms.push({"sch": true})
+                    console.log(symptoms)
+                    impairmentQuiz()
+                } else {
+                    symptoms.push({"sch": false})
+                    console.log(symptoms)
+                    impairmentQuiz()
+                }
+            }
+            return score;
+        })
+        b.addEventListener("click", function () {
+            counter++
+            if (counter < schQuestions.length) {
+                questionDisplay(schQuestions[counter])
+                console.log(score)
+                console.log(counter)
+            } else {
+                if (score > 3) {
+                    symptoms.push({"sch": true})
+                    console.log(symptoms)
+                    impairmentQuiz()
+                } else {
+                    symptoms.push({"sch": false})
+                    console.log(symptoms)
+                    impairmentQuiz()
+                }
+            }
+            return score;
+        })
+    } else {
+            impairmentQuiz()
+    }
+
+}
+
+function impairmentQuiz() {
+    let score = 0;
+    let counter = 0;
+    let checker = false;
+    for (let i = 0; i < userQuestions.length; i++) {
+        if (userQuestions[i] === "impairment") {
+            checker = true;
+        }
+    }
+    if (checker) {
+            questionDisplay(impairmentQuestions[counter])
+            let a = document.querySelector("#answerYes")
+            let b = document.querySelector("#answerNo")
+            a.addEventListener("click", function () {
+                counter++
+                score++
+                console.log(score)
+                console.log(counter)
+                if (counter < impairmentQuestions.length) {
+                    questionDisplay(impairmentQuestions[counter])
+                    console.log(score)
+                    console.log(counter)
+                } else {
+                    if (score > 3) {
+                        symptoms.push({"impairment": true})
+                        console.log(symptoms)
+                        addictionQuiz()
+                    } else {
+                        symptoms.push({"impairment": false})
+                        console.log(symptoms)
+                        addictionQuiz()
+                    }
+                }
+                return score;
+            })
+            b.addEventListener("click", function () {
+                counter++
+                if (counter < impairmentQuestions.length) {
+                    questionDisplay(impairmentQuestions[counter])
+                    console.log(score)
+                    console.log(counter)
+                } else {
+                    if (score > 3) {
+                        symptoms.push({"impairment": true})
+                        console.log(symptoms)
+                        addictionQuiz()
+                    } else {
+                        symptoms.push({"impairment": false})
+                        console.log(symptoms)
+                        addictionQuiz()
+                    }
+                }
+                return score;
+            })
+    } else {
+            addictionQuiz()
+        }
+
+}
+
+function addictionQuiz() {
+    let score = 0;
+    let counter = 0;
+    let checker = false;
+    for (let i = 0; i < userQuestions.length; i++) {
+        if (userQuestions[i] === "anxiety") {
+            checker = true;
+        }
+    }
+    if (checker) {
+            questionDisplay(addictionQuestions[counter])
+            let a = document.querySelector("#answerYes")
+            let b = document.querySelector("#answerNo")
+            a.addEventListener("click", function () {
+                counter++
+                score++
+                console.log(score)
+                console.log(counter)
+                if (counter < addictionQuestions.length) {
+                    questionDisplay(addictionQuestions[counter])
+                    console.log(score)
+                    console.log(counter)
+                } else {
+                    if (score > 3) {
+                        symptoms.push({"addiction": true})
+                        console.log(symptoms)
+                    } else {
+                        symptoms.push({"addiction": false})
+                        console.log(symptoms)
+                    }
+                }
+                return score;
+            })
+            b.addEventListener("click", function () {
+                counter++
+                if (counter < addictionQuestions.length) {
+                    questionDisplay(addictionQuestions[counter])
+                    console.log(score)
+                    console.log(counter)
+                } else {
+                    if (score > 3) {
+                        symptoms.push({"addiction": true})
+                        console.log(symptoms)
+                    } else {
+                        symptoms.push({"addiction": false})
+                        console.log(symptoms)
+                    }
+                }
+                return score;
+            })
+    } else {
+
+    }
+
+}
+
+function questionChooserButtonHandler (userQuestions) {
+    console.log(userQuestions)
+
+    depressionQuiz()
+
+
+
+
+    /*
+        if (userQuestions[i] === "ptsd") {
+            quizzes.push(ptsdQuestions)
+        }
+        if (userQuestions[i] === "sch") {
+            quizzes.push(schQuestions)
+        }
+        if (userQuestions[i] === "impairment") {
+            quizzes.push(impairmentQuestions)
+        }
+        if (userQuestions[i] === "addiction") {
+            quizzes.push(addictionQuestions)
+        }*/
+
+        // loop through each quiz, getting score
+
+
+
+
+
+    /*
+    for (let i = 0; i < userQuestions.length; i++) { // loop through selected questions
+        if (userQuestions[i] === "anxiety") {
+            // run depression quiz return symptom[i]
+            anxietyQuiz()
+        }
+    }*/
+
+    // run depression quiz and get scores
+
+/*
+        // need to compare names with objects and create quiz questions
     // compare userQuestions[] with impairment
     for (let i = 0; i < userQuestions.length; i++) { // loop through selected questions
         for (let j = 0; j < impairmentQuestions.length; j++) {
             if (userQuestions[i] === impairmentQuestions[j].question) {
                 questionOptions.push(impairmentQuestions[j])
-            }
-        }
-    }
-    for (let i = 0; i < userQuestions.length; i++) { // loop through selected questions
-        for (let j = 0; j < depressionQuestions.length; j++) {
-            if (userQuestions[i] === depressionQuestions[j].question) {
-                questionOptions.push(depressionQuestions[j])
             }
         }
     }
@@ -251,25 +581,11 @@ function questionChooserButtonHandler (userQuestions) {
         // direct to resources based on grade
         quizSubmitButtonHandler();
 
-    })
+    })*/
 }
 
 
-let symptoms = [] // symptoms[i] returns active symptoms for each quiz type
-function quizGraderHandler(symptomArray) {
-    console.log(symptomArray[0])
-    if (symptomArray[0] === "Active") {
-        // display resources for applicable symptoms
-        // todo remove placeholder
-        let a = document.createElement("div")
-        let b = document.createElement("h3")
-        let contentDivEl = document.querySelector("#content");
-
-        b.textContent = symptomArray[0]
-        a.appendChild(b)
-        contentDivEl.appendChild(a)
-    }
-
+function quizGraderHandler(symptoms) {
 
 }
 
@@ -367,9 +683,9 @@ function loadQuestions() {
 }
 
 function main() {
-    displayAll()
+    // displayAll()
     // questionChooser()
-    quizSubmitButtonHandler()
+    // quizSubmitButtonHandler()
 
 
 
