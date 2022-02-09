@@ -124,3 +124,10 @@ label {
 .yesNo {
   text-align: center;
 }
+
+/* update position of jumbo image on small screens */
+@media only screen and (max-width: 750px) {
+  .jumbo {
+    background-position: right;
+  }
+}
