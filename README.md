@@ -18,7 +18,7 @@ Mental Health Check is a quiz app that helps users identify their feelings and d
 
 #### Landing
 
-![Landing Page Preview](./assets/README-images/site-preview.gif)
+![Landing Page Preview](./assets/README-images/landing-preview.gif)
 
 #### Quiz
 
