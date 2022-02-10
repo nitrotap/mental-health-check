@@ -2,42 +2,52 @@
 // and use our api's to generate in the moment youtube vidoes
 // and out of the moment book recommendations from google books
 
-
-// funciton to bring in/parse quiz results will eventually test with full array ["depression", "sch", "ptsd", "addiction"];
-let quizResults = ["depression"];
 let videosToDisplay = [];
 let booksToDisplay = [];
+let fetchedBooks = [];
 let savedResources = [];
+let quizResults = [];
 
-// function to translate into api searches
-// figure out better search terms
-async function getApiQueries (results) {
-  // console.log(results);
-  fetchBooks (results);
-  if (results == "depression") {
-    // console.log("The result was positive for depression")
-    // fetchVideos ("dogs");
+// grabbing querystring, will eventually be able to actually use multiple inputs
+let queryString = document.location.search;
+let quizResultArray = queryString.split("&");
+for ( i = 0; i < quizResultArray.length; i++ ) {
+  let stringParse = quizResultArray[i].split("=");
+  // console.log(stringParse);
+  if (stringParse[1] == "true") {
+    quizResults.push(stringParse[0]);
   }
-  else if (results == "anxiety") {
-    // console.log("The result was positive for anxiety")
+  else if (stringParse[1] == "false") {
   }
-  else if (results == "ptsd") {
-    // console.log("The result was positive for ptsd")
+}
+
+// translate quizResults into searchables
+function getApiQueries (results) {
+  if (results.includes("?depression")) {
+    fetchVideos ("dogs");
+    fetchBooks ("depression");
   }
-  else if (results == "sch") {
-    // console.log("The result was positive for sch")
+  if (results.includes("anx")) {
+    fetchVideos ("meditation");
+    fetchBooks ("anxiety");
   }
-  else if (results == "addiction") {
-    // console.log("The result was positive for addiction")
+  if (results.includes("ptsd")) {
+    fetchVideos ("meditation");
+    fetchBooks ("ptsd");
   }
-  else {
-    // console.log("Negative for symptoms on all checked counts")
+  if (results.includes("sch")) {
+    fetchVideos ("help-dissociative-episode");
+    fetchBooks ("schizophrenia");
+  }
+  if (results.includes("add")) {
+    fetchVideos ("peer-based-recovery");
+    fetchBooks ("addiction");
   }
 };
 
 // function for youtube api fetch
-async function fetchVideos (searchTerm) {
-  // want to find a way to check for only embeddable videos
+function fetchVideos (searchTerm) {
+  // want to find a way to check for only embeddable videos, format=5 kind of works
   fetch("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" + searchTerm + "&safeSearch=moderate&format=5&key=AIzaSyApk2KxjyUh_kVnvLVoPNRgeDIW5eXZmXM")
     .then(function (result) {
       return result.json();
@@ -47,7 +57,6 @@ async function fetchVideos (searchTerm) {
       for ( i = 0; i < 4; i++) { 
         let a = Math.floor(Math.random() * 10);
         let video = result.items[a].id.videoId;
-        // console.log(video);
         // to check for duplicates
         if (videosToDisplay.includes(video)) {
           i--
@@ -55,7 +64,6 @@ async function fetchVideos (searchTerm) {
         else {
           videosToDisplay.push(video);
           displayVideo(video, i);
-          // console.log(video)
         };
       };
     }).catch(function(error) {
@@ -65,7 +73,7 @@ async function fetchVideos (searchTerm) {
 };
 
 // function for google books api fetch
-async function fetchBooks (searchTerm) {
+function fetchBooks (searchTerm) {
   // currently grabs a lot of academic books, want to get rid of those eventually I think
   fetch("https://www.googleapis.com/books/v1/volumes?q=" + searchTerm)
     .then(function (result) {
@@ -111,9 +119,9 @@ function displayVideo (video, i) {
   $("#video-" + i).attr("src", "https://www.youtube.com/embed/" + video)
 }
 
-// function to save recents, (maybe keep 5 recent results?)
-function save () {
-
+// function to save recents, keeping 3 total replacing the oldest
+$("#save-btn").click(function () {
+  console.log("the results are saved!");
   let savedResults = {
     "books" : booksToDisplay,
     "videos" : videosToDisplay
@@ -123,17 +131,14 @@ function save () {
 
   if (savedResources.length <= 3) {
     localStorage.setItem("previousResources", JSON.stringify(savedResources))
-    // console.log("saved is less than or eqaual to 3");
   }
   else {
     savedResources.pop();
     localStorage.setItem("previousResources", JSON.stringify(savedResources))
-    // console.log(savedResources);
   };
-}
+});
 
 function loadSavedResources () {
-  // console.log(savedResources);
   if (localStorage.getItem("previousResources")) {
     savedResources = JSON.parse(localStorage.getItem("previousResources"));
   }
