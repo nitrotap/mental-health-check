@@ -120,83 +120,103 @@ function startRecorder() {
 
         stop.disabled = true;
         record.disabled = false;
+
+        let clipModal = document.querySelector("#modal1");
+        clipModal.className = "modal";
+
+        $(".modal").modal();
+        $(".modal").modal("open");
       };
 
       mediaRecorder.onstop = function (e) {
         console.log("data available after MediaRecorder.stop() called.");
 
-        const clipName = prompt("Enter a name for your sound clip?", "Clip");
+        //const clipName = prompt("Enter a name for your sound clip?", "Clip");
 
-        const clipContainer = document.createElement("article");
-        const clipLabel = document.createElement("h5"); // change p for h5
-        const audio = document.createElement("audio");
-        const deleteButton = document.createElement("button");
-        const saveButton = document.createElement("button");
+        let clipName;
+        let saveButtonEl = document.querySelector("#modal-save");
+        saveButtonEl.addEventListener("click", function () {
+          let clipInputEl = document.querySelector("#clipTitle");
+          let clipInput = clipInputEl.value;
+          console.log(clipInput);
+          clipName = clipInput;
 
-        clipContainer.classList.add("clip", "col", "s6"); // add class/style
-        audio.setAttribute("controls", "");
-        deleteButton.textContent = "Delete";
-        // deleteButton.className = "delete";
-        deleteButton.classList.add("delete", "waves-effect", "waves-light", "indigo", "darken-4", "btn"); // class/style for the button
-        deleteButton.style.margin = "10px";
+          const clipContainer = document.createElement("article");
+          const clipLabel = document.createElement("h5"); // change p for h5
+          const audio = document.createElement("audio");
+          const deleteButton = document.createElement("button");
+          const saveButton = document.createElement("button");
 
-        saveButton.textContent = "Save";
-        // saveButton.className = "save";
-        saveButton.classList.add("save", "waves-effect", "waves-light", "indigo", "darken-4", "btn"); // class/style for the button
-        saveButton.style.margin = "10px";
+          clipContainer.classList.add("clip", "col", "s6"); // add class/style
+          audio.setAttribute("controls", "");
+          deleteButton.textContent = "Delete";
+          // deleteButton.className = "delete";
+          deleteButton.classList.add("delete", "waves-effect", "waves-light", "indigo", "darken-4", "btn"); // class/style for the button
+          deleteButton.style.margin = "10px";
 
-        if (clipName === null) {
-          clipLabel.textContent = "Clip";
-        } else {
-          clipLabel.textContent = clipName;
-        }
+          saveButton.textContent = "Save";
+          // saveButton.className = "save";
+          saveButton.classList.add("save", "waves-effect", "waves-light", "indigo", "darken-4", "btn"); // class/style for the button
+          saveButton.style.margin = "10px";
 
-        clipContainer.appendChild(audio);
-        clipContainer.appendChild(clipLabel);
-        clipContainer.appendChild(deleteButton);
-        clipContainer.appendChild(saveButton);
-        pastRecordings.appendChild(clipContainer);
-
-        audio.controls = true;
-        const blob = new Blob(chunks, { type: "audio/mpeg; codecs=opus" });
-        chunks = [];
-        const audioURL = window.URL.createObjectURL(blob);
-        audio.src = audioURL;
-        console.log("recorder stopped");
-
-        deleteButton.onclick = function (e) {
-          let evtTgt = e.target;
-          evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
-          // if it's saved into localStorage, then delete it from there
-          // check if name is found in localStorage
-          for (let i = 0; i < clipNames.length; i++) {
-            if (clipName === clipNames[i]) {
-              localStorage.removeItem(clipNames[i]);
-              clipNames.splice(i, 1);
-              console.log(clipNames);
-              localStorage.setItem("clipNames", JSON.stringify(clipNames));
-            }
-          }
-        };
-
-        saveButton.onclick = function (e) {
-          const reader = new window.FileReader();
-          reader.onload = function (e) {
-            localStorage.setItem(clipName, event.target.result);
-          };
-          reader.readAsDataURL(blob);
-          saveClipNames(clipName);
-        };
-
-        clipLabel.onclick = function () {
-          const existingName = clipLabel.textContent;
-          const newClipName = prompt("Enter a new name for your sound clip?");
-          if (newClipName === null) {
-            clipLabel.textContent = existingName;
+          if (clipName === null) {
+            clipLabel.textContent = "Clip";
           } else {
-            clipLabel.textContent = newClipName;
+            clipLabel.textContent = clipName;
           }
-        };
+
+          clipContainer.appendChild(audio);
+          clipContainer.appendChild(clipLabel);
+          clipContainer.appendChild(deleteButton);
+          clipContainer.appendChild(saveButton);
+          pastRecordings.appendChild(clipContainer);
+
+          audio.controls = true;
+          const blob = new Blob(chunks, { type: "audio/mpeg; codecs=opus" });
+          chunks = [];
+          const audioURL = window.URL.createObjectURL(blob);
+          audio.src = audioURL;
+          console.log("recorder stopped");
+
+          // moved here, it was not defined
+          deleteButton.onclick = function (e) {
+            let evtTgt = e.target;
+            evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+            // if it's saved into localStorage, then delete it from there
+            // check if name is found in localStorage
+            for (let i = 0; i < clipNames.length; i++) {
+              if (clipName === clipNames[i]) {
+                localStorage.removeItem(clipNames[i]);
+                clipNames.splice(i, 1);
+                console.log(clipNames);
+                localStorage.setItem("clipNames", JSON.stringify(clipNames));
+              }
+            }
+          };
+
+          // moved here, it was not defined
+          saveButton.onclick = function (e) {
+            const reader = new window.FileReader();
+            reader.onload = function (e) {
+              localStorage.setItem(clipName, event.target.result);
+            };
+            reader.readAsDataURL(blob);
+            saveClipNames(clipName);
+            event.stopPropagation();
+            location.reload(); // add here to prevent multiple saved
+          };
+        });
+
+        // moved here, it was not defined
+        // clipLabel.onclick = function () {
+        //   const existingName = clipLabel.textContent;
+        //   const newClipName = prompt("Enter a new name for your sound clip?");
+        //   if (newClipName === null) {
+        //     clipLabel.textContent = existingName;
+        //   } else {
+        //     clipLabel.textContent = newClipName;
+        //   }
+        // };
       };
 
       mediaRecorder.ondataavailable = function (e) {
@@ -308,15 +328,15 @@ function loadAudioFiles() {
         saveClipNames(clipNames[i]);
       };
 
-      clipLabel.onclick = function () {
-        const existingName = clipLabel.textContent;
-        const newClipName = prompt("Enter a new name for your sound clip?");
-        if (newClipName === null) {
-          clipLabel.textContent = existingName;
-        } else {
-          clipLabel.textContent = newClipName;
-        }
-      };
+      // clipLabel.onclick = function () {
+      //   const existingName = clipLabel.textContent;
+      //   const newClipName = prompt("Enter a new name for your sound clip?");
+      //   if (newClipName === null) {
+      //     clipLabel.textContent = existingName;
+      //   } else {
+      //     clipLabel.textContent = newClipName;
+      //   }
+      // };
     }
   }
 }

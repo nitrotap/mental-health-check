@@ -30,34 +30,34 @@
       <div class="slider">
         <ul class="slides white">
           <li>
-            <iframe class="offset-s1 z-depth-3" id="video-0" width="743" height="400" src="https://www.youtube.com/embed/EtH9Yllzjcc" title="YouTube video player" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="offset-s1 z-depth-3" id="video-0" width="100%" height="400" src="https://www.youtube.com/embed/EtH9Yllzjcc" title="YouTube video player" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </li>
           <li>
-            <iframe class="offset-s1 z-depth-3" id="video-1" width="743" height="400" src="https://www.youtube.com/embed/P1qu6bPkRz4" title="YouTube video player" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="offset-s1 z-depth-3" id="video-1" width="100%" height="400" src="https://www.youtube.com/embed/P1qu6bPkRz4" title="YouTube video player" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </li>
           <li>
-            <iframe class="offset-s1 z-depth-3" id="video-2" width="743" height="400" src="https://www.youtube.com/embed/83fE5YCpvbo" title="YouTube video player" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="offset-s1 z-depth-3" id="video-2" width="100%" height="400" src="https://www.youtube.com/embed/83fE5YCpvbo" title="YouTube video player" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </li>
           <li>
-            <iframe class="offset-s1 z-depth-3" id="video-3" width="743" height="400" src="https://www.youtube.com/embed/g_Y9ZV-y3bM" title="YouTube video player" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="offset-s1 z-depth-3" id="video-3" width="100%" height="400" src="https://www.youtube.com/embed/g_Y9ZV-y3bM" title="YouTube video player" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </li>
         </ul>
       </div>
 
-      <div class="col s10 offset-s1">
+      <div class="col s10 offset-s1 center-align">
         <a class="waves-effect waves-light indigo darken-4 btn" id="save-btn">Save Results</a>
       </div>
 
-      <div class="row" id="resultContainer"></div>
+      <div class="row center-align" id="resultContainer"></div>
 
       <div class="row" id="links">
-        <div class="col s4 center-align" id="suggestion-0">
+        <div class="col s12 l4 center-align" id="suggestion-0">
           <h5>Reading Suggestion</h5>
         </div>
-        <div class="col s4 center-align" id="suggestion-1">
+        <div class="col s12 l4 center-align" id="suggestion-1">
           <h5>Reading Suggestion</h5>
         </div>
-        <div class="col s4 center-align" id="suggestion-2">
+        <div class="col s12 l4 center-align" id="suggestion-2">
           <h5>Reading Suggestion</h5>
         </div>
       </div>
@@ -81,14 +81,42 @@
         </div> -->
       <!-- <div class="row" id="content"></div> -->
       <div class="row">
-        <div class="col s4 offset-s1">
+        <div class="col s6 center-align">
           <a class="waves-effect waves-light indigo darken-4 btn" href="./quiz.html">Take Another Quiz</a>
         </div>
-        <div class="col s4 offset-s1">
+        <div class="col s6 center-align">
           <a class="waves-effect waves-light indigo darken-4 btn" href="./previous-results.html">View previous results</a>
         </div>
       </div>
     </section>
+
+    <div class="row">
+      <h3 class="center-align">Personal Audio Recordings</h3>
+      <h6 class="center-align">Record a personal affirmation to replay</h6>
+      <div class="card offset-s1 z-depth-3" id="recorder-controls">
+        <canvas id="visualizer" height="75px" style="margin: 10px; width: 98%"></canvas>
+        <div id="recorder-buttons">
+          <button class="waves-effect waves-light indigo darken-4 btn" id="mic-check" style="margin: 10px">Get Microphone Access</button>
+          <button class="waves-effect waves-light indigo darken-4 btn" id="recordButton" style="margin: 10px">Start Recording</button>
+          <button class="waves-effect waves-light indigo darken-4 btn" id="stopButton" style="margin: 10px">Stop Recording</button>
+          <button class="waves-effect waves-light indigo darken-4 btn" id="mic-drop" style="margin: 10px">Revoke Mic Access</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="card offset-s1 center-align" id="past-recordings"></div>
+    </div>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>Enter a name for your sound clip</h4>
+        <input type="textarea" id="clipTitle" />
+      </div>
+      <div class="modal-footer">
+        <button id="modal-save" class="modal-close waves-effect waves-green btn-flat">Save</button>
+      </div>
+    </div>
 
     <!-- footer -->
     <footer class="indigo darken-4 page-footer">
@@ -103,6 +131,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./assets/js/record-audio.js"></script>
     <script src="./assets/js/quiz-result.js"></script>
     <script src="./assets/js/api-results.js"></script>
   </body>

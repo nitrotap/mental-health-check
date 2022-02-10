@@ -76,7 +76,7 @@ function getApiQueries(results) {
 // function for youtube api fetch
 function fetchVideos(searchTerm) {
   // want to find a way to check for only embeddable videos, format=5 kind of works
-  fetch("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" + searchTerm + "&safeSearch=moderate&format=5&key=AIzaSyApk2KxjyUh_kVnvLVoPNRgeDIW5eXZmXM")
+  fetch("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" + searchTerm + "&safeSearch=moderate&format=5&key=AIzaSyDkgh_PUGT_MHKcw1jIVT-sqJKfJGKkLUU")
     .then(function (result) {
       return result.json();
     })
