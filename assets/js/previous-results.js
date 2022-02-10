@@ -3,8 +3,6 @@ $(document).ready(function () {
   $(".collapsible").collapsible();
 });
 
-
-// hoping I can use this space
 // adding the load function and the js to put stuff on the page
 
 let savedResources = [];
@@ -25,10 +23,15 @@ function loadSavedResources () {
 function seperateResources (resources) {
   // will turn into double loop for extra sections
   let bookSection = resources[0].books;
+  let videoSection = resources[1].videos;
 
   for ( i = 0; i < 3; i++ ){
     let booksToDisplay = bookSection[i];
     displayBook(booksToDisplay, i);
+  }
+  for ( i = 0; i < 4; i++ ){
+    let videosToDisplay = videoSection[i];
+    displayVideo(videosToDisplay, i);
   }
 }
 
@@ -46,8 +49,8 @@ function displayBook (bookInfo, i) {
   bookEl.append(bookLink);
 };
 
-// function displayVideo (video, i) {
-//   $("#video-" + i).attr("src", "https://www.youtube.com/embed/" + video)
-// }
+function displayVideo (video, i) {
+  $("#video-link-" + i).attr("href", "https://www.youtube.com/watch?v=" + video)
+}
 
 loadSavedResources();
