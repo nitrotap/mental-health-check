@@ -531,6 +531,6 @@ let quizEndHandler = function () {
     "add=" + addQueryParam;
   console.log(queryString)
 
-  // window.location.replace("quiz-result.html" + queryString) TODO UN-COMMENT
+  window.location.replace("quiz-result.html" + queryString)
   //console.log("index.html" + queryString)
 }
