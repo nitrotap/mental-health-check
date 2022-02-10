@@ -23,7 +23,7 @@ function loadSavedResources () {
 function seperateResources (resources) {
   // will turn into double loop for extra sections
   let bookSection = resources[0].books;
-  let videoSection = resources[1].videos;
+  let videoSection = resources[0].videos;
 
   for ( i = 0; i < 3; i++ ){
     let booksToDisplay = bookSection[i];
