@@ -3,6 +3,18 @@ $(document).ready(function () {
   $(".collapsible").collapsible();
 });
 
+let resultPEl = document.querySelector("#pastResult")
+let savedResults = JSON.parse(localStorage.getItem("quizSavedResults"))
+let resultString = ""
+console.log(savedResults)
+
+resultString += savedResults[0]
+for (let i = 1; i < savedResults.length; i++) {
+  resultString += ", " + savedResults[i]
+}
+resultPEl.textContent = "Your previous result included: " + resultString
+
+
 // adding the load function and the js to put stuff on the page
 
 let savedResources = [];
