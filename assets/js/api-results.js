@@ -65,11 +65,11 @@ function getApiQueries(results) {
   }
 
   let resultContainerDivEl = document.querySelector("#resultContainer")
-  let resultTextEl = document.createElement("p")
+  let resultTextEl = document.createElement("h3")
   resultTextEl.className = "col s10 offset-s1"
   console.log(quizResultText)
 
-  resultTextEl.textContent = "Your quiz result includes the following categories: " + quizResultText
+  resultTextEl.innerHTML = "Your quiz result includes the following categories: " + "<br/>" + quizResultText
   resultContainerDivEl.appendChild(resultTextEl);
 };
 
