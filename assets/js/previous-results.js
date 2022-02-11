@@ -8,11 +8,11 @@ let savedResults = JSON.parse(localStorage.getItem("quizSavedResults"))
 let resultString = ""
 console.log(savedResults)
 
-resultString += savedResults[0]
-for (let i = 1; i < savedResults.length; i++) {
-  resultString += ", " + savedResults[i]
-}
-resultPEl.textContent = "Your previous result included: " + resultString
+// resultString += savedResults[0]
+// for (let i = 1; i < savedResults.length; i++) {
+//   resultString += ", " + savedResults[i]
+// }
+// resultPEl.textContent = "Your previous result included: " + resultString
 
 
 // adding the load function and the js to put stuff on the page
@@ -36,18 +36,22 @@ function loadSavedResources () {
 function displayResults (resources) {
   // wrap this all in an if check for null
   for (let a = 0; a < resources.length; a++) {
+    let ulEl = document.querySelector("#results");
+
+    let bookSection = resources[a].books;
+    let videoSection = resources[a].videos;
 
     let listEl = document.createElement("li");
     if (a === 0) {
-      listEl.attr("class", "active");
+      listEl.setAttribute("class", "active");
     }
     else {
-      listEl.attr("class", "inactive");
+      listEl.setAttribute("class", "inactive");
     };
     
     let headerEl = document.createElement("div");
-    headerEl.attr("class", "collapsible-header");
-    headerEl.attr("id", "result-name");
+    headerEl.setAttribute("class", "collapsible-header");
+    headerEl.setAttribute("id", "result-name");
     let resultEl = document.createElement("h5")
     if (a === 0) {
       resultEl.textContent = "Result One -";
@@ -60,37 +64,76 @@ function displayResults (resources) {
     }
 
     // TODO add date
+    headerEl.appendChild(resultEl);
+    listEl.appendChild(headerEl);
 
-    let bookSection = resources[a].books;
-    let videoSection = resources[a].videos;
-    
-    for (let i = 0; i < 3; i++ ){
-      let booksToDisplay = bookSection[i];
-      displayBook(booksToDisplay, i);
-    }
+    let bodyEl = document.createElement("div");
+    bodyEl.setAttribute("class", "collapsible-body");
+
+    let videoRowEl = document.createElement("div");
+    videoRowEl.setAttribute("class", "row");
+    let videoDivEl = document.createElement("div");
+    videoDivEl.setAttribute("class", "col s12 center-align");
+
     for (let i = 0; i < 4; i++ ){
-      let videosToDisplay = videoSection[i];
-      displayVideo(videosToDisplay, i);
+      let videoButtonEl = document.createElement("a");
+      videoButtonEl.setAttribute("class", "waves-effect waves-light indigo darken-4 btn");
+      videoButtonEl.setAttribute("href", "https://www.youtube.com/watch?v=" + videoSection[i]);
+      videoButtonEl.setAttribute("target", "_blank");
+      videoButtonEl.textContent = "View Video " + [i + 1];
+      videoDivEl.appendChild(videoButtonEl);
     }
+    videoRowEl.appendChild(videoDivEl);
+    bodyEl.appendChild(videoRowEl);
+
+    let bookRowEl = document.createElement("div");
+    bookRowEl.setAttribute("class", "row");
+
+    let bookResultEl = document.createElement("div");
+    bookResultEl.setAttribute("class", "col s6 row");
+    bookResultEl.setAttribute("id", "suggestions");
+    let resultNumberEl = document.createElement("div");
+    resultNumberEl.setAttribute("class", "col s12");
+    let resultNumberHeaderEl = document.createElement("h5");
+    resultNumberHeaderEl.textContent = "Result " + [a + 1];
+    resultNumberEl.appendChild(resultNumberHeaderEl);
+    bookResultEl.appendChild(resultNumberEl);
+    // TODO adding for results from quiz selection
+    let resultPastResultEl = document.createElement("div");
+    resultPastResultEl.setAttribute("class", "col s12");
+    let resultPastResultP = document.createElement("p");
+    // TODO mainly here for quiz selections
+    resultPastResultP.textContent = "test content";
+    resultPastResultEl.appendChild(resultPastResultP);
+    bookResultEl.appendChild(resultPastResultEl);
+    bookRowEl.appendChild(bookResultEl);
+    let bookSuggestionEl = document.createElement("div");
+    bookSuggestionEl.setAttribute("class", "col s6 row");
+    bookSuggestionEl.setAttribute("id", "suggestions");
+    let bookSuggestionHeaderEl = document.createElement("div");
+    bookSuggestionHeaderEl.setAttribute("class", "col s12 center-align");
+    bookSuggestionHeaderEl.innerHTML = "<h5>Reading Suggestions</h5>";
+    bookSuggestionEl.appendChild(bookSuggestionHeaderEl);
+
+    for (let i = 0; i < 3; i++ ){
+      let bookDivEl = document.createElement("div");
+      bookDivEl.setAttribute("class", "col s12 m4");
+      let bookLinkEl = document.createElement("a");
+      bookLinkEl.setAttribute("href", bookSection[i].infoLink);
+      bookLinkEl.setAttribute("target", "_blank");
+      let bookImgEl = document.createElement("img");
+      bookImgEl.setAttribute("alt", bookSection[i].title + " image preview");
+      bookImgEl.setAttribute("src", bookSection[i].imageLinks.thumbnail);
+      bookLinkEl.appendChild(bookImgEl);
+      bookDivEl.appendChild(bookLinkEl);
+      bookSuggestionEl.appendChild(bookDivEl);
+    }
+
+    bookRowEl.appendChild(bookSuggestionEl);
+    bodyEl.appendChild(bookRowEl);
+    listEl.appendChild(bodyEl);
+    ulEl.appendChild(listEl);
   }
-}
-
-// functions for printing content to screen
-function displayBook (bookInfo, i) {
-  // console.log(bookInfo, i);
-  let bookEl = $("#r" + i + "b" + i);
-  let bookLink = $("<a>");
-  bookLink.attr("href", bookInfo.infoLink);
-  bookLink.attr("target", "_blank");
-  let bookImg = $("<img>");
-  bookImg.attr("alt", bookInfo.title + " image preview");
-  bookImg.attr("src", bookInfo.imageLinks.thumbnail);
-  bookLink.append(bookImg);
-  bookEl.append(bookLink);
-};
-
-function displayVideo (video, i) {
-  $("#video-link-" + i).attr("href", "https://www.youtube.com/watch?v=" + video)
 }
 
 loadSavedResources();
