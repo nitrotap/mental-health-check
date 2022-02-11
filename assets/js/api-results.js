@@ -11,7 +11,7 @@ let quizResults = [];
 // grabbing querystring, will eventually be able to actually use multiple inputs
 let queryString = document.location.search;
 let quizResultArray = queryString.split("&");
-for ( i = 0; i < quizResultArray.length; i++ ) {
+for (i = 0; i < quizResultArray.length; i++) {
   let stringParse = quizResultArray[i].split("=");
   // console.log(stringParse);
   if (stringParse[1] == "true") {
@@ -22,39 +22,67 @@ for ( i = 0; i < quizResultArray.length; i++ ) {
 }
 
 // translate quizResults into searchables
-function getApiQueries (results) {
+function getApiQueries(results) {
+  let quizResultText = "";
+  let quizSavedResults = [];
   if (results.includes("?depression")) {
-    fetchVideos ("dogs");
-    fetchBooks ("depression");
+    fetchVideos("dogs");
+    fetchBooks("depression");
+    quizResultText += "Depression";
+    console.log(quizResultText)
+    quizSavedResults.push("Depression")
   }
-  if (results.includes("anx")) {
-    fetchVideos ("meditation");
-    fetchBooks ("anxiety");
+  if (results.includes("anxiety")) {
+    fetchVideos("meditation");
+    fetchBooks("anxiety");
+    quizResultText += " Anxiety";
+    quizSavedResults.push("Anxiety")
+
   }
   if (results.includes("ptsd")) {
-    fetchVideos ("meditation");
-    fetchBooks ("ptsd");
+    fetchVideos("meditation");
+    fetchBooks("ptsd");
+    quizResultText += " Ptsd";
+    quizSavedResults.push("Ptsd")
+
   }
   if (results.includes("sch")) {
-    fetchVideos ("help-dissociative-episode");
-    fetchBooks ("schizophrenia");
+    fetchVideos("help-dissociative-episode");
+    fetchBooks("schizophrenia");
+    quizResultText += " Schizophrenia"
+    quizSavedResults.push("Schizophrenia and related disorders")
   }
+
   if (results.includes("add")) {
-    fetchVideos ("peer-based-recovery");
-    fetchBooks ("addiction");
+    fetchVideos("peer-based-recovery");
+    fetchBooks("addiction");
+    quizResultText += " Addiction"
+    quizSavedResults.push("Addiction")
   }
+
+  let resultContainerDivEl = document.querySelector("#resultContainer")
+  let resultTextEl = document.createElement("p")
+  resultTextEl.className = "col s10 offset-s1"
+  console.log(quizResultText)
+
+  resultTextEl.textContent = "Your quiz result includes the following categories: " + quizResultText
+  resultContainerDivEl.appendChild(resultTextEl);
+
+  localStorage.setItem("quizSavedResults", JSON.stringify(quizSavedResults))
+
+
 };
 
 // function for youtube api fetch
-function fetchVideos (searchTerm) {
+function fetchVideos(searchTerm) {
   // want to find a way to check for only embeddable videos, format=5 kind of works
-  fetch("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" + searchTerm + "&safeSearch=moderate&format=5&key=AIzaSyApk2KxjyUh_kVnvLVoPNRgeDIW5eXZmXM")
+  fetch("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" + searchTerm + "&safeSearch=moderate&format=5&key=AIzaSyDkgh_PUGT_MHKcw1jIVT-sqJKfJGKkLUU")
     .then(function (result) {
       return result.json();
     })
     .then(function (result) {
       // find random 4 videos out of the 10 generated
-      for ( i = 0; i < 4; i++) { 
+      for (i = 0; i < 4; i++) {
         let a = Math.floor(Math.random() * 10);
         let video = result.items[a].id.videoId;
         // to check for duplicates
@@ -66,14 +94,14 @@ function fetchVideos (searchTerm) {
           displayVideo(video, i);
         };
       };
-    }).catch(function(error) {
+    }).catch(function (error) {
       // logs error if a problem occurs
       console.log(error);
     });
 };
 
 // function for google books api fetch
-function fetchBooks (searchTerm) {
+function fetchBooks(searchTerm) {
   // currently grabs a lot of academic books, want to get rid of those eventually I think
   fetch("https://www.googleapis.com/books/v1/volumes?q=" + searchTerm)
     .then(function (result) {
@@ -81,7 +109,7 @@ function fetchBooks (searchTerm) {
     })
     .then(function (result) {
       // retrieves random 3 books from response and calls displayBook to output to viewport
-      for ( i = 0; i < 3; i++) { 
+      for (i = 0; i < 3; i++) {
         let a = Math.floor(Math.random() * 10);
         let book = result.items[a].volumeInfo;
 
@@ -94,14 +122,14 @@ function fetchBooks (searchTerm) {
           displayBook(book, i);
         };
       };
-    }).catch(function(error) {
+    }).catch(function (error) {
       // logs error if a problem occurs
       console.log(error);
     });
 };
 
 // functions for printing content to screen
-function displayBook (bookInfo, i) {
+function displayBook(bookInfo, i) {
   let bookEl = $("#suggestion-" + i);
   let bookLink = $("<a>");
   bookLink.attr("href", bookInfo.infoLink);
@@ -115,7 +143,7 @@ function displayBook (bookInfo, i) {
   bookEl.append(bookLink);
 };
 
-function displayVideo (video, i) {
+function displayVideo(video, i) {
   $("#video-" + i).attr("src", "https://www.youtube.com/embed/" + video)
 }
 
@@ -123,8 +151,8 @@ function displayVideo (video, i) {
 $("#save-btn").click(function () {
   console.log("the results are saved!");
   let savedResults = {
-    "books" : booksToDisplay,
-    "videos" : videosToDisplay
+    "books": booksToDisplay,
+    "videos": videosToDisplay
   };
 
   savedResources.unshift(savedResults);
@@ -138,7 +166,7 @@ $("#save-btn").click(function () {
   };
 });
 
-function loadSavedResources () {
+function loadSavedResources() {
   if (localStorage.getItem("previousResources")) {
     savedResources = JSON.parse(localStorage.getItem("previousResources"));
   }

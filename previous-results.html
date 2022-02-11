@@ -27,14 +27,14 @@
         <div class="col s12">
           <h2>Previous Results</h2>
         </div>
-        <div class="col s4 offset-s2 left-align">
+        <div class="col s12 m6 center-align">
           <a
             class="waves-effect waves-light indigo darken-4 btn"
             href="quiz.html"
             >Take Another Quiz</a
           >
         </div>
-        <div class="col s12 l4 right-align">
+        <div class="col s12 m6 center-align">
           <a
             class="waves-effect waves-light indigo darken-4 btn"
             href="index.html"
@@ -88,15 +88,8 @@
                       <h5 id="result-1">Result 1</h5>
                     </div>
                     <div class="col s12">
-                      <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Vitae sequi, illo omnis quod delectus reiciendis facilis
-                        deserunt vel ea atque facere corrupti, quos vero in
-                        dolor cum provident, sunt hic. Lorem ipsum dolor sit
-                        amet consectetur adipisicing elit. Vitae sequi, illo
-                        omnis quod delectus reiciendis facilis deserunt vel ea
-                        atque facere corrupti, quos vero in dolor cum provident,
-                        sunt hic.
+                      <p id="pastResult">
+
                       </p>
                     </div>
                   </div>
@@ -106,9 +99,9 @@
                     <div class="col s12 center-align">
                       <h5>Reading Suggestions</h5>
                     </div>
-                    <div class="col s3 offset-s2" id="r0b0"></div>
-                    <div class="col s3" id="r1b1"></div>
-                    <div class="col s3" id="r2b2"></div>
+                    <div class="col s12 m6" id="r0b0"></div>
+                    <div class="col s12 m6" id="r1b1"></div>
+                    <div class="col s12 m6" id="r2b2"></div>
                   </div>
                 </div>
               </div>
@@ -116,6 +109,7 @@
           </ul>
         </div>
       </div>
+<<<<<<< HEAD
       <div class="row" id="audio-suggest">
         <div class="col s8 offset-s2">
           <h4>Music Sample</h4>
@@ -134,6 +128,36 @@
           ></script>
         </div>
       </div>
+=======
+      
+    <div class="row">
+      <h3 class="center-align">Personal Audio Recordings</h3>
+      <h6 class="center-align">Record a personal affirmation to replay</h6>
+      <div class="card offset-s1 z-depth-3" id="recorder-controls">
+        <canvas id="visualizer" height="75px" style="margin: 10px; width: 98%"></canvas>
+        <div id="recorder-buttons">
+          <button class="waves-effect waves-light indigo darken-4 btn" id="mic-check" style="margin: 10px">Get Microphone Access</button>
+          <button class="waves-effect waves-light indigo darken-4 btn" id="recordButton" style="margin: 10px">Start Recording</button>
+          <button class="waves-effect waves-light indigo darken-4 btn" id="stopButton" style="margin: 10px">Stop Recording</button>
+          <button class="waves-effect waves-light indigo darken-4 btn" id="mic-drop" style="margin: 10px">Revoke Mic Access</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="card offset-s1 center-align" id="past-recordings"></div>
+    </div>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>Enter a name for your sound clip</h4>
+        <input type="textarea" id="clipTitle" />
+      </div>
+      <div class="modal-footer">
+        <button id="modal-save" class="modal-close waves-effect waves-green btn-flat">Save</button>
+      </div>
+    </div>
+>>>>>>> a53440949dda603de8e6709ce4cf32cbdeaa2c79
     </main>
 
     <footer class="indigo darken-4 page-footer">
@@ -156,6 +180,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <!-- Link our scripts here -->
+    <script src="./assets/js/record-audio.js"></script>
     <script src="./assets/js/previous-results.js"></script>
   </body>
 </html>

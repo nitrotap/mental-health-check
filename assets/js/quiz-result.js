@@ -6,11 +6,7 @@
 
 
 // create div with some information
-let resultInfo = document.createElement("p");
-resultInfo.id = "resultInfo";
-resultInfo.textContent = "SOME TEXT";
-document.querySelector("#resultContainer").innerHTML = "<h3>" + "Take Your Mental Health Quiz!" + "</h3>";
-document.querySelector("#resultContainer").innerHTML = "<p>" + "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae sequi, illo omnis quod delectus reiciendis facilis deserunt vel ea atque facere corrupti, quos vero in dolor cum provident, sunt hic. Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae sequi, illo omnis quod delectus reiciendis facilis deserunt vel ea atque facere corrupti, quos vero in dolor cum provident, sunt hic." + "</p>";
+
 
 // // reference links suggestions
 // let text1 = "Read Suggestions 1";
@@ -30,3 +26,4 @@ $(document).ready(function () {
 // submitButtonEl.id = "quizSubmitButton";
 // submitButtonEl.textContent = "Submit";
 // contentDivEl.appendChild(submitButtonEl);
+
