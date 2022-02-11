@@ -7,6 +7,10 @@ let booksToDisplay = [];
 let fetchedBooks = [];
 let savedResources = [];
 let quizResults = [];
+let quizSavedResults = [];
+let testDate = new Date().toLocaleDateString();
+let dateEl = document.querySelector("#date");
+dateEl.textContent = testDate;
 
 // grabbing querystring, will eventually be able to actually use multiple inputs
 let queryString = document.location.search;
@@ -24,7 +28,7 @@ for (i = 0; i < quizResultArray.length; i++) {
 // translate quizResults into searchables
 function getApiQueries(results) {
   let quizResultText = "";
-  let quizSavedResults = [];
+
   if (results.includes("?depression")) {
     // fetchVideos("dogs");
     fetchBooks("depression");
@@ -67,10 +71,6 @@ function getApiQueries(results) {
 
   resultTextEl.textContent = "Your quiz result includes the following categories: " + quizResultText
   resultContainerDivEl.appendChild(resultTextEl);
-
-  localStorage.setItem("quizSavedResults", JSON.stringify(quizSavedResults))
-
-
 };
 
 // function for youtube api fetch
@@ -154,7 +154,7 @@ $("#save-btn").click(function () {
     "books": booksToDisplay,
     "videos": videosToDisplay,
     "results": quizSavedResults,
-    "date": testedDate
+    "date": testDate
   };
 
   savedResources.unshift(savedResults);

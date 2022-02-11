@@ -8,13 +8,6 @@ let savedResults = JSON.parse(localStorage.getItem("quizSavedResults"))
 let resultString = ""
 console.log(savedResults)
 
-// resultString += savedResults[0]
-// for (let i = 1; i < savedResults.length; i++) {
-//   resultString += ", " + savedResults[i]
-// }
-// resultPEl.textContent = "Your previous result included: " + resultString
-
-
 // adding the load function and the js to put stuff on the page
 
 let savedResources = [];
@@ -36,11 +29,17 @@ function loadSavedResources () {
 function displayResults (resources) {
   // wrap this all in an if check for null
   for (let a = 0; a < resources.length; a++) {
+    // find unordered list element
     let ulEl = document.querySelector("#results");
 
+    // pull from specific resources from localStorage
     let bookSection = resources[a].books;
     let videoSection = resources[a].videos;
+    let dateSection = resources[a].date;
+    let resultSection = resources[a].results;
+    // let resultString = resultSection
 
+    // create collapsible list element
     let listEl = document.createElement("li");
     if (a === 0) {
       listEl.setAttribute("class", "active");
@@ -49,32 +48,36 @@ function displayResults (resources) {
       listEl.setAttribute("class", "inactive");
     };
     
+    // create header
     let headerEl = document.createElement("div");
     headerEl.setAttribute("class", "collapsible-header");
     headerEl.setAttribute("id", "result-name");
     let resultEl = document.createElement("h5")
     if (a === 0) {
-      resultEl.textContent = "Result One -";
+      resultEl.textContent = "Result One - " + dateSection;
     }
     if (a === 1) {
-      resultEl.textContent = "Result Two -";
+      resultEl.textContent = "Result Two - " + dateSection;
     }
     if (a === 2) {
-      resultEl.textContent = "Result Three -";
+      resultEl.textContent = "Result Three - " + dateSection;
     }
 
-    // TODO add date
+    // append header to list element
     headerEl.appendChild(resultEl);
     listEl.appendChild(headerEl);
 
+    // create body element for collapsible
     let bodyEl = document.createElement("div");
     bodyEl.setAttribute("class", "collapsible-body");
 
+    // create video row for body element
     let videoRowEl = document.createElement("div");
     videoRowEl.setAttribute("class", "row");
     let videoDivEl = document.createElement("div");
     videoDivEl.setAttribute("class", "col s12 center-align");
 
+    // loop to display videos to body element
     for (let i = 0; i < 4; i++ ){
       let videoButtonEl = document.createElement("a");
       videoButtonEl.setAttribute("class", "waves-effect waves-light indigo darken-4 btn");
@@ -83,38 +86,55 @@ function displayResults (resources) {
       videoButtonEl.textContent = "View Video " + [i + 1];
       videoDivEl.appendChild(videoButtonEl);
     }
+
+    // append row element to body element
     videoRowEl.appendChild(videoDivEl);
     bodyEl.appendChild(videoRowEl);
 
+    // create book row element
     let bookRowEl = document.createElement("div");
     bookRowEl.setAttribute("class", "row");
 
+    // create book result container elements
     let bookResultEl = document.createElement("div");
     bookResultEl.setAttribute("class", "col s6 row");
     bookResultEl.setAttribute("id", "suggestions");
     let resultNumberEl = document.createElement("div");
     resultNumberEl.setAttribute("class", "col s12");
+
+    // create book header element
     let resultNumberHeaderEl = document.createElement("h5");
     resultNumberHeaderEl.textContent = "Result " + [a + 1];
+
+    // append book header element to book result container
     resultNumberEl.appendChild(resultNumberHeaderEl);
     bookResultEl.appendChild(resultNumberEl);
-    // TODO adding for results from quiz selection
+   
+    // create result text content and containers
     let resultPastResultEl = document.createElement("div");
     resultPastResultEl.setAttribute("class", "col s12");
     let resultPastResultP = document.createElement("p");
-    // TODO mainly here for quiz selections
-    resultPastResultP.textContent = "test content";
+    resultPastResultP.textContent = "Your previous result included: " + resultSection.join(", ");
+
+    // append result text into container, and container into book row element
     resultPastResultEl.appendChild(resultPastResultP);
     bookResultEl.appendChild(resultPastResultEl);
     bookRowEl.appendChild(bookResultEl);
+
+    // create book suggestion element
     let bookSuggestionEl = document.createElement("div");
     bookSuggestionEl.setAttribute("class", "col s6 row");
     bookSuggestionEl.setAttribute("id", "suggestions");
+
+    // create book suggestion header element
     let bookSuggestionHeaderEl = document.createElement("div");
     bookSuggestionHeaderEl.setAttribute("class", "col s12 center-align");
     bookSuggestionHeaderEl.innerHTML = "<h5>Reading Suggestions</h5>";
+    
+    // appeend book suggestion header element into book suggestion element
     bookSuggestionEl.appendChild(bookSuggestionHeaderEl);
 
+    // create and append book suggestions into book suggestion element 
     for (let i = 0; i < 3; i++ ){
       let bookDivEl = document.createElement("div");
       bookDivEl.setAttribute("class", "col s12 m4");
@@ -129,6 +149,7 @@ function displayResults (resources) {
       bookSuggestionEl.appendChild(bookDivEl);
     }
 
+    // append all containers into the unordered list element
     bookRowEl.appendChild(bookSuggestionEl);
     bodyEl.appendChild(bookRowEl);
     listEl.appendChild(bodyEl);
