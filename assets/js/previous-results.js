@@ -13,25 +13,53 @@ function loadSavedResources () {
   if (localStorage.getItem("previousResources")) {
     savedResources = JSON.parse(localStorage.getItem("previousResources"));
     // console.log(savedResources);
-    seperateResources(savedResources);
+    displayResults (savedResources);
   }
   else {
+    // TODO display text content for no previous results
     savedResources = [];
   }
 }
 
-function seperateResources (resources) {
-  // will turn into double loop for extra sections
-  let bookSection = resources[0].books;
-  let videoSection = resources[1].videos;
+function displayResults (resources) {
+  // wrap this all in an if check for null
+  for (let a = 0; a < resources.length; a++) {
 
-  for ( i = 0; i < 3; i++ ){
-    let booksToDisplay = bookSection[i];
-    displayBook(booksToDisplay, i);
-  }
-  for ( i = 0; i < 4; i++ ){
-    let videosToDisplay = videoSection[i];
-    displayVideo(videosToDisplay, i);
+    let listEl = document.createElement("li");
+    if (a === 0) {
+      listEl.attr("class", "active");
+    }
+    else {
+      listEl.attr("class", "inactive");
+    };
+    
+    let headerEl = document.createElement("div");
+    headerEl.attr("class", "collapsible-header");
+    headerEl.attr("id", "result-name");
+    let resultEl = document.createElement("h5")
+    if (a === 0) {
+      resultEl.textContent = "Result One -";
+    }
+    if (a === 1) {
+      resultEl.textContent = "Result Two -";
+    }
+    if (a === 2) {
+      resultEl.textContent = "Result Three -";
+    }
+    
+    // TODO add date
+
+    let bookSection = resources[a].books;
+    let videoSection = resources[a].videos;
+    
+    for (let i = 0; i < 3; i++ ){
+      let booksToDisplay = bookSection[i];
+      displayBook(booksToDisplay, i);
+    }
+    for (let i = 0; i < 4; i++ ){
+      let videosToDisplay = videoSection[i];
+      displayVideo(videosToDisplay, i);
+    }
   }
 }
 
