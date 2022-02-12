@@ -22,7 +22,9 @@
         ><h1>Mental Health Check</h1></a
       >
     </header>
+    <!-- Main Section -->
     <main class="container">
+      <!-- Navigation Options -->
       <div class="row">
         <div class="col s12">
           <h2>Previous Results</h2>
@@ -41,6 +43,7 @@
             >Return To Home</a
           >
         </div>
+        <!-- Previous Results Area. -->
         <div class="col s12">
           <ul class="collapsible" id="results"></ul>
         </div>
@@ -62,17 +65,46 @@
             type="text/javascript"
           ></script>
         </div>
-      </div>      
+      </div>
+      <!-- Audio Recording Area -->
       <div class="row">
         <h3 class="center-align">Personal Audio Recordings</h3>
         <h6 class="center-align">Record a personal affirmation to replay</h6>
         <div class="card offset-s1 z-depth-3" id="recorder-controls">
-          <canvas id="visualizer" height="75px" style="margin: 10px; width: 98%"></canvas>
+          <canvas
+            id="visualizer"
+            height="75px"
+            style="margin: 10px; width: 98%"
+          ></canvas>
           <div id="recorder-buttons">
-            <button class="waves-effect waves-light indigo darken-4 btn" id="mic-check" style="margin: 10px">Get Microphone Access</button>
-            <button class="waves-effect waves-light indigo darken-4 btn" id="recordButton" style="margin: 10px">Start Recording</button>
-            <button class="waves-effect waves-light indigo darken-4 btn" id="stopButton" style="margin: 10px">Stop Recording</button>
-            <button class="waves-effect waves-light indigo darken-4 btn" id="mic-drop" style="margin: 10px">Revoke Mic Access</button>
+            <button
+              class="waves-effect waves-light indigo darken-4 btn"
+              id="mic-check"
+              style="margin: 10px"
+            >
+              Get Microphone Access
+            </button>
+            <button
+              class="waves-effect waves-light indigo darken-4 btn"
+              id="recordButton"
+              style="margin: 10px"
+            >
+              Start Recording
+            </button>
+            <button
+              class="waves-effect waves-light indigo darken-4 btn"
+              id="stopButton"
+              style="margin: 10px"
+            >
+              Stop Recording
+            </button>
+            <button
+              class="waves-effect waves-light indigo darken-4 btn"
+              id="mic-drop"
+              style="margin: 10px"
+            >
+              Revoke Mic Access
+            </button>
           </div>
         </div>
       </div>
@@ -86,11 +118,16 @@
           <input type="textarea" id="clipTitle" />
         </div>
         <div class="modal-footer">
-          <button id="modal-save" class="modal-close waves-effect waves-green btn-flat">Save</button>
+          <button
+            id="modal-save"
+            class="modal-close waves-effect waves-green btn-flat"
+          >
+            Save
+          </button>
         </div>
       </div>
     </main>
-
+    <!-- Footer -->
     <footer class="indigo darken-4 page-footer">
       <div class="row">
         <h6 class="col s12 l4 footer-item"><a href="./legal.html">Legal</a></h6>
