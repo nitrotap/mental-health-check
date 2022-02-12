@@ -7,6 +7,10 @@ let booksToDisplay = [];
 let fetchedBooks = [];
 let savedResources = [];
 let quizResults = [];
+let quizSavedResults = [];
+let testDate = new Date().toLocaleDateString();
+let dateEl = document.querySelector("#date");
+dateEl.textContent = testDate;
 
 // grabbing querystring, will eventually be able to actually use multiple inputs
 let queryString = document.location.search;
@@ -24,37 +28,37 @@ for (i = 0; i < quizResultArray.length; i++) {
 // translate quizResults into searchables
 function getApiQueries(results) {
   let quizResultText = "";
-  let quizSavedResults = [];
+
   if (results.includes("?depression")) {
-    fetchVideos("dogs");
+    // fetchVideos("dogs");
     fetchBooks("depression");
     quizResultText += "Depression";
     console.log(quizResultText)
     quizSavedResults.push("Depression")
   }
   if (results.includes("anxiety")) {
-    fetchVideos("meditation");
+    // fetchVideos("meditation");
     fetchBooks("anxiety");
     quizResultText += " Anxiety";
     quizSavedResults.push("Anxiety")
 
   }
   if (results.includes("ptsd")) {
-    fetchVideos("meditation");
+    // fetchVideos("meditation");
     fetchBooks("ptsd");
     quizResultText += " Ptsd";
     quizSavedResults.push("Ptsd")
 
   }
   if (results.includes("sch")) {
-    fetchVideos("help-dissociative-episode");
+    // fetchVideos("help-dissociative-episode");
     fetchBooks("schizophrenia");
     quizResultText += " Schizophrenia"
     quizSavedResults.push("Schizophrenia and related disorders")
   }
 
   if (results.includes("add")) {
-    fetchVideos("peer-based-recovery");
+    // fetchVideos("peer-based-recovery");
     fetchBooks("addiction");
     quizResultText += " Addiction"
     quizSavedResults.push("Addiction")
@@ -67,10 +71,6 @@ function getApiQueries(results) {
 
   resultTextEl.innerHTML = "Your quiz result includes the following categories: " + "<br/>" + quizResultText
   resultContainerDivEl.appendChild(resultTextEl);
-
-  localStorage.setItem("quizSavedResults", JSON.stringify(quizSavedResults))
-
-
 };
 
 // function for youtube api fetch
@@ -152,7 +152,9 @@ $("#save-btn").click(function () {
   console.log("the results are saved!");
   let savedResults = {
     "books": booksToDisplay,
-    "videos": videosToDisplay
+    "videos": videosToDisplay,
+    "results": quizSavedResults,
+    "date": testDate
   };
 
   savedResources.unshift(savedResults);
