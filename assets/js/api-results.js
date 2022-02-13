@@ -7,6 +7,10 @@ let booksToDisplay = [];
 let fetchedBooks = [];
 let savedResources = [];
 let quizResults = [];
+let quizSavedResults = [];
+let testDate = new Date().toLocaleDateString();
+let dateEl = document.querySelector("#date");
+dateEl.textContent = testDate;
 
 // grabbing querystring, will eventually be able to actually use multiple inputs
 let queryString = document.location.search;
@@ -24,12 +28,12 @@ for (i = 0; i < quizResultArray.length; i++) {
 // translate quizResults into searchables
 function getApiQueries(results) {
   let quizResultText = "";
-  let quizSavedResults = [];
+
   if (results.includes("?depression")) {
     fetchVideos("dogs");
     fetchBooks("depression");
     quizResultText += "Depression";
-    console.log(quizResultText)
+    // console.log(quizResultText)
     quizSavedResults.push("Depression")
   }
   if (results.includes("anxiety")) {
@@ -61,16 +65,12 @@ function getApiQueries(results) {
   }
 
   let resultContainerDivEl = document.querySelector("#resultContainer")
-  let resultTextEl = document.createElement("p")
+  let resultTextEl = document.createElement("h3")
   resultTextEl.className = "col s10 offset-s1"
-  console.log(quizResultText)
+  // console.log(quizResultText)
 
-  resultTextEl.textContent = "Your quiz result includes the following categories: " + quizResultText
+  resultTextEl.innerHTML = "Your quiz result includes the following categories: " + "<br/>" + quizResultText
   resultContainerDivEl.appendChild(resultTextEl);
-
-  localStorage.setItem("quizSavedResults", JSON.stringify(quizSavedResults))
-
-
 };
 
 // function for youtube api fetch
@@ -149,10 +149,12 @@ function displayVideo(video, i) {
 
 // function to save recents, keeping 3 total replacing the oldest
 $("#save-btn").click(function () {
-  console.log("the results are saved!");
+  // console.log("the results are saved!");
   let savedResults = {
     "books": booksToDisplay,
-    "videos": videosToDisplay
+    "videos": videosToDisplay,
+    "results": quizSavedResults,
+    "date": testDate
   };
 
   savedResources.unshift(savedResults);
