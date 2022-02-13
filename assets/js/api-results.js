@@ -30,35 +30,35 @@ function getApiQueries(results) {
   let quizResultText = "";
 
   if (results.includes("?depression")) {
-    // fetchVideos("dogs");
+    fetchVideos("dogs");
     fetchBooks("depression");
     quizResultText += "Depression";
-    console.log(quizResultText)
+    // console.log(quizResultText)
     quizSavedResults.push("Depression")
   }
   if (results.includes("anxiety")) {
-    // fetchVideos("meditation");
+    fetchVideos("meditation");
     fetchBooks("anxiety");
     quizResultText += " Anxiety";
     quizSavedResults.push("Anxiety")
 
   }
   if (results.includes("ptsd")) {
-    // fetchVideos("meditation");
+    fetchVideos("meditation");
     fetchBooks("ptsd");
     quizResultText += " Ptsd";
     quizSavedResults.push("Ptsd")
 
   }
   if (results.includes("sch")) {
-    // fetchVideos("help-dissociative-episode");
+    fetchVideos("help-dissociative-episode");
     fetchBooks("schizophrenia");
     quizResultText += " Schizophrenia"
     quizSavedResults.push("Schizophrenia and related disorders")
   }
 
   if (results.includes("add")) {
-    // fetchVideos("peer-based-recovery");
+    fetchVideos("peer-based-recovery");
     fetchBooks("addiction");
     quizResultText += " Addiction"
     quizSavedResults.push("Addiction")
@@ -67,7 +67,7 @@ function getApiQueries(results) {
   let resultContainerDivEl = document.querySelector("#resultContainer")
   let resultTextEl = document.createElement("h3")
   resultTextEl.className = "col s10 offset-s1"
-  console.log(quizResultText)
+  // console.log(quizResultText)
 
   resultTextEl.innerHTML = "Your quiz result includes the following categories: " + "<br/>" + quizResultText
   resultContainerDivEl.appendChild(resultTextEl);
@@ -149,7 +149,7 @@ function displayVideo(video, i) {
 
 // function to save recents, keeping 3 total replacing the oldest
 $("#save-btn").click(function () {
-  console.log("the results are saved!");
+  // console.log("the results are saved!");
   let savedResults = {
     "books": booksToDisplay,
     "videos": videosToDisplay,
