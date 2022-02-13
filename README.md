@@ -14,6 +14,12 @@ Mental Health Check is a quiz app that helps users identify their feelings and d
 - Video, audio, and book suggestions based on the results from your quiz
 - Science-backed questions create an approachable app to help identify your feelings and direct you to useful resources
 
+## Made By:
+[Nitrotap](https://github.com/nitrotap) - Kartik Jevaji   
+[Harabushi](https://github.com/Harabushi) - Colby Harris   
+[Meshtatsuo](https://github.com/Meshtatsuo) - Dominic Misasi   
+[kakudiego](https://github.com/kakudiego) - Diego Kaku   
+
 ## Preview
 
 #### Landing
@@ -24,6 +30,8 @@ Mental Health Check is a quiz app that helps users identify their feelings and d
 
 ![Quiz Page Preview](./assets/README-images/quiz-preview.png)
 
-#### Legal
+#### Quiz Results
 
-![Legal Page Preview](./assets/README-images/legal-preview.png)
+![Quiz Results Preview](./assets/README-images/quiz-result-screen-shot.png)
+
+
