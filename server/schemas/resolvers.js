@@ -46,8 +46,36 @@ const resolvers = {
             const token = signToken(user);
 
             return { token, user };
-        }
+        },
+        addQuiz: async (parent, args, context) => {
+            if (context.user) {
+                const quiz = await Quiz.create({ ...args, username: context.user.username });
 
+                await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $push: { quizzes: quiz._id, } },
+                    { new: true }
+                );
+
+                return quiz;
+            }
+
+            throw new AuthenticationError('Not logged in');
+
+        },
+        addQuizResult: async (parent, { quizId, quizResult }, context) => {
+            if (context.user) {
+                const updatedQuiz = await Quiz.findByIdAndUpdate(
+                    { _id: quizId },
+                    { $push: { quizResults: { quizTaken, quizResult, createdAt, username: context.user.username } } },
+                    { new: true, runValidators: true }
+                );
+
+                return updatedQuiz;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
     }
 }
 

@@ -13,6 +13,19 @@ const typeDefs = gql`
         user: User
     }
 
+    type Quiz {
+        _id: ID
+        username: String
+        quizResults: [QuizResult]
+    }
+
+    type QuizResult {
+        _id: ID
+        quizTaken: String
+        quizResult: String
+        username: String
+    }
+
     type Query {
         me: User
         users: [User]
@@ -22,8 +35,12 @@ const typeDefs = gql`
     type Mutation {
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
-        updateUser(firstName: String, lastName: String, email: String, password: String): User
+        updateUser(username: String, email: String, password: String): User
+        addQuiz(quizzes: [ID]!): Quiz
+        addQuizResult(quizId: ID): QuizResult
+        
 
+        
     }
 
     

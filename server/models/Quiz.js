@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const QuizResult = require('./QuizResult');
+const dateFormat = require('../utils/dateFormat')
 
 const { Schema } = mongoose;
 
@@ -12,14 +14,13 @@ const quizSchema = new Schema({
         default: Date.now,
         get: timestamp => dateFormat(timestamp)
     },
+    username: {
+        type: String,
+        required: true
+    },
     // for each quiz taken, have a result
     // quizzes taken on this record
-    quizResults: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'QuizResult'
-        }
-    ]
+    quizResults: [QuizResult.schema]
 
 });
 
