@@ -9,12 +9,12 @@ const quizResultSchema = new Schema(
     {
         quizTaken: {
             type: String,
-            // required: true,
+            required: true,
             // enum: quizNames
         },
         quizAnswer: {
             type: String,
-            // required: true,
+            required: true,
             // enum: quizNames
         },
         createdAt: {

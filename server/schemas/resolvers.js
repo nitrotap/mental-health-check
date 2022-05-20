@@ -4,22 +4,15 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        me: async (parent, args, context) => {
-            if (context.user) {
-                const userData = await User.findOne({ _id: context.user._id })
-                    .select('-__v -password')
-                    .populate('')
-
-                return userData;
-            }
-
-            throw new AuthenticationError('Not logged in');
-        },
+        // user should return each quizSet with it's results
         user: async (parent, args, context) => {
             if (context.user) {
-                const user = await User.findById(context.user._id).populate({
-                    // populate: 'QuizSet'
-                });
+                const user = await User.findById(context.user._id)
+                // todo populate quizSet.quizResults
+                // .populate({
+                //     path: 'quizSet.quizResults',
+                //     populate: 'quizzes'
+                // });
 
                 return user;
             }
@@ -58,7 +51,6 @@ const resolvers = {
 
             return { token, user };
         },
-        // todo 
         // creates a single quiz set
         addQuizSet: async (parent, { quizResults }, context) => {
             // console.log(quizResults)
@@ -69,7 +61,7 @@ const resolvers = {
                 });
                 // console.log(quizSet)
                 // console.log(context.user)
-                //todo add quizset to user
+                // add quizset to user
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $push: { quizzes: quizSet } }
@@ -97,6 +89,15 @@ const resolvers = {
             }
 
             throw new AuthenticationError('You need to be logged in!');
+        },
+        // todo delete a QuizSet
+        removeQuizSet: async (parent, { quizSetId }, context) => {
+            if (context.user) {
+                const deletedQuizSet = await QuizSet.findByIdAndDelete(
+                    { _id: quizSetId },
+                )
+                return deletedQuizSet;
+            }
         },
     }
 }

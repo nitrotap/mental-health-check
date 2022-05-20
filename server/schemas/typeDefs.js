@@ -37,6 +37,7 @@ const typeDefs = gql`
         updateUser(username: String, email: String, password: String): User
         addQuizSet(_id: ID, quizResults: String ): QuizSet
         addQuizResult(quizSetId: ID, quizTaken: String!, quizAnswer: String!): QuizSet
+        removeQuizSet(quizSetId: ID): QuizSet
     }
 `
 //todo mutation
