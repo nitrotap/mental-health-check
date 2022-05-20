@@ -8,8 +8,7 @@ const resolvers = {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
                     .select('-__v -password')
-                    .populate('thoughts')
-                    .populate('friends');
+                    .populate('')
 
                 return userData;
             }
@@ -68,14 +67,14 @@ const resolvers = {
                 const quizSet = await QuizSet.create({
                     quizResults
                 });
-                console.log(quizSet)
-                console.log(context.user._id)
+                // console.log(quizSet)
+                // console.log(context.user)
                 //todo add quizset to user
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $push: { quizzes: quizSet } }
                 )
-                console.log(updatedUser)
+                // console.log(updatedUser)
 
                 return quizSet
 
@@ -93,7 +92,7 @@ const resolvers = {
                     { $push: { quizResults: { quizTaken, quizAnswer } } },
                     { new: true }
                 );
-                console.log(updatedQuizSet)
+                // console.log(updatedQuizSet)
                 return updatedQuizSet;
             }
 
