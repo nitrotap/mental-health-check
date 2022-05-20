@@ -69,7 +69,7 @@ const resolvers = {
                 });
                 // console.log(quizSet)
                 // console.log(context.user)
-                // add quizset to user
+                // add quizSet to user
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $push: { quizzes: quizSet } }
@@ -98,7 +98,7 @@ const resolvers = {
 
             throw new AuthenticationError('You need to be logged in!');
         },
-        // todo delete a QuizSet
+        // delete a QuizSet
         removeQuizSet: async (parent, { quizSetId }, context) => {
             if (context.user) {
                 const deletedQuizSet = await QuizSet.findByIdAndDelete(

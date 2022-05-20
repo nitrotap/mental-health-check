@@ -26,7 +26,7 @@ const typeDefs = gql`
     }
 
     type Query {
-        user(username: String!): User
+        user: User
         quizSet(quizSetId: String): QuizSet
     }
 
