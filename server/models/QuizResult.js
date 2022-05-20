@@ -5,27 +5,29 @@ const quizNames = ['anxiety', 'depression', 'ptsd', 'schizophrenia', 'addiction'
 const dateFormat = require('../utils/dateFormat')
 
 
-const quizResultSchema = new Schema({
-    quizTaken: {
-        type: String,
-        required: true,
-        // enum: quizNames
+const quizResultSchema = new Schema(
+    {
+        quizTaken: {
+            type: String,
+            // required: true,
+            // enum: quizNames
+        },
+        quizAnswer: {
+            type: String,
+            // required: true,
+            // enum: quizNames
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now,
+            get: timestamp => dateFormat(timestamp)
+        },
     },
-    quizResult: {
-        type: String,
-        required: true,
-        // enum: quizNames
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-        get: timestamp => dateFormat(timestamp)
-    },
-    username: {
-        type: String,
-        required: true
-    },
-})
+    {
+        toJSON: {
+            getters: true
+        }
+    })
 
 const QuizResult = mongoose.model('QuizResult', quizResultSchema);
 

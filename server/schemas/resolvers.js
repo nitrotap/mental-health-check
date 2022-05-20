@@ -1,13 +1,25 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Quiz, QuizResult } = require('../models');
+const { User, QuizSet, QuizResult } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
+        me: async (parent, args, context) => {
+            if (context.user) {
+                const userData = await User.findOne({ _id: context.user._id })
+                    .select('-__v -password')
+                    .populate('thoughts')
+                    .populate('friends');
+
+                return userData;
+            }
+
+            throw new AuthenticationError('Not logged in');
+        },
         user: async (parent, args, context) => {
             if (context.user) {
                 const user = await User.findById(context.user._id).populate({
-                    // populate: 'Quiz'
+                    // populate: 'QuizSet'
                 });
 
                 return user;
@@ -47,31 +59,40 @@ const resolvers = {
 
             return { token, user };
         },
-        addQuiz: async (parent, args, context) => {
+        // todo 
+        // adds quizset to user
+        addQuizSet: async (parent, { quizResults }, context) => {
+            // console.log(context.user)
+
+            console.log(quizResults)
             if (context.user) {
-                const quiz = await Quiz.create({ ...args, username: context.user.username });
-
-                await User.findByIdAndUpdate(
-                    { _id: context.user._id },
-                    { $push: { quizzes: quiz._id, } },
-                    { new: true }
-                );
-
-                return quiz;
+                // creates a single quiz
+                console.log(quizResults)
+                const quizSet = await QuizSet.create({
+                    quizResults
+                });
+                console.log(quizSet)
+                return quizSet
             }
 
+            //     return quizSet;
+            // }
+
             throw new AuthenticationError('Not logged in');
-
         },
-        addQuizResult: async (parent, { quizId, quizResult }, context) => {
+        // todo
+        // creates new record for quiz taken
+        addQuizResult: async (parent, { quizSetId, quizTaken, quizAnswer }, context) => {
+            // console.log("quiz" + quizSetId)
             if (context.user) {
-                const updatedQuiz = await Quiz.findByIdAndUpdate(
-                    { _id: quizId },
-                    { $push: { quizResults: { quizTaken, quizResult, createdAt, username: context.user.username } } },
-                    { new: true, runValidators: true }
+                // create new quiz result
+                const updatedQuizSet = await QuizSet.findOneAndUpdate(
+                    { _id: quizSetId },
+                    { $push: { quizResults: { quizTaken, quizAnswer } } },
+                    { new: true }
                 );
-
-                return updatedQuiz;
+                console.log(updatedQuizSet)
+                return updatedQuizSet;
             }
 
             throw new AuthenticationError('You need to be logged in!');
