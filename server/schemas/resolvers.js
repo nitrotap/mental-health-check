@@ -7,11 +7,11 @@ const resolvers = {
         // user should return each quizSet with it's results
         user: async (parent, args, context) => {
             if (context.user) {
-                const user = await User.findById(context.user._id)
+                const user = await User.findById({ _id: context.user._id })
                 // todo populate quizSet.quizResults
                 // .populate({
-                //     path: 'quizSet.quizResults',
-                //     populate: 'quizzes'
+                //     // path: 'quizSet.quizResults',
+                //     // populate: 'quizzes'
                 // });
 
                 return user;
@@ -19,6 +19,14 @@ const resolvers = {
 
             throw new AuthenticationError('Not logged in');
         },
+        quizSet: async (parent, { quizSetId }, context) => {
+            if (context.user) {
+                const quizSet = QuizSet.findById(
+                    { _id: quizSetId }
+                )
+                return quizSet
+            }
+        }
     },
     Mutation: {
         addUser: async (parent, args) => {
