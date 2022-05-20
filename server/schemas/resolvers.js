@@ -60,27 +60,29 @@ const resolvers = {
             return { token, user };
         },
         // todo 
-        // adds quizset to user
+        // creates a single quiz set
         addQuizSet: async (parent, { quizResults }, context) => {
-            // console.log(context.user)
-
-            console.log(quizResults)
+            // console.log(quizResults)
             if (context.user) {
                 // creates a single quiz
-                console.log(quizResults)
                 const quizSet = await QuizSet.create({
                     quizResults
                 });
                 console.log(quizSet)
-                return quizSet
-            }
+                console.log(context.user._id)
+                //todo add quizset to user
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $push: { quizzes: quizSet } }
+                )
+                console.log(updatedUser)
 
-            //     return quizSet;
-            // }
+                return quizSet
+
+            }
 
             throw new AuthenticationError('Not logged in');
         },
-        // todo
         // creates new record for quiz taken
         addQuizResult: async (parent, { quizSetId, quizTaken, quizAnswer }, context) => {
             // console.log("quiz" + quizSetId)
