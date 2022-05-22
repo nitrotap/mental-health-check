@@ -15,6 +15,7 @@ const typeDefs = gql`
 
     type QuizSet {
         _id: ID
+        dateTaken: String
         quizResults: [QuizResult]
     }
 
@@ -23,23 +24,25 @@ const typeDefs = gql`
         quizSetId: ID
         quizTaken: String
         quizAnswer: String
+        createdAt: String
     }
 
     type Query {
         user: User
         quizSet(quizSetId: String): QuizSet
+
     }
 
     type Mutation {
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
         updateUser(username: String, email: String, password: String): User
-        addQuizSet(_id: ID, quizResults: String ): QuizSet
+        addQuizSet(username: String): QuizSet
         addQuizResult(quizSetId: ID, quizTaken: String!, quizAnswer: String!): QuizSet
         removeQuizSet(quizSetId: ID): QuizSet
     }
 `
-//todo mutation
+//todo queries
 
 module.exports = typeDefs;
 
