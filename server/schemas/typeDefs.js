@@ -25,6 +25,13 @@ const typeDefs = gql`
         quizAnswer: String
     }
 
+    type Recording {
+        _id: ID
+        audio: String
+        title: String
+
+    }
+
     type Query {
         user: User
         quizSet(quizSetId: String): QuizSet
@@ -37,6 +44,8 @@ const typeDefs = gql`
         addQuizSet(_id: ID, quizResults: String ): QuizSet
         addQuizResult(quizSetId: ID, quizTaken: String!, quizAnswer: String!): QuizSet
         removeQuizSet(quizSetId: ID): QuizSet
+        addRecording(audio: String!, title: String!): Recording
+        removeRecording(recordingId: ID): Recording
     }
 `
 //todo mutation

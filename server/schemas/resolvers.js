@@ -1,5 +1,6 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, QuizSet, QuizResult } = require('../models');
+const Recording = require('../models/Recording');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -106,6 +107,36 @@ const resolvers = {
                 )
                 return deletedQuizSet;
             }
+            throw new AuthenticationError('You need to be logged in!');
+
+        },
+        addRecording: async (parent, { audio, title }, context) => {
+            if (context.user) {
+                const newRecording = await Recording.create({
+                    audio,
+                    title
+                })
+
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $push: { recordings: newRecording } }
+                )
+
+
+                return newRecording
+            }
+            throw new AuthenticationError('You need to be logged in!');
+
+        },
+        // delete a Recording
+        removeRecording: async (parent, { recordingId }, context) => {
+            if (context.user) {
+                const deletedRecording = await Recording.findByIdAndDelete(
+                    { _id: recordingId },
+                )
+                return deletedRecording;
+            }
+            throw new AuthenticationError('You need to be logged in!');
         },
     }
 }

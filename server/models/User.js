@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
 const QuizSet = require('./QuizSet');
+const Recording = require('./Recording')
 
 
 const userSchema = new Schema({
@@ -22,7 +23,8 @@ const userSchema = new Schema({
         required: true,
         minlength: 8
     },
-    quizzes: [QuizSet.schema]
+    quizzes: [QuizSet.schema],
+    recordings: [Recording.schema]
 
 });
 
