@@ -28,8 +28,8 @@ const useRecorder = () => {
       console.log(audio)
     };
 
-    recorder.addEventListener("dataavailable", handleData);
-    return () => recorder.removeEventListener("dataavailable", handleData);
+    recorder.addEventListener("data-audio", handleData);
+    return () => recorder.removeEventListener("data-audio", handleData);
   }, [recorder, isRecording]);
 
   const startRecording = () => {
