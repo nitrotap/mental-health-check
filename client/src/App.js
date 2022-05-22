@@ -3,7 +3,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@ap
 // import logo from './logo.svg';
 import './App.css';
 
-import RecordAudio from './components/RecordAudio';
+import AudioRecorder from './components/AudioRecorder';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',
@@ -20,7 +20,7 @@ function App() {
     <ApolloProvider client={client}>
       <div className="flex-column justify-flex-start min-100-vh">
         <div className="container">
-          <RecordAudio />
+          <AudioRecorder />
         </div>
       </div>
     </ApolloProvider>

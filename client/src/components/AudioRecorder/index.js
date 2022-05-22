@@ -6,7 +6,7 @@ import React from 'react';
 // import { AUDIO_RECORDINGS } from '../../utils/queries';
 import recordAudio from './record-audio';
 
-const audioRecorder = () => {
+const AudioRecorder = () => {
 
     let [audio, recording, startRecorder, stopRecorder, requestMic] = recordAudio();
 
@@ -29,4 +29,4 @@ const audioRecorder = () => {
     )
 }
 
-export default audioRecorder
+export default AudioRecorder
