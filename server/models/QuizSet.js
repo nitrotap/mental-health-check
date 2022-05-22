@@ -9,15 +9,10 @@ const quizSetSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    timeTaken: {
-        type: Date,
-        default: Date.now,
-        get: timestamp => dateFormat(timestamp)
-    },
+    //todo add working timestamp
     // for each quiz taken, have a result
     // quizzes taken on this record
     quizResults: [QuizResult.schema]
-
 });
 
 

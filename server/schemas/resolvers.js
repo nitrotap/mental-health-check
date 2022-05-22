@@ -9,11 +9,6 @@ const resolvers = {
         user: async (parent, args, context) => {
             if (context.user) {
                 const user = await User.findById({ _id: context.user._id })
-                // todo populate quizSet.quizResults
-                // .populate({
-                //     // path: 'quizSet.quizResults',
-                //     // populate: 'quizzes'
-                // });
 
                 return user;
             }
@@ -61,12 +56,11 @@ const resolvers = {
             return { token, user };
         },
         // creates a single quiz set
-        addQuizSet: async (parent, { quizResults }, context) => {
-            // console.log(quizResults)
+        addQuizSet: async (parent, { username }, context) => {
             if (context.user) {
                 // creates a single quiz
                 const quizSet = await QuizSet.create({
-                    quizResults
+                    username // null uses context
                 });
                 // console.log(quizSet)
                 // console.log(context.user)
@@ -94,6 +88,12 @@ const resolvers = {
                     { new: true }
                 );
                 // console.log(updatedQuizSet)
+
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $push: { quizzes: updatedQuizSet } }
+                )
+                // console.log(updatedUser)
                 return updatedQuizSet;
             }
 
