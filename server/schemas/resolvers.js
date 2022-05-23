@@ -141,8 +141,7 @@ const resolvers = {
                 const deletedRecording = await Recording.findByIdAndDelete(
                     { _id: recordingId },
                 )
-
-                console.log(recordingId)
+                // console.log(recordingId)
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $pull: { recordings: deletedRecording } }
