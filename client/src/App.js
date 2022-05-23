@@ -1,16 +1,40 @@
-import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+
 
 // import logo from './logo.svg';
 import './App.css';
 
 import AudioRecorder from './components/AudioRecorder';
+import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Header from './components/Header';
+import Homepage from './pages/Homepage'
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3001/graphql',
+  uri: '/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
 });
 
 const client = new ApolloClient({
-  link: httpLink,
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
@@ -18,11 +42,22 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div className="flex-column justify-flex-start min-100-vh">
-        <div className="container">
-          <AudioRecorder />
+      <Router>
+        <div className="flex-column justify-flex-start min-100-vh">
+          {/* <Header></Header> */}
+          {/* <Login></Login> */}
+          <div className="container">
+            <Routes>
+              {/* <Route path="/" element={<Homepage />} /> */}
+              <Route path="login" element={<Login />} />
+              <Route path="signup" element={<Signup />} />
+
+            </Routes>
+          </div>
+
         </div>
-      </div>
+      </Router>
+
     </ApolloProvider>
   );
 }
