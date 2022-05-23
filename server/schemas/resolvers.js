@@ -87,11 +87,13 @@ const resolvers = {
                     { $push: { quizResults: { quizTaken, quizAnswer } } },
                     { new: true }
                 );
-                // console.log(updatedQuizSet)
+                console.log(updatedQuizSet)
 
+                // // todo not updating correctly
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $push: { quizzes: updatedQuizSet } }
+                    { $set: { quizzes: updatedQuizSet } },
+                    { new: true }
                 )
                 // console.log(updatedUser)
                 return updatedQuizSet;
@@ -105,8 +107,13 @@ const resolvers = {
                 const deletedQuizSet = await QuizSet.findByIdAndDelete(
                     { _id: quizSetId },
                 )
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { quizzes: deletedQuizSet } }
+                )
                 return deletedQuizSet;
             }
+
             throw new AuthenticationError('You need to be logged in!');
 
         },
