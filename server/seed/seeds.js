@@ -3,7 +3,7 @@ const { faker } = require('@faker-js/faker');
 const db = require('../config/connection');
 const { User } = require('../models');
 
-
+// todo create seeds for QuizResults (quizTaken, quizAnswer), QuizSets (quizResults)
 db.once('open', async () => {
     await User.deleteMany({});
 

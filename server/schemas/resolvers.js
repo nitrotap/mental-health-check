@@ -56,11 +56,11 @@ const resolvers = {
             return { token, user };
         },
         // creates a single quiz set
-        addQuizSet: async (parent, { username }, context) => {
+        addQuizSet: async (parent, { args }, context) => {
             if (context.user) {
                 // creates a single quiz
                 const quizSet = await QuizSet.create({
-                    username // null uses context
+                    // null uses context
                 });
                 // console.log(quizSet)
                 // console.log(context.user)
@@ -89,7 +89,7 @@ const resolvers = {
                 );
                 console.log(updatedQuizSet)
 
-                // // todo not updating correctly
+                //
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $set: { quizzes: updatedQuizSet } },

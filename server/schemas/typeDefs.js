@@ -37,14 +37,14 @@ const typeDefs = gql`
     type Query {
         user: User
         quizSet(quizSetId: String): QuizSet
-
+        recording(recordingId: String): Recording
     }
 
     type Mutation {
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
         updateUser(username: String, email: String, password: String): User
-        addQuizSet(username: String): QuizSet
+        addQuizSet: QuizSet
         addQuizResult(quizSetId: ID!, quizTaken: String!, quizAnswer: String!): QuizSet
         removeQuizSet(quizSetId: ID): QuizSet
         addRecording(audio: String!, title: String!): Recording

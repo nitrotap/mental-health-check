@@ -7,9 +7,9 @@ const { Schema } = mongoose;
 const quizSetSchema = new Schema({
     dateTaken: {
         type: Date,
-        default: Date.now
+        default: Date.now,
+        get: timestamp => dateFormat(timestamp)
     },
-    //todo add working timestamp
     // for each quiz taken, have a result
     // quizzes taken on this record
     quizResults: [QuizResult.schema]

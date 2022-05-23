@@ -1,3 +1,15 @@
+/* 
+file for GraphQL queries
+
+todo:
+user
+quizSet
+recording
+
+
+assigned to: 
+*/
+
 import { gql } from '@apollo/client';
 
 
