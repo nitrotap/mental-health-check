@@ -2,7 +2,7 @@
 
 prompts a user to signup for an account 
 depends on: ADD_USER mutation
-only take email, username, and password
+only take email, and password
 
 assigned to:
 

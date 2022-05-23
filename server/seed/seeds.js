@@ -10,15 +10,19 @@ db.once('open', async () => {
     // create user data
     const userData = [];
 
-    for (let i = 0; i < 20; i += 1) {
-        const username = faker.internet.userName();
-        const email = faker.internet.email(username);
-        const password = faker.internet.password();
+    for (let i = 0; i < 5; i += 1) {
+        const email = faker.internet.email();
+        const password = 'password123';
 
-        userData.push({ username, email, password });
+        userData.push({ email, password });
     }
 
     const createdUsers = await User.collection.insertMany(userData);
+
+
+    // create user QuizSet
+
+    // populate QuizSet with multiple QuizResults
 
 
 
