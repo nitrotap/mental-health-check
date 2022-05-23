@@ -141,6 +141,12 @@ const resolvers = {
                 const deletedRecording = await Recording.findByIdAndDelete(
                     { _id: recordingId },
                 )
+
+                console.log(recordingId)
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { recordings: deletedRecording } }
+                )
                 return deletedRecording;
             }
             throw new AuthenticationError('You need to be logged in!');
