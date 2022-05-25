@@ -1,0 +1,136 @@
+/* General Stylings */
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+iframe {
+  display: block;
+  margin: 0 auto;
+}
+
+[type="radio"]:not(:checked),
+[type="radio"]:checked {
+  position: static;
+  opacity: 1;
+  pointer-events: fill;
+  width: 2em;
+  height: 1.5em;
+}
+
+label {
+  font-size: 2em;
+  position: unset;
+}
+
+.yesNo {
+  text-align: center;
+}
+
+/* Header Stylings */
+header {
+  border-radius: 0px;
+  margin: 0;
+  padding: 0.25%;
+}
+
+header a {
+  text-decoration: none;
+  color: white;
+}
+
+header h1 {
+  color: white;
+  font-size: 36px;
+  margin: 0;
+}
+
+/* MaterializeCSS Style Overrides */
+.btn {
+  margin: 5%;
+}
+
+.btn-large {
+  margin: 1%;
+}
+
+.modal {
+  max-width: 50%;
+  max-height: 65%;
+}
+
+.modal p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Jumbotron Stylings */
+.jumbo {
+  background-image: url("../images/jumbo.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: 30%;
+  height: 25em;
+}
+/* Main content stylings for home page */
+.about {
+  padding: 2%;
+}
+
+.card {
+  margin: 5%;
+}
+
+.card h3 {
+  padding: 2%;
+}
+
+.card p {
+  padding: 2%;
+}
+
+/* Quiz builder modal stylings */
+.category-select {
+  padding: 2% 0;
+}
+
+.category-list p {
+  margin: 0;
+}
+
+/* Styling for book suggestion box */
+#suggestions {
+  padding: 2%;
+}
+
+/* Footer stylings */
+footer {
+  margin: 0;
+  padding: 0;
+}
+
+.footer-item {
+  text-align: center;
+}
+
+footer h6 {
+  color: white;
+}
+
+footer a {
+  text-decoration: none;
+  color: white;
+}
+
+/* update position of jumbo image on small screens */
+@media only screen and (max-width: 750px) {
+  .jumbo {
+    background-position: right;
+  }
+}

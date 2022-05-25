@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Compiled and minified MaterializeCSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+
+    <link rel="stylesheet" type="text/css" href="./assets/css/styles.css" />
+
+    <title>Previous Results | Mental Health Check</title>
+  </head>
+  <body>
+    <header class="indigo darken-4 nav-wrapper">
+      <!-- Header Section -->
+      <a href="./index.html" class="brand-logo center"
+        ><h1>Mental Health Check</h1></a
+      >
+    </header>
+    <!-- Main Section -->
+    <main class="container">
+      <!-- Navigation Options -->
+      <div class="row">
+        <div class="col s12">
+          <h2>Previous Results</h2>
+        </div>
+        <div class="col s12 m6 center-align">
+          <a
+            class="waves-effect waves-light indigo darken-4 btn"
+            href="quiz.html"
+            >Take Another Quiz</a
+          >
+        </div>
+        <div class="col s12 m6 center-align">
+          <a
+            class="waves-effect waves-light indigo darken-4 btn"
+            href="index.html"
+            >Return To Home</a
+          >
+        </div>
+        <!-- Previous Results Area. -->
+        <div class="col s12">
+          <ul class="collapsible" id="results"></ul>
+        </div>
+      </div>
+      <div class="row" id="audio-suggest">
+        <div class="col s8 offset-s2">
+          <h4>Music Sample</h4>
+          <iframe
+            class="offset-s1 z-depth-3"
+            id="sc-widget"
+            width="100%"
+            height="166"
+            scrolling="no"
+            frameborder="no"
+            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/842545075&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
+          ></iframe>
+          <script
+            src="https://w.soundcloud.com/player/api.js"
+            type="text/javascript"
+          ></script>
+        </div>
+      </div>
+      <!-- Audio Recording Area -->
+      <div class="row">
+        <h3 class="center-align">Personal Audio Recordings</h3>
+        <h6 class="center-align">Record a personal affirmation to replay</h6>
+        <div class="card offset-s1 z-depth-3" id="recorder-controls">
+          <canvas
+            id="visualizer"
+            height="75px"
+            style="margin: 10px; width: 98%"
+          ></canvas>
+          <div id="recorder-buttons">
+            <button
+              class="waves-effect waves-light indigo darken-4 btn"
+              id="mic-check"
+              style="margin: 10px"
+            >
+              Get Microphone Access
+            </button>
+            <button
+              class="waves-effect waves-light indigo darken-4 btn"
+              id="recordButton"
+              style="margin: 10px"
+            >
+              Start Recording
+            </button>
+            <button
+              class="waves-effect waves-light indigo darken-4 btn"
+              id="stopButton"
+              style="margin: 10px"
+            >
+              Stop Recording
+            </button>
+            <button
+              class="waves-effect waves-light indigo darken-4 btn"
+              id="mic-drop"
+              style="margin: 10px"
+            >
+              Revoke Mic Access
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="card offset-s1 center-align" id="past-recordings"></div>
+      </div>
+      <!-- Modal Structure -->
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+          <h4>Enter a name for your sound clip</h4>
+          <input type="textarea" id="clipTitle" />
+        </div>
+        <div class="modal-footer">
+          <button
+            id="modal-save"
+            class="modal-close waves-effect waves-green btn-flat"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </main>
+    <!-- Footer -->
+    <footer class="indigo darken-4 page-footer">
+      <div class="row">
+        <h6 class="col s12 l4 footer-item"><a href="./legal.html">Legal</a></h6>
+
+        <h6 class="col s12 l4 footer-item"></h6>
+
+        <h6 class="col s12 l4 footer-item">
+          Made with <span style="color: red">&#x2764;</span> in MN, ID, and CO.
+        </h6>
+      </div>
+    </footer>
+    <!-- Link Necessary Scripts for Semantic-UI -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- Link our scripts here -->
+    <script src="./assets/js/record-audio.js"></script>
+    <script src="./assets/js/previous-results.js"></script>
+  </body>
+</html>
