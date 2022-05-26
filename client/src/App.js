@@ -11,6 +11,10 @@ import { setContext } from '@apollo/client/link/context';
 //CSS
 import './components/CSS/App.css';
 
+//mui
+import { makeStyles } from '@material-ui/core/styles';
+import { Container, Grid, Paper, Typography } from '@material-ui/core';
+
 //routes
 //import AudioRecorder from './components/AudioRecorder';
 import Login from './pages/Login';
@@ -18,8 +22,9 @@ import Signup from './pages/Signup';
 import Quiz from './pages/Quiz';
 import Dashboard from './pages/Dashboard';
 import Homepage from './pages/Homepage'
+import Navbar from './components/Elements/Navbar';
+import Leftbar from './components/Elements/Leftbar';
 import Footer from './components/Elements/Footer';
-import Header from './components/Elements/Header';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -40,15 +45,38 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+const useStyles = makeStyles({
+  root: {
+    backgroundColor: '#18344A',
+    border: 0,
+    borderRadius: 3,
+    color: 'white',
+    padding: '0 30px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100vh',
+  },
+
+})
+
 function App() {
+  const classes = useStyles();
 
   return (
     <ApolloProvider client={client}>
       <Router>
-          <Header />
-          <div className="container">
+          <Navbar />
+          <div className={classes.root}>
+          <Grid container>
+            <Grid item sm={2}>
+              <Leftbar />
+            </Grid>
+            <Grid item sm={10}></Grid>
+          </Grid>
+
           <Routes>
-              {/* <Route path="/" element={<Homepage />} /> */}
               <Route path="/" element={<Homepage />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="login" element={<Login />} />
