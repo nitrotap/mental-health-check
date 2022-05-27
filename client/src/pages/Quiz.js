@@ -22,7 +22,7 @@ const Quiz = (args) => {
 
     // takes an array of quizzes from quiz selector
 
-    let quizzes = ['depression', 'anxiety']
+    let quizzes = ['depression', 'anxiety', 'ptsd']
 
     const { depressionQuestions, anxietyQuestions, ptsdQuestions, schQuestions, impairmentQuestions, addictionQuestions } = questionBank;
 
@@ -39,34 +39,29 @@ const Quiz = (args) => {
 
     const [currentQuiz, setCurrentQuiz] = useState(quizzes[0])
 
-    function handleSubmit(e, response) {
-        console.log('You clicked submit.');
-        console.log(response.text)
+    // boolean, show or not show modal 
+    // 
+    const [showQuizSelect, setShowQuizSelect] = useState(true)
+
+    const [chosenQuizzes, setChosenQuizzes] = useState([])
+
+    const [index, setIndex] = useState(0)
+
+
+    function handleSubmitQuiz() {
+        setIndex(index + 1)
+        console.log('test')
 
     }
 
-    console.log(currentQuiz)
     return (
         <div>
-            <QuizSet currentQuiz={currentQuiz} setCurrentQuiz={setCurrentQuiz}
+            {/* render modal here, quizselectform component within*/}
+            {/* <QuizSelectForm showForm={showQuizSelect} /> */}
+            <QuizSet currentQuizName={quizzes[index]} setCurrentQuizName={setCurrentQuiz} chosenQuizzes={chosenQuizzes} setChosenQuizzes={setChosenQuizzes}
+                handleSubmitQuiz={handleSubmitQuiz}
             ></QuizSet>
 
-            {/* <div >
-                {addictionQuestions[0].question}
-            </div>
-            {
-                addictionQuestions[0].response.map((response) => {
-                    return (
-                        <div>
-                            <button onClick={(e) => {
-                                handleSubmit(e, response)
-                            }} key={response.text}>
-                                {response.text}
-                            </button>
-                        </div>
-                    )
-                })
-            } */}
         </div >
     )
 
