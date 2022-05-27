@@ -23,7 +23,6 @@ const QuizSet = (props) => {
                 return impairmentQuestions
             default:
                 throw new Error('initalState Error!')
-                break;
         }
     };
 
@@ -34,11 +33,10 @@ const QuizSet = (props) => {
 
     useEffect(() => {
         document.title = (currentQuizName);
-        console.log(index)
     }, [currentQuizName]);
 
     function handleSubmit(response) {
-        console.log(`You clicked ${response}.`, response);
+        console.log(response);
         // add logic to determine if end of quiz
         if (index >= currentQuiz.length - 1) {
             handleSubmitQuiz()
@@ -50,26 +48,13 @@ const QuizSet = (props) => {
         // todo add logic for scores
 
     }
-
-
-
     return (
         <div>
             <div>
-                {/* TODO: set up questions to loop through each screen */}
-                {/* {questionSet.map((i) => {
-                    console.log(i)
-                    return (
-                        <Question currentQuestion={currentQuestion} setCurrentQuestion={setCurrentQuestion}></Question>
-                    )
-                })} */}
                 <Question currentQuestion={currentQuiz[index]} setCurrentQuestion={setIndex} handleSubmit={handleSubmit}></Question>
             </div>
         </div>
     )
-
-
-
 }
 
 export default QuizSet

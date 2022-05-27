@@ -47,10 +47,11 @@ function App() {
           {<Header />}
           <div className="container">
             <Routes>
-              {/* <Route path="/" element={<Homepage />} /> */}
+              {/* TODO finish react routing elements */}
+              <Route path="/" element={<Homepage />} />
               <Route path="login" element={<Login />} />
               <Route path="signup" element={<Signup />} />
-              <Route path="/" element={<Quiz />} />
+              <Route path="quiz" element={<Quiz />} />
 
             </Routes>
           </div>

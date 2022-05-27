@@ -17,48 +17,49 @@ import questionBank from "../utils/questionBank"
 import { useState } from "react";
 import QuizSet from '../components/QuizSet'
 
+// takes an array of quizzes from quiz selector
 const Quiz = (args) => {
-    // console.log(questionBank)
 
-    // takes an array of quizzes from quiz selector
-
+    // todo replace with object from quiz selector
     let quizzes = ['depression', 'anxiety', 'ptsd']
 
     const { depressionQuestions, anxietyQuestions, ptsdQuestions, schQuestions, impairmentQuestions, addictionQuestions } = questionBank;
 
-
-    // unpacking questions objects
-    // console.log(addictionQuestions) // array of questions
-    // console.log(addictionQuestions.length)  // len 6
-    // console.log(addictionQuestions[0].question) // question at 0th index
-    // console.log(addictionQuestions[0].response) // array of two responses
-    // console.log(addictionQuestions[0].response[0].text) // YES response
-    // console.log(addictionQuestions[0].response[0].score) // NO response
-
-
-
     const [currentQuiz, setCurrentQuiz] = useState(quizzes[0])
 
-    // boolean, show or not show modal 
-    // 
-    const [showQuizSelect, setShowQuizSelect] = useState(true)
 
-    const [chosenQuizzes, setChosenQuizzes] = useState([])
+    // todo front end modal setup here
+    // boolean, show or not show modal 
+    // const [showQuizSelect, setShowQuizSelect] = useState(true)
+
 
     const [index, setIndex] = useState(0)
 
 
     function handleSubmitQuiz() {
-        setIndex(index + 1)
-        console.log('test')
+        if (index >= quizzes.length - 1) {
+            // TODO end test, calculate scores, submit to database
 
+            console.log('TEST FINISHED')
+            //TODO  SEND USER TO QUIZ FINISHED PAGE
+
+        } else {
+            setIndex(index + 1)
+        }
     }
 
     return (
         <div>
             {/* render modal here, quizselectform component within*/}
             {/* <QuizSelectForm showForm={showQuizSelect} /> */}
-            <QuizSet currentQuizName={quizzes[index]} setCurrentQuizName={setCurrentQuiz} chosenQuizzes={chosenQuizzes} setChosenQuizzes={setChosenQuizzes}
+
+
+            <QuizSet
+                // pass through user quizzes from quiz select
+                currentQuizName={quizzes[index]}
+                // set current quiz to use the first quiz in the index
+                setCurrentQuizName={setCurrentQuiz}
+                // pass through quizzes chosen by user
                 handleSubmitQuiz={handleSubmitQuiz}
             ></QuizSet>
 
