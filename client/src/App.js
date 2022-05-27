@@ -49,6 +49,7 @@ const useStyles = makeStyles({
     color: 'white',
     padding: 0,
     display: 'flex',
+    wrap: 'nowrap',
     height: '100vh',
   },
   main: {
@@ -67,7 +68,7 @@ function App() {
           <Navbar />
           <div className={classes.root}>
           <Grid container className={classes.main}>
-            <Grid item sm={2}>
+            <Grid item xs={2}>
               <Leftbar />
             </Grid>
             <Grid item xs={10}>
