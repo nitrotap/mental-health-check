@@ -49,9 +49,6 @@ const useStyles = makeStyles({
     color: 'white',
     padding: 0,
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
     height: '100vh',
   },
   main: {
@@ -73,7 +70,7 @@ function App() {
             <Grid item sm={2}>
               <Leftbar />
             </Grid>
-            <Grid item sm={10}>
+            <Grid item xs={10}>
               <Routes>
                 <Route path="/" element={<Homepage />} />
                 <Route path="dashboard" element={<Dashboard />} />

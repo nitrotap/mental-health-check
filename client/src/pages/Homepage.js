@@ -18,21 +18,44 @@ const useStyles = makeStyles((theme) => ({
     },
     card: {
         backgroundColor: '#255070',
+        display: 'flex',
+        flexDirection: 'column',
     },
     hero: {
         marginTop: theme.spacing(4),
+        [theme.breakpoints.down('sm')]: {
+            width: '75%',
+        },
     },
     title: {
+        fontSize: '4rem',
+        textAlign: 'center',
         paddingBottom: theme.spacing(4),
+        [theme.breakpoints.down('md')]: {
+            fontSize: '2rem',
+        },
+    },
+    img:{
+        [theme.breakpoints.down('sm')]: {
+            display: 'none',
+        },
     },
     cardTitle: {
         color: '#f5f5f5',
         fontSize: '2.5rem',
+        textAlign: 'center',
+        [theme.breakpoints.down('md')]: {
+            fontSize: '1.5rem',
+        },
     },
     text: {
         fontSize: '1.3rem',
         textAlign: 'center',
         color: '#f5f5f5',
+        paddingBottom: theme.spacing(4),
+        [theme.breakpoints.down('md')]: {
+            fontSize: '1rem',
+        },
     },
     button: {
         color: '#4798D6',
@@ -46,14 +69,14 @@ function Homepage() {
     const classes = useStyles();
     return(
         <Container className={classes.container}>
-            <Typography className={classes.title} variant='h2' component='h1' >
+            <Typography className={classes.title}>
                 Take the First Step to Better Mental Health
             </Typography>
             <Typography className={classes.text} variant='body1' >
             Mental Health Check takes a simple quiz app format, using questions from mental illness screenings, to create a new quiz that focuses on co-morbidity by combining screening questions. Instead of screening for a diagnosis, Mental Health Check helps patients by using those screening questions to point the user to the applicable resources.
             </Typography>
-            <Card sx={{ maxWidth: 345 }} className={classes.hero}>
-                <CardMedia
+            <Card  className={classes.hero}>
+                <CardMedia className={classes.img}
                     component="img"
                     height="400"
                     image={jumbo}
