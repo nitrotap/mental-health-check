@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import {
   ApolloClient,
   InMemoryCache,
@@ -10,7 +10,7 @@ import { setContext } from '@apollo/client/link/context';
 
 //mui
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Grid, Paper, Typography } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 
 //routes
 //import AudioRecorder from './components/AudioRecorder';
@@ -21,7 +21,6 @@ import Dashboard from './pages/Dashboard';
 import Homepage from './pages/Homepage'
 import Navbar from './components/Elements/Navbar';
 import Leftbar from './components/Elements/Leftbar';
-import Footer from './components/Elements/Footer';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -80,11 +79,11 @@ function App() {
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="login" element={<Login />} />
                 <Route path="signup" element={<Signup />} />
+                <Route path="quiz" element={<Quiz />} />
               </Routes>
             </Grid>
           </Grid>
           </div>
-          <Footer />
       </Router>
     </ApolloProvider>
   );

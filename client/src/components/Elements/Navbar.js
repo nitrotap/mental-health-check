@@ -30,7 +30,7 @@ const Navbar = () => {
     return (
         <AppBar>
             <Toolbar>
-                <Typography variant="h6" className={classes.logoLg}>
+                <Typography variant="h5" className={classes.logoLg}>
                     Mental Health Check
                 </Typography>
                 <Typography variant="h6" className={classes.logoSm}>

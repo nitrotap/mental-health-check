@@ -14,13 +14,18 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
+        paddingTop:theme.spacing(4),
+        [theme.breakpoints.down('sm')]: {
+            alignItems: 'center'
+        }
     },
     item: {
         display: 'flex',
         alignItems: 'center',
-        fontSize: '1.5rem',
-        width: '100%',
-        padding: '10px 0',
+        marginBottom: theme.spacing(6),
+        [theme.breakpoints.down('sm')]: {
+            marginBottom:theme.spacing(4),
+        },
         '&:hover': {
             backgroundColor: '#f5f5f5',
             cursor: 'pointer',
@@ -28,9 +33,25 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     icon: {
-        marginRight: '10px',
-        fontSize: '2rem',
-    }
+        fontSize: '35px !important',
+        marginRight: theme.spacing(2),
+        [theme.breakpoints.up('md')]: {
+            fontSize: '40px !important',
+        },
+        [theme.breakpoints.down('sm')]: {
+            marginRight: 0,
+        },
+    },
+
+    text: {
+        fontSize: '1.5rem',
+        [theme.breakpoints.down('md')]: {
+            fontSize: '1rem',
+        },
+        [theme.breakpoints.down('sm')]: {
+            display: 'none',
+        }, 
+    },
 }));
 
 function Leftbar() {
@@ -39,31 +60,31 @@ function Leftbar() {
         <Container className={classes.container}>
             <div className={classes.item}>
                 <Home className={classes.icon}/>
-                <Typography className={classes.item}>
+                <Typography className={classes.text}>
                     Home
                 </Typography>
             </div>
             <div className={classes.item}>
                 <AccountCircleIcon className={classes.icon}/>
-                <Typography className={classes.item}>
+                <Typography className={classes.text}>
                     Dashboard
                 </Typography>
             </div>
             <div className={classes.item}>
                 <PsychologyIcon className={classes.icon}/>
-                <Typography className={classes.item}>
+                <Typography className={classes.text}>
                     Quiz
                 </Typography>
             </div>
             <div className={classes.item}>
                 <LoginIcon className={classes.icon}/>
-                <Typography className={classes.item}>
+                <Typography className={classes.text}>
                     Login
                 </Typography>
             </div>
             <div className={classes.item}>
                 <BorderColorIcon className={classes.icon}/>
-                <Typography className={classes.item}>
+                <Typography className={classes.text}>
                     Signup
                 </Typography>
             </div>
