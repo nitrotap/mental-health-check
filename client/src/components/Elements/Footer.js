@@ -6,8 +6,6 @@ assigned to:
 */
 
 import React from 'react';
-//Css
-import '../CSS/footer.css'
 
 const Footer = () => {
     return (
