@@ -44,3 +44,10 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+// export const ADD_QUIZSET = gql`
+//   mutation addQuizSet() {
+//     _id
+//   }
+// `
+

@@ -33,6 +33,7 @@ const QuizSet = (props) => {
 
     useEffect(() => {
         document.title = (currentQuizName);
+        //todo add name of quiz to document
     }, [currentQuizName]);
 
     function handleSubmit(response) {
@@ -41,6 +42,7 @@ const QuizSet = (props) => {
         if (index >= currentQuiz.length - 1) {
             handleSubmitQuiz()
             setIndex(0)
+            console.log('END OF QUIZ ' + currentQuizName)
         } else {
             setIndex(index + 1)
         }
@@ -50,6 +52,10 @@ const QuizSet = (props) => {
     }
     return (
         <div>
+            <div>
+                <h6>{currentQuizName} quiz</h6>
+                <h6>question {index + 1} of {currentQuiz.length}</h6>
+            </div>
             <div>
                 <Question currentQuestion={currentQuiz[index]} setCurrentQuestion={setIndex} handleSubmit={handleSubmit}></Question>
             </div>
