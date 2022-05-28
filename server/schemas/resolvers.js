@@ -17,7 +17,7 @@ const resolvers = {
         },
         quizSet: async (parent, { quizSetId }, context) => {
             if (context.user) {
-                const quizSet = QuizSet.findById(
+                const quizSet = await QuizSet.findById(
                     { _id: quizSetId }
                 )
                 return quizSet

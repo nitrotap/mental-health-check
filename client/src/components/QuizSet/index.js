@@ -8,6 +8,7 @@ import { ADD_QUIZRESULT, ADD_QUIZSET } from "../../utils/mutations";
 const { depressionQuestions, anxietyQuestions, ptsdQuestions, schQuestions, impairmentQuestions, addictionQuestions } = questionBank;
 
 const grader = function () {
+    //todo quiz end logic here
 
 }
 
@@ -58,8 +59,8 @@ const QuizSet = (props) => {
     const [quizSetScore, setQuizSetScore] = useState(0)
     const [addQuizResult] = useMutation(ADD_QUIZRESULT)
 
-    function handleSubmit(response) {
-        console.log(response);
+    async function handleSubmit(response) {
+        // console.log(response);
         // end of quiz
         if (index >= currentQuiz.length - 1) {
             handleSubmitQuiz()
@@ -70,38 +71,41 @@ const QuizSet = (props) => {
                 console.log('positive for ' + currentQuizName)
                 const currentQuizResult = 'positive for ' + currentQuizName
 
-                const { data } = addQuizResult({
-                    variables: {
-                        quizSetId: currentQuizSetId,
-                        quizTaken: currentQuizName, quizAnswer: currentQuizResult
-                    }
-                })
-                setQuizSetScore(0)
+                try {
+                    const { data } = await addQuizResult({
+                        variables: {
+                            quizSetId: currentQuizSetId,
+                            quizTaken: currentQuizName, quizAnswer: currentQuizResult
+                        }
+                    })
+                    setQuizSetScore(0)
+                } catch (e) {
+                    console.log(e)
+                    throw new Error(e)
+                }
 
             } else {
-                // todo add logic for scores
                 console.log('negative for ' + currentQuizName)
                 const currentQuizResult = 'negative for ' + currentQuizName
 
-                const { data } = addQuizResult({
-                    variables: {
-                        quizSetId: currentQuizSetId,
-                        quizTaken: currentQuizName, quizAnswer: currentQuizResult
-                    }
-                })
-                setQuizSetScore(0)
-
+                try {
+                    const { data } = await addQuizResult({
+                        variables: {
+                            quizSetId: currentQuizSetId,
+                            quizTaken: currentQuizName, quizAnswer: currentQuizResult
+                        }
+                    })
+                    setQuizSetScore(0)
+                } catch (e) {
+                    console.log(e)
+                    throw new Error(e)
+                }
             }
         } else {
             setIndex(index + 1)
-            // todo score calculation
-            // console.log('question answered')
-            console.log(response.score + quizSetScore)
+            // console.log(response.score + quizSetScore)
             let newScore = response.score + quizSetScore
             setQuizSetScore(newScore)
-            console.log(quizSetScore)
-
-
         }
         //todo  error case runs out of indexes
 

@@ -16,18 +16,23 @@ import { gql } from '@apollo/client';
 // todo query audio recordings tied to user
 
 export const QUERY_USER = gql`
-    query user {
+    query Quizzes {
         user {
             quizzes {
             _id
             dateTaken
+            quizResults {
+                quizTaken
+                quizAnswer
+            }
             }
         }
     }
 `
 export const QUERY_QUIZSET = gql`
-    query quizSet($quizSetId: String) {
+    query QuizSet($quizSetId: String) {
         quizSet(quizSetId: $quizSetId) {
+            dateTaken
             quizResults {
             quizTaken
             quizAnswer

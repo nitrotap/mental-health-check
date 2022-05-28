@@ -38,11 +38,10 @@ const Quiz = (args) => {
 
     function handleSubmitQuiz() {
         if (index >= quizzes.length - 1) {
-            // TODO end test, calculate scores, submit to database
-
             console.log('TEST FINISHED')
             //TODO  SEND USER TO QUIZ FINISHED PAGE
 
+            window.location.replace(`/`);
         } else {
             setIndex(index + 1)
         }
