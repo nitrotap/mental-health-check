@@ -7,6 +7,10 @@ import { ADD_QUIZRESULT, ADD_QUIZSET } from "../../utils/mutations";
 
 const { depressionQuestions, anxietyQuestions, ptsdQuestions, schQuestions, impairmentQuestions, addictionQuestions } = questionBank;
 
+const grader = function () {
+
+}
+
 const QuizSet = (props) => {
     const { currentQuizName, handleSubmitQuiz } = props;
 
@@ -56,15 +60,12 @@ const QuizSet = (props) => {
 
     function handleSubmit(response) {
         console.log(response);
-        // add logic to determine if end of quiz
-        // setQuizSetScore(response.score + quizSetScore)
-        // console.log(quizSetScore)
+        // end of quiz
         if (index >= currentQuiz.length - 1) {
             handleSubmitQuiz()
             setIndex(0)
             console.log('END OF QUIZ ' + currentQuizName)
-            //todo calculate score 
-            console.log(quizSetScore)
+            //todo calculate score bug: score is -1 somehow
             if (quizSetScore >= (currentQuiz.length / 2)) {
                 console.log('positive for ' + currentQuizName)
                 const currentQuizResult = 'positive for ' + currentQuizName
@@ -75,21 +76,26 @@ const QuizSet = (props) => {
                         quizTaken: currentQuizName, quizAnswer: currentQuizResult
                     }
                 })
-
                 setQuizSetScore(0)
-                console.log('resetting')
-                console.log(quizSetScore)
-
 
             } else {
                 // todo add logic for scores
                 console.log('negative for ' + currentQuizName)
+                const currentQuizResult = 'negative for ' + currentQuizName
+
+                const { data } = addQuizResult({
+                    variables: {
+                        quizSetId: currentQuizSetId,
+                        quizTaken: currentQuizName, quizAnswer: currentQuizResult
+                    }
+                })
+                setQuizSetScore(0)
 
             }
         } else {
             setIndex(index + 1)
             // todo score calculation
-            console.log('question answered')
+            // console.log('question answered')
             console.log(response.score + quizSetScore)
             let newScore = response.score + quizSetScore
             setQuizSetScore(newScore)

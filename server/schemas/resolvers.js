@@ -68,7 +68,9 @@ const resolvers = {
                 // add quizSet to user
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $push: { quizzes: quizSet } }
+                    { $addToSet: { quizzes: quizSet } },
+                    { new: true }
+
                 )
                 // console.log(updatedUser)
 
@@ -93,7 +95,7 @@ const resolvers = {
                 //
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $set: { quizzes: updatedQuizSet } },
+                    { $addToSet: { quizzes: updatedQuizSet } },
                     { new: true }
                 )
                 // console.log(updatedUser)
