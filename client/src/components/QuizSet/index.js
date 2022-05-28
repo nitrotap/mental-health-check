@@ -63,7 +63,6 @@ const QuizSet = (props) => {
         // console.log(response);
         // end of quiz
         if (index >= currentQuiz.length - 1) {
-            handleSubmitQuiz()
             setIndex(0)
             console.log('END OF QUIZ ' + currentQuizName)
             //todo calculate score bug: score is -1 somehow
@@ -101,6 +100,9 @@ const QuizSet = (props) => {
                     throw new Error(e)
                 }
             }
+
+            handleSubmitQuiz(currentQuizSetId)
+
         } else {
             setIndex(index + 1)
             // console.log(response.score + quizSetScore)

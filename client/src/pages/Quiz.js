@@ -36,12 +36,14 @@ const Quiz = (args) => {
     const [index, setIndex] = useState(0)
 
 
-    function handleSubmitQuiz() {
+    function handleSubmitQuiz(currentQuizSetId) {
         if (index >= quizzes.length - 1) {
             console.log('TEST FINISHED')
             //TODO  SEND USER TO QUIZ FINISHED PAGE
 
-            window.location.replace(`/`);
+            // window.location.replace(`/dashboard`);
+            window.location.replace(`/singlequiz/${currentQuizSetId}`)
+
         } else {
             setIndex(index + 1)
         }

@@ -54,6 +54,8 @@ function App() {
               <Route path="signup" element={<Signup />} />
               <Route path="quiz" element={<Quiz />} />
               <Route path="singlequiz/:id" element={<SingleQuiz />} />
+              <Route path="dashboard" element={<Dashboard />} />
+
 
 
 
