@@ -30,20 +30,15 @@ const SingleQuiz = (props) => {
     // console.log(data)
 
     const { id: quizSetId } = useParams();
-    console.log(quizSetId)
 
     const { loading, data } = useQuery(QUERY_QUIZSET, { variables: { quizSetId: quizSetId } })
-
-    console.log(data)
-
-    const quizSet = data?.quizSet || [];
-    console.log(quizSet)
-
     if (loading) {
         return <div>Loading...</div>;
     }
 
-    console.log(data)
+    console.log(data.quizSet.dateTaken)
+    console.log(data.quizSet.quizResults[0].quizAnswer)
+    console.log(data.quizSet.quizResults[0].quizTaken)
 
 
 
