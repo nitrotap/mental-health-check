@@ -45,9 +45,32 @@ export const ADD_USER = gql`
   }
 `;
 
-// export const ADD_QUIZSET = gql`
-//   mutation addQuizSet() {
-//     _id
-//   }
-// `
+export const ADD_QUIZSET = gql`
+  mutation addQuizSet {
+    addQuizSet {
+      _id
+    }
+  }
+`
 
+export const ADD_QUIZRESULT = gql`
+  mutation addQuizResult($quizSetId: ID!, $quizTaken: String!, $quizAnswer: String!) {
+    addQuizResult(quizSetId: $quizSetId, quizTaken: $quizTaken, quizAnswer: $quizAnswer) {
+      _id
+      dateTaken
+      quizResults {
+        quizTaken
+        quizAnswer
+        createdAt
+        _id
+      }
+    }
+  }
+`
+export const REMOVE_QUIZSET = gql`
+  mutation removeQuizSet($quizSetId: ID) {
+    removeQuizSet(quizSetId: $quizSetId) {
+      _id
+    }
+  }
+`

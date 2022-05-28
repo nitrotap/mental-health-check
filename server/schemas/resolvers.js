@@ -56,11 +56,12 @@ const resolvers = {
             return { token, user };
         },
         // creates a single quiz set
-        addQuizSet: async (parent, { args }, context) => {
+        addQuizSet: async (parent, args, context) => {
             if (context.user) {
                 // creates a single quiz
                 const quizSet = await QuizSet.create({
                     // null uses context
+                    args
                 });
                 // console.log(quizSet)
                 // console.log(context.user)

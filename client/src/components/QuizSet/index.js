@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import { useQuery, useMutation } from '@apollo/client'
 import questionBank from "../../utils/questionBank"
 import Question from "../Question";
+import { QUERY_USER } from "../../utils/queries";
+import { ADD_QUIZRESULT, ADD_QUIZSET } from "../../utils/mutations";
 
 const { depressionQuestions, anxietyQuestions, ptsdQuestions, schQuestions, impairmentQuestions, addictionQuestions } = questionBank;
 
@@ -32,22 +35,69 @@ const QuizSet = (props) => {
 
 
     useEffect(() => {
-        document.title = (currentQuizName);
-        //todo add name of quiz to document
+        document.title = (currentQuizName + ' quiz');
     }, [currentQuizName]);
+
+    const [addQuizSet] = useMutation(ADD_QUIZSET)
+
+    const [currentQuizSetId, setCurrentQuizSetId] = useState('')
+
+    useEffect(() => {
+        async function startQuiz() {
+            const { data } = await addQuizSet()
+            console.log(data.addQuizSet._id)
+            setCurrentQuizSetId(data.addQuizSet._id)
+        }
+        startQuiz()
+    }, [addQuizSet])
+
+    const [quizSetScore, setQuizSetScore] = useState(0)
+    const [addQuizResult] = useMutation(ADD_QUIZRESULT)
 
     function handleSubmit(response) {
         console.log(response);
         // add logic to determine if end of quiz
+        // setQuizSetScore(response.score + quizSetScore)
+        // console.log(quizSetScore)
         if (index >= currentQuiz.length - 1) {
             handleSubmitQuiz()
             setIndex(0)
             console.log('END OF QUIZ ' + currentQuizName)
+            //todo calculate score 
+            console.log(quizSetScore)
+            if (quizSetScore >= (currentQuiz.length / 2)) {
+                console.log('positive for ' + currentQuizName)
+                const currentQuizResult = 'positive for ' + currentQuizName
+
+                const { data } = addQuizResult({
+                    variables: {
+                        quizSetId: currentQuizSetId,
+                        quizTaken: currentQuizName, quizAnswer: currentQuizResult
+                    }
+                })
+
+                setQuizSetScore(0)
+                console.log('resetting')
+                console.log(quizSetScore)
+
+
+            } else {
+                // todo add logic for scores
+                console.log('negative for ' + currentQuizName)
+
+            }
         } else {
             setIndex(index + 1)
+            // todo score calculation
+            console.log('question answered')
+            console.log(response.score + quizSetScore)
+            let newScore = response.score + quizSetScore
+            setQuizSetScore(newScore)
+            console.log(quizSetScore)
+
+
         }
         //todo  error case runs out of indexes
-        // todo add logic for scores
 
     }
     return (
