@@ -6,8 +6,5 @@ export const theme = createTheme({
             main: '#255070'
         }
     },
-    icon: {
-        fontSize: '25px'
-    }
 
 })

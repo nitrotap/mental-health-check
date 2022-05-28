@@ -16,30 +16,45 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         height: '100%',
         width: '100%',
-    },
-    card: {
-        backgroundColor: '#255070',
-        display: 'flex',
-        flexDirection: 'column',
-    },
-    hero: {
-        marginTop: theme.spacing(4),
+        marginTop: theme.spacing(2),
         [theme.breakpoints.down('sm')]: {
-            width: '75%',
+            justifyContent: 'flex-start',
         },
     },
     title: {
         fontSize: '4rem',
         textAlign: 'center',
-        paddingBottom: theme.spacing(4),
+        paddingBottom: theme.spacing(3),
         [theme.breakpoints.down('md')]: {
             fontSize: '2rem',
         },
     },
+    text: {
+        fontSize: '1.3rem',
+        textAlign: 'center',
+        color: '#f5f5f5',
+        paddingBottom: theme.spacing(3),
+        [theme.breakpoints.down('md')]: {
+            fontSize: '1rem',
+        },
+    },
+    hero: {
+        width: '50%',
+        marginTop: theme.spacing(4),
+        [theme.breakpoints.down('sm')]: {
+            width: '75%',
+        },
+    },
     img:{
+        aspectRatio: 4/5,
         [theme.breakpoints.down('sm')]: {
             display: 'none',
         },
+    },
+    card: {
+        backgroundColor: '#255070',
+        display: 'flex',
+        flexDirection: 'column',
     },
     cardTitle: {
         color: '#f5f5f5',
@@ -49,17 +64,18 @@ const useStyles = makeStyles((theme) => ({
             fontSize: '1.5rem',
         },
     },
-    text: {
+    cardText: {
         fontSize: '1.3rem',
         textAlign: 'center',
         color: '#f5f5f5',
-        paddingBottom: theme.spacing(4),
         [theme.breakpoints.down('md')]: {
             fontSize: '1rem',
         },
     },
     button: {
         color: '#4798D6',
+        fontSize: '1rem',
+        width: '100%',
     },
     h1: {
         fontSize: '9rem',
@@ -79,7 +95,7 @@ function Homepage() {
             <Card  className={classes.hero}>
                 <CardMedia className={classes.img}
                     component="img"
-                    height="400"
+                    height="300"
                     image={jumbo}
                     alt="therapy session"
                 />
@@ -87,7 +103,7 @@ function Homepage() {
                     <Typography className={classes.cardTitle} gutterBottom variant="h5" component="div">
                     Take the Mental Health Check
                     </Typography>
-                    <Typography className={classes.text}>
+                    <Typography className={classes.cardText}>
                     Select from our question categories and begin taking your customized mental health check quiz!
                     </Typography>
                 </CardContent>
