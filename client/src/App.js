@@ -19,6 +19,17 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
+import HomeIcon from '@mui/icons-material/Home';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import PsychologyIcon from '@mui/icons-material/Psychology';
+
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import GitHubIcon from '@mui/icons-material/GitHub';
+
+import CreateIcon from '@mui/icons-material/Create';
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
+
 //routes
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Home from './pages/Homepage';
@@ -85,11 +96,55 @@ export default function App() {
     setOpen(false);
   };
 
+  const listOne = [
+    {
+      text: 'Home',
+      icon: <HomeIcon />,
+    },
+    {
+      text: 'Dashboard',
+      icon: <DashboardIcon />,
+    },
+    {
+      text: 'Psychology',
+      icon: <PsychologyIcon />,
+    }
+  ];
+
+  const listTwo = [
+    {
+      text: 'Learn More',
+      icon: <LightbulbIcon />,
+    },
+    {
+      text: 'Github',
+      icon: <GitHubIcon />,
+    }
+  ];
+
+  const listThree = [
+    {
+      text: 'Signup',
+      icon: <CreateIcon />,
+    },
+    {
+      text: 'Login',
+      icon: <LoginIcon />,
+    },
+    {
+      text: 'Logout',
+      icon: <LogoutIcon />,
+    }
+  ];
+
+
+
+
   return (
     <Router>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <AppBar position="fixed" open={open} sx={{backgroundColor:'#255070'}}>
+        <AppBar position="fixed" open={open} sx={{backgroundColor:'#326B96'}}>
           <Toolbar>
             <IconButton
               color="inherit"
@@ -118,50 +173,53 @@ export default function App() {
           anchor="left"
           open={open}
         >
-          <Box sx={{backgroundColor:'#255070', height:'100%', color:'white', border: 'none',}}>
+          <Box sx={{backgroundColor:'#326B96', height:'100%', color:'white', border: 'none',}}>
             <DrawerHeader>
               <IconButton onClick={handleDrawerClose} sx={{color:'white'}}>
                 {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
               </IconButton>
             </DrawerHeader>
-            <Divider />
+            <Divider variant='middle'color='white' />
             <List>
-              {['Home', 'Dashboard'].map((text, index) => (
-                <ListItem key={text} disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon sx={{color:'white'}}>
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItemButton>
-                </ListItem>
-              ))}
+              {listOne.map((item, index) => {
+                const {text, icon} = item;
+                return (
+                  <ListItem key={text} disablePadding>
+                    <ListItemButton>
+                      {icon && <ListItemIcon sx={{color:'white'}}>{icon}</ListItemIcon>}
+                      <ListItemText primary={text} />
+                    </ListItemButton>
+                  </ListItem>
+                )
+              })}
             </List>
-            <Divider />
+            <Divider variant='middle' color='white' />
             <List>
-              {['Learn More', 'GitHub'].map((text, index) => (
-                <ListItem key={text} disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon sx={{color:'white'}}>
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItemButton>
-                </ListItem>
-              ))}
+              {listTwo.map((item, index) => {
+                  const {text, icon} = item;
+                  return (
+                    <ListItem key={text} disablePadding>
+                      <ListItemButton>
+                        {icon && <ListItemIcon sx={{color:'white'}}>{icon}</ListItemIcon>}
+                        <ListItemText primary={text} />
+                      </ListItemButton>
+                    </ListItem>
+                  )
+                })}
             </List>
-            <Divider />
+            <Divider variant='middle' color='white' />
             <List>
-              {['Signup', 'Login', 'Logout'].map((text, index) => (
-                <ListItem key={text} disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon sx={{color:'white'}}>
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItemButton>
-                </ListItem>
-              ))}
+              {listThree.map((item, index) => {
+                    const {text, icon} = item;
+                    return (
+                      <ListItem key={text} disablePadding>
+                        <ListItemButton>
+                          {icon && <ListItemIcon sx={{color:'white'}}>{icon}</ListItemIcon>}
+                          <ListItemText primary={text} />
+                        </ListItemButton>
+                      </ListItem>
+                    )
+                  })}
             </List>
           </Box>
         </Drawer>
