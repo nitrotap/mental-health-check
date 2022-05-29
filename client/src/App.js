@@ -48,6 +48,7 @@ function App() {
           <Header />
           <div className="container">
           <Routes>
+              {/* TODO finish react routing elements */}
               {/* <Route path="/" element={<Homepage />} /> */}
               <Route path="/" element={<Homepage />} />
               <Route path="dashboard" element={<Dashboard />} />

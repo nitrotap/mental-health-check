@@ -1,15 +1,15 @@
 /*
  * js file for quiz logic
- * returns query parameters for each diagnosis type
+ * todo: add weights for questions (if answer yes to thoughts of hurting yourself, add crisis services to end of quiz result)
 */
 
 // variable declarations
-let weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-let seasons = ["Spring", "Summer", "Winter", "Fall"];
+const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const seasons = ["Spring", "Summer", "Winter", "Fall"];
 
 // building questions
 // response types
-let responseType = { // an object with distinct types
+const responseType = { // an object with distinct types
     yesNo: [{ text: "Yes", score: 1 }, { text: "No", score: 0 }],
     weekday: weekdays,
     frequency: [
@@ -25,7 +25,7 @@ let responseType = { // an object with distinct types
     {question: "",
     response: responseType.frequency},
 */
-let depressionQuestions = [ // an array of objects depressionQuestions[0].question, depressionQuestions[1].response PHQ-9
+const depressionQuestions = [ // an array of objects depressionQuestions[0].question, depressionQuestions[1].response PHQ-9
     {
         question: "Are you having thoughts that you would be better off dead, or of hurting yourself?",
         response: responseType.yesNo
@@ -35,7 +35,7 @@ let depressionQuestions = [ // an array of objects depressionQuestions[0].questi
         response: responseType.yesNo
     },
     {
-        question: "Are you feeling bad about yourself (ex. feel like a failure or let your family down)?",
+        question: "Are you feeling bad about yourself (ex. feel like a failure or const your family down)?",
         response: responseType.yesNo
     },
     {
@@ -60,7 +60,7 @@ let depressionQuestions = [ // an array of objects depressionQuestions[0].questi
     },
 ] // 8 questions
 
-let ptsdQuestions = [
+const ptsdQuestions = [
     {
         question: "Are you having nightmares about a distressing event(s) or thought about the event(s) when you did not want to?",
         response: responseType.yesNo
@@ -83,7 +83,7 @@ let ptsdQuestions = [
     },
 ] // 5 questions
 
-let schQuestions = [ // an array of objects
+const schQuestions = [ // an array of objects
     // thought disorder
     { question: "Are you experiencing any brain fog?", response: responseType.yesNo },
     { question: "Are you struggling to remember to eat or drink water?", response: responseType.yesNo },
@@ -97,7 +97,7 @@ let schQuestions = [ // an array of objects
     { question: "Are you having any grandiose thoughts?", response: responseType.yesNo },
 ];
 
-let impairmentQuestions = [ // an array of objects -
+const impairmentQuestions = [ // an array of objects -
     { question: "What is the Weekday?", response: responseType.weekday },
     { question: "Type in the first three things you see", response: responseType.userInput },
     { question: "What is the year?", response: responseType.userInput },
@@ -107,7 +107,7 @@ let impairmentQuestions = [ // an array of objects -
 
 ]; // these questions have right or wrong answers - ICEBOX
 
-let addictionQuestions = [
+const addictionQuestions = [
     { question: "Are you using substances to numb any physical or emotional pain?", response: responseType.yesNo },
     { question: "Do you feel like you should cut down on your substance use?", response: responseType.yesNo },
     { question: "Are you feeling guilty about using substances?", response: responseType.yesNo },
@@ -116,7 +116,7 @@ let addictionQuestions = [
     { question: "Are you using substances as soon as you wake up in the morning?", response: responseType.yesNo }
 ] // 6 questions
 
-let anxietyQuestions = [  // an array of objects GAD-7
+const anxietyQuestions = [  // an array of objects GAD-7
     {
         question: "Are you feeling nervous, anxious, or on edge?",
         response: responseType.yesNo
@@ -147,8 +147,9 @@ let anxietyQuestions = [  // an array of objects GAD-7
     },
 ]; // 7 questions
 
-let questionBank = [
+const questionBank = {
     depressionQuestions, anxietyQuestions, ptsdQuestions, schQuestions, impairmentQuestions, addictionQuestions
-]
+}
+
 
 export default questionBank;
