@@ -49,9 +49,14 @@ const QuizSet = (props) => {
 
     useEffect(() => {
         async function startQuiz() {
-            const { data } = await addQuizSet()
-            console.log(data.addQuizSet._id)
-            setCurrentQuizSetId(data.addQuizSet._id)
+            try {
+                const { data } = await addQuizSet()
+                console.log(data.addQuizSet._id)
+                setCurrentQuizSetId(data.addQuizSet._id)
+            } catch (e) {
+                console.log(e)
+                window.location.replace('/login')
+            }
         }
         startQuiz()
     }, [addQuizSet])
