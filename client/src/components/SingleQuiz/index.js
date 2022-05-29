@@ -42,8 +42,8 @@ const SingleQuiz = (props) => {
         console.log(data.quizSet.quizResults[0].quizTaken)
     } catch (e) {
         console.log(e)
-        // redirect to login screen on not logged in or error
-        window.alert('An error has occured')
+        // redirect to login screen on not logged in or invalid id
+        window.alert('An invalid ID or other error has occurred.')
         window.history.back()
     }
 
