@@ -49,7 +49,7 @@ function App() {
           <div className="container">
             <Routes>
               {/* TODO finish react routing elements */}
-              {/* <Route path="/" element={<Homepage />} /> */}
+              <Route path="/" element={<Login />} />
               <Route path="login" element={<Login />} />
               <Route path="signup" element={<Signup />} />
               <Route path="quiz" element={<Quiz />} />
