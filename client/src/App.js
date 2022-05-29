@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { styled, useTheme} from '@mui/material/styles';
+import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -29,7 +30,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 //routes
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import Home from './pages/Homepage';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
@@ -98,14 +99,17 @@ export default function App() {
     {
       text: 'Home',
       icon: <HomeIcon />,
+      link: '/',
     },
     {
       text: 'Dashboard',
       icon: <DashboardIcon />,
+      link: '/dashboard',
     },
     {
       text: 'Psychology',
       icon: <PsychologyIcon />,
+      link: '/quiz',
     }
   ];
 
@@ -113,10 +117,12 @@ export default function App() {
     {
       text: 'Learn More',
       icon: <LightbulbIcon />,
+      link: '/learn',
     },
     {
       text: 'Github',
       icon: <GitHubIcon />,
+      link: '',
     }
   ];
 
@@ -124,23 +130,23 @@ export default function App() {
     {
       text: 'Signup',
       icon: <CreateIcon />,
+      link: '/signup',
     },
     {
       text: 'Login',
       icon: <LoginIcon />,
+      link: '/login',
     },
     {
       text: 'Logout',
       icon: <LogoutIcon />,
+      link: '/logout',
     }
   ];
 
-
-
-
   return (
     <Router>
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{display: 'flex',}}>
         <CssBaseline />
         <AppBar position="fixed" open={open} sx={{backgroundColor:'#326B96'}}>
           <Toolbar>
@@ -180,49 +186,60 @@ export default function App() {
             <Divider variant='middle'color='white' />
             <List>
               {listOne.map((item, index) => {
-                const {text, icon} = item;
+                const {text, icon, link} = item;
                 return (
-                  <ListItem key={text} disablePadding>
-                    <ListItemButton>
-                      {icon && <ListItemIcon sx={{color:'white'}}>{icon}</ListItemIcon>}
-                      <ListItemText primary={text} />
-                    </ListItemButton>
-                  </ListItem>
+                  <Link to={link}>
+                    <ListItem key={text} disablePadding>
+                      <ListItemButton>
+                        {icon && <ListItemIcon sx={{color:'white'}}>{icon}</ListItemIcon>}
+                        <ListItemText sx={{color:'white'}} primary={text} />
+                      </ListItemButton>
+                    </ListItem>
+                  </Link>
                 )
               })}
             </List>
             <Divider variant='middle' color='white' />
             <List>
               {listTwo.map((item, index) => {
-                  const {text, icon} = item;
+                  const {text, icon, link} = item;
                   return (
-                    <ListItem key={text} disablePadding>
-                      <ListItemButton>
-                        {icon && <ListItemIcon sx={{color:'white'}}>{icon}</ListItemIcon>}
-                        <ListItemText primary={text} />
-                      </ListItemButton>
-                    </ListItem>
+                    <Link to={link}>
+                      <ListItem key={text} disablePadding>
+                        <ListItemButton>
+                          {icon && <ListItemIcon sx={{color:'white'}}>{icon}</ListItemIcon>}
+                          <ListItemText sx={{color:'white'}} primary={text} />
+                        </ListItemButton>
+                      </ListItem>
+                    </Link>
                   )
                 })}
             </List>
             <Divider variant='middle' color='white' />
             <List>
               {listThree.map((item, index) => {
-                    const {text, icon} = item;
-                    return (
+                  const {text, icon, link} = item;
+                  return (
+                    <Link to={link}>
                       <ListItem key={text} disablePadding>
                         <ListItemButton>
                           {icon && <ListItemIcon sx={{color:'white'}}>{icon}</ListItemIcon>}
-                          <ListItemText primary={text} />
-                        </ListItemButton>
-                      </ListItem>
-                    )
-                  })}
+                        <ListItemText sx={{color:'white'}} primary={text} />
+                      </ListItemButton>
+                    </ListItem>
+                  </Link>
+                  )
+                })}
             </List>
           </Box>
         </Drawer>
-        <Main open={open}>
-          <DrawerHeader />
+        <Main open={open} sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: 0,
+          backgroundColor: '#18344A'
+          }}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
@@ -233,4 +250,4 @@ export default function App() {
       </Box>
     </Router>
   );
-}
+};

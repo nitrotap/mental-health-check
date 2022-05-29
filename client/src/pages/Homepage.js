@@ -10,20 +10,20 @@ import jumbo from '../assets/images/jumbo.jpg';
 
 const useStyles = makeStyles((theme) => ({
     container: {
+        backgroundColor: '#18344A',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '100%',
-        width: '100%',
-        marginTop: theme.spacing(2),
-        [theme.breakpoints.down('sm')]: {
-            justifyContent: 'flex-start',
-        },
+        height: '100vh',
+        width: '100vw',
+        margin: 0,
+        padding: 0,
     },
     title: {
         fontSize: '4rem',
         textAlign: 'center',
+        color: 'white',
         paddingBottom: theme.spacing(3),
         [theme.breakpoints.down('md')]: {
             fontSize: '2rem',
