@@ -134,7 +134,7 @@ export default function App() {
       link: '/dashboard',
     },
     {
-      text: 'Psychology',
+      text: 'Quiz',
       icon: <PsychologyIcon />,
       link: '/quiz',
     }
@@ -142,7 +142,7 @@ export default function App() {
 
   const listTwo = [
     {
-      text: 'Learn More',
+      text: 'Legal',
       icon: <LightbulbIcon />,
       link: '',
     },
@@ -173,63 +173,47 @@ export default function App() {
 
   return (
     <ApolloProvider client={client}>
-    <Router>
-      <Box sx={{display: 'flex',}}>
-        <CssBaseline />
-        <AppBar position="fixed" open={open} sx={{backgroundColor:'#326B96'}}>
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
-              sx={{ mr: 2, ...(open && { display: 'none' }) }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" noWrap component="div">
-              Mental Health Check
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Drawer
-          sx={{
-            width: drawerWidth,
-            flexShrink: 0,
-            '& .MuiDrawer-paper': {
-              width: drawerWidth,
-              boxSizing: 'border-box',
-            },
-          }}
-          variant="persistent"
-          anchor="left"
-          open={open}
-        >
-          <Box sx={{backgroundColor:'#326B96', height:'100%', color:'white', border: 'none',}}>
-            <DrawerHeader>
-              <IconButton onClick={handleDrawerClose} sx={{color:'white'}}>
-                {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+      <Router>
+        <Box sx={{display: 'flex',}}>
+          <CssBaseline />
+          <AppBar position="fixed" open={open} sx={{backgroundColor:'#326B96'}}>
+            <Toolbar>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                edge="start"
+                sx={{ mr: 2, ...(open && { display: 'none' }) }}
+              >
+                <MenuIcon />
               </IconButton>
-            </DrawerHeader>
-            <Divider variant='middle'color='white' />
-            <List>
-              {listOne.map((item, index) => {
-                const {text, icon, link} = item;
-                return (
-                  <Link to={link}>
-                    <ListItem key={text} disablePadding>
-                      <ListItemButton>
-                        {icon && <ListItemIcon sx={{color:'white'}}>{icon}</ListItemIcon>}
-                        <ListItemText sx={{color:'white'}} primary={text} />
-                      </ListItemButton>
-                    </ListItem>
-                  </Link>
-                )
-              })}
-            </List>
-            <Divider variant='middle' color='white' />
-            <List>
-              {listTwo.map((item, index) => {
+              <Typography variant="h6" noWrap component="div">
+                Mental Health Check
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <Drawer
+            sx={{
+              width: drawerWidth,
+              flexShrink: 0,
+              '& .MuiDrawer-paper': {
+                width: drawerWidth,
+                boxSizing: 'border-box',
+              },
+            }}
+            variant="persistent"
+            anchor="left"
+            open={open}
+          >
+            <Box sx={{backgroundColor:'#326B96', height:'100%', color:'white', border: 'none',}}>
+              <DrawerHeader>
+                <IconButton onClick={handleDrawerClose} sx={{color:'white'}}>
+                  {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                </IconButton>
+              </DrawerHeader>
+              <Divider variant='middle'color='white' />
+              <List>
+                {listOne.map((item, index) => {
                   const {text, icon, link} = item;
                   return (
                     <Link to={link}>
@@ -242,41 +226,57 @@ export default function App() {
                     </Link>
                   )
                 })}
-            </List>
-            <Divider variant='middle' color='white' />
-            <List>
-              {listThree.map((item, index) => {
-                  const {text, icon, link} = item;
-                  return (
-                    <Link to={link}>
-                      <ListItem key={text} disablePadding>
-                        <ListItemButton>
-                          {icon && <ListItemIcon sx={{color:'white'}}>{icon}</ListItemIcon>}
-                        <ListItemText sx={{color:'white'}} primary={text} />
-                      </ListItemButton>
-                    </ListItem>
-                  </Link>
-                  )
-                })}
-            </List>
-          </Box>
-        </Drawer>
-        <Main open={open} sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: 0,
-          backgroundColor: '#18344A'
-          }}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-          </Routes>
-        </Main>
-      </Box>
-    </Router>
+              </List>
+              <Divider variant='middle' color='white' />
+              <List>
+                {listTwo.map((item, index) => {
+                    const {text, icon, link} = item;
+                    return (
+                      <Link to={link}>
+                        <ListItem key={text} disablePadding>
+                          <ListItemButton>
+                            {icon && <ListItemIcon sx={{color:'white'}}>{icon}</ListItemIcon>}
+                            <ListItemText sx={{color:'white'}} primary={text} />
+                          </ListItemButton>
+                        </ListItem>
+                      </Link>
+                    )
+                  })}
+              </List>
+              <Divider variant='middle' color='white' />
+              <List>
+                {listThree.map((item, index) => {
+                    const {text, icon, link} = item;
+                    return (
+                      <Link to={link}>
+                        <ListItem key={text} disablePadding>
+                          <ListItemButton>
+                            {icon && <ListItemIcon sx={{color:'white'}}>{icon}</ListItemIcon>}
+                          <ListItemText sx={{color:'white'}} primary={text} />
+                        </ListItemButton>
+                      </ListItem>
+                    </Link>
+                    )
+                  })}
+              </List>
+            </Box>
+          </Drawer>
+          <Main open={open} sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 0,
+            backgroundColor: '#18344A'
+            }}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/login" element={<Login />} />
+            </Routes>
+          </Main>
+        </Box>
+      </Router>
     </ApolloProvider>
   );
 };

@@ -10,10 +10,7 @@ const Dashboard = () => {
 
     return (
         <main>
-            <div className='flex-row justify-space-between'>
-                <div className='col-12 mb-3'>
-                </div>
-            </div>
+            <h1>Dashboard</h1>
         </main>
     );
 };

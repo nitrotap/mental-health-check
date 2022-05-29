@@ -1,8 +1,3 @@
-/* Describes app, asks user to signup to use, option to log into account
-
-assigned to:
-*/
-
 import React from 'react';
 //mui
 import {Container, makeStyles, Typography, Card, CardActions, CardContent, Button, CardMedia} from '@material-ui/core';
