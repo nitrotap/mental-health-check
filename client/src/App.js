@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { styled, useTheme} from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -29,12 +28,40 @@ import CreateIcon from '@mui/icons-material/Create';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 
+//apollo
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+
 //routes
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import Home from './pages/Homepage';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
 
 const drawerWidth = 240;
 
@@ -117,7 +144,7 @@ export default function App() {
     {
       text: 'Learn More',
       icon: <LightbulbIcon />,
-      link: '/learn',
+      link: '',
     },
     {
       text: 'Github',
@@ -145,6 +172,7 @@ export default function App() {
   ];
 
   return (
+    <ApolloProvider client={client}>
     <Router>
       <Box sx={{display: 'flex',}}>
         <CssBaseline />
@@ -243,11 +271,12 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </Main>
       </Box>
     </Router>
+    </ApolloProvider>
   );
 };
