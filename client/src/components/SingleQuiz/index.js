@@ -30,15 +30,22 @@ const SingleQuiz = (props) => {
     // console.log(data)
 
     const { id: quizSetId } = useParams();
-
     const { loading, data } = useQuery(QUERY_QUIZSET, { variables: { quizSetId: quizSetId } })
+
     if (loading) {
         return <div>Loading...</div>;
     }
 
-    console.log(data.quizSet.dateTaken)
-    console.log(data.quizSet.quizResults[0].quizAnswer)
-    console.log(data.quizSet.quizResults[0].quizTaken)
+    try {
+        console.log(data.quizSet.dateTaken)
+        console.log(data.quizSet.quizResults[0].quizAnswer)
+        console.log(data.quizSet.quizResults[0].quizTaken)
+    } catch (e) {
+        console.log(e)
+        // redirect to login screen on not logged in or error
+        window.alert('An error has occured')
+        window.history.back()
+    }
 
 
 

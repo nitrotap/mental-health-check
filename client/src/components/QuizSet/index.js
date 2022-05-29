@@ -54,7 +54,6 @@ const QuizSet = (props) => {
                 console.log(data.addQuizSet._id)
                 setCurrentQuizSetId(data.addQuizSet._id)
             } catch (e) {
-                console.log(e)
                 window.location.replace('/login')
             }
         }
