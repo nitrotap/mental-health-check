@@ -25,9 +25,9 @@ const Dashboard = () => {
     }
 
     console.log(user.quizzes)
-    console.log(user.quizzes[0].dateTaken)
-    console.log(user.quizzes[0].quizResults[0].quizAnswer)
-    console.log(user.quizzes[0].quizResults[0].quizTaken)
+    // console.log(user.quizzes[0].dateTaken)
+    // console.log(user.quizzes[0].quizResults[0].quizAnswer)
+    // console.log(user.quizzes[0].quizResults[0].quizTaken)
 
 
 
