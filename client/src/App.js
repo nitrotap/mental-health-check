@@ -8,17 +8,20 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
+//CSS
+import './components/CSS/App.css';
 
-// import logo from './logo.svg';
-import './App.css';
-
-import AudioRecorder from './components/AudioRecorder';
-import Dashboard from './pages/Dashboard';
+//routes
+//import AudioRecorder from './components/AudioRecorder';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import Header from './components/Header';
+import Quiz from './pages/Quiz';
+import Dashboard from './pages/Dashboard';
 import Homepage from './pages/Homepage'
-import Quiz from './pages/Quiz'
+import SingleQuiz from './components/SingleQuiz';
+import Footer from './components/Elements/Footer';
+import Header from './components/Elements/Header';
+
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
@@ -38,27 +41,26 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-
 function App() {
+
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="flex-column justify-flex-start min-100-vh">
-          {<Header />}
-          <div className="container">
-            <Routes>
-              {/* TODO finish react routing elements */}
-              <Route path="/" element={<Homepage />} />
-              <Route path="login" element={<Login />} />
-              <Route path="signup" element={<Signup />} />
-              <Route path="quiz" element={<Quiz />} />
-
-            </Routes>
-          </div>
-
+        <Header />
+        <div className="container">
+          <Routes>
+            {/* TODO finish react routing elements */}
+            <Route path="/" element={<Homepage />} />
+            <Route path="login" element={<Login />} />
+            <Route path="signup" element={<Signup />} />
+            <Route path="quiz" element={<Quiz />} />
+            <Route path="singlequiz/:id" element={<SingleQuiz />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="homepage" element={<Homepage />} />
+          </Routes>
         </div>
+        <Footer />
       </Router>
-
     </ApolloProvider>
   );
 }
