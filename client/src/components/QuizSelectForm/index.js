@@ -67,7 +67,13 @@ const QuizSelectForm = (props) => {
                 aria-describedby="modal-modal-description"
             > */}
 
-            <Box sx={style}>
+            <Box sx={{
+                width: 400,
+                height: 400,
+                backgroundColor: 'white',
+                marginTop: '150px',
+                marginBottom: '250px',
+            }}>
                 <FormControl
                     required
                     // error={error}

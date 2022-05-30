@@ -76,6 +76,9 @@ const client = new ApolloClient({
 
 const drawerWidth = 240;
 
+const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
+
+
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     flexGrow: 1,
@@ -186,10 +189,9 @@ export default function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-
         <Box sx={{ display: 'flex', }}>
           <CssBaseline />
-          <AppBar position="fixed" open={open} sx={{ backgroundColor: '#326B96' }}>
+          <AppBar position="fixed" z-index='1400' open={open} sx={{ backgroundColor: '#326B96' }}>
             <Toolbar>
               <IconButton
                 color="inherit"
@@ -279,7 +281,8 @@ export default function App() {
             alignItems: 'center',
             justifyContent: 'center',
             padding: 0,
-            backgroundColor: '#18344A'
+            backgroundColor: '#18344A',
+            marginTop: '60px',
           }}>
             <Routes>
               {/* TODO finish react routing elements */}
