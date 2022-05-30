@@ -5,6 +5,12 @@ const useRecorder = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [recorder, setRecorder] = useState(null);
 
+  async function requestRecorder() {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    console.log('recorder requested')
+    return new MediaRecorder(stream);
+  }
+
   useEffect(() => {
 
     // Lazily obtain recorder first time we're recording.
@@ -53,11 +59,5 @@ const useRecorder = () => {
 
   return [audioURL, isRecording, startRecording, stopRecording, requestMic, revokeMic];
 };
-
-async function requestRecorder() {
-  const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-  console.log('recorder requested')
-  return new MediaRecorder(stream);
-}
 
 export default useRecorder;

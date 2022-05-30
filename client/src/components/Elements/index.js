@@ -29,4 +29,4 @@ const AudioRecorder = () => {
     )
 }
 
-export default AudioRecorder
+export default AudioRecorder;
