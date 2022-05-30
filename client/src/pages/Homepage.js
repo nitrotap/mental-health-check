@@ -1,6 +1,6 @@
 import React from 'react';
 //mui
-import { Container, makeStyles, Typography, Card, CardActions, CardContent, Button, CardMedia } from '@material-ui/core';
+import { Container, makeStyles, Typography, Card, CardActions, Box, CardContent, Button, CardMedia } from '@material-ui/core';
 import jumbo from '../assets/images/jumbo.jpg';
 
 const useStyles = makeStyles((theme) => ({
@@ -12,7 +12,8 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         height: '100vh',
         width: '100vw',
-        margin: 0,
+        marginTop: '60px',
+        marginBottom: '60px',
         padding: 0,
     },
     title: {
@@ -87,7 +88,7 @@ function Homepage() {
             <Typography className={classes.text} variant='body1' >
                 Mental Health Check takes a simple quiz app format, using questions from mental illness screenings, to create a new quiz that focuses on co-morbidity by combining screening questions. Instead of screening for a diagnosis, Mental Health Check helps patients by using those screening questions to point the user to the applicable resources.
             </Typography>
-            <Card className={classes.hero}>
+            <Box className={classes.hero}>
                 <CardMedia className={classes.img}
                     component="img"
                     height="300"
@@ -102,11 +103,27 @@ function Homepage() {
                         Select from our question categories and begin taking your customized mental health check quiz!
                     </Typography>
                 </CardContent>
+
                 <CardActions className={classes.card}>
-                    <Button className={classes.button} size="large">Take the Quiz</Button>
-                    <Button className={classes.button} size="large">Learn More</Button>
+                    <Box onClick={() => {
+                        window.location.replace('/quizselect')
+                    }} sx={{ padding: '10px' }}>
+                        <Box sx={{ color: 'black', fontSize: '20pt', backgroundColor: 'white', p: .75 }}>
+                            Take the quiz!
+
+                        </Box>
+                    </Box>
+                    <Box onClick={() => {
+                        window.location.replace('/signup')
+                    }} sx={{ color: 'white', fontSize: '20pt' }}>
+                        <Box sx={{ color: 'black', fontSize: '20pt', backgroundColor: 'white', p: .75 }}>
+                            Create An Account
+
+                        </Box>
+                    </Box>
+
                 </CardActions>
-            </Card>
+            </Box>
 
         </Container>
     )

@@ -33,14 +33,6 @@ import Copyright from '../components/Elements/Copyright';
 
 const theme = createTheme();
 
-
-//         </Box>
-//         <Copyright sx={{ mt: 5 }} />
-//       </Container>
-//     </ThemeProvider>
-//   );
-// }
-
 function Signup(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [addUser] = useMutation(ADD_USER);
@@ -111,11 +103,12 @@ function Signup(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" sx={{
+        backgroundColor: 'white', marginTop: '100px', marginBottom: '250px',
+      }}>
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -187,9 +180,6 @@ function Signup(props) {
         <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
-
-
-
   )
 }
 export default Signup;
