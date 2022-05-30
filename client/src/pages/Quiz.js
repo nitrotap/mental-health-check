@@ -10,22 +10,43 @@ assigned to:
 */
 import questionBank from "../utils/questionBank"
 import { useState } from "react";
+import { useParams } from "react-router-dom";
+
 import QuizSet from '../components/QuizSet'
 import QuizSelectForm from '../components/QuizSelectForm'
 
 
 // takes an array of quizzes from quiz selector
 const Quiz = (args) => {
+    const { id: quizParams } = useParams();
+    const quizSet = quizParams.split('&')
 
-    const [showQuizSelect, setShowQuizSelect] = useState(true)
-    const [quizSelection, setQuizSelection] = useState()
+    const a = quizSet.map(param => {
+        // console.log(param) // parse depression=true
+        const log = param.split('=')
+        return log
+    })
 
-    // todo replace with object from quiz selector
-    let quizzes = ['depression', 'anxiety', 'ptsd']
+    let b = []
+    if (a[0][1] === 'true') {
+        b.push('depression')
+    }
+    if (a[1][1] === 'true') {
+        b.push('anxiety')
+    }
+    if (a[2][1] === 'true') {
+        b.push('ptsd')
+    }
+    if (a[3][1] === 'true') {
+        b.push('schizophrenia')
+    }
+    if (a[4][1] === 'true') {
+        b.push('addiction')
+    }
 
-    const { depressionQuestions, anxietyQuestions, ptsdQuestions, schQuestions, impairmentQuestions, addictionQuestions } = questionBank;
+    let quizzes = b
 
-    const [currentQuiz, setCurrentQuiz] = useState(quizzes[0])
+    const [currentQuiz, setCurrentQuiz] = useState()
 
     const [index, setIndex] = useState(0)
 
@@ -45,9 +66,8 @@ const Quiz = (args) => {
 
     return (
         <div>
-            {/* todo render modal here, quizselectform component within*/}
-            <QuizSelectForm showQuizSelect={showQuizSelect} setQuizSelect={setShowQuizSelect} quizSelection={quizSelection} setQuizSelection={setQuizSelection} />
-
+            {/* todo render modal here, quizselectform component within
+            <QuizSelectForm showQuizSelect={showQuizSelect} setQuizSelect={setShowQuizSelect} quizSelection={quizSelection} setQuizSelection={setQuizSelection} /> */}
 
             <QuizSet
                 // pass through user quizzes from quiz select
