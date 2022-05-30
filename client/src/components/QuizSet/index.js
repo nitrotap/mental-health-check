@@ -116,11 +116,20 @@ const QuizSet = (props) => {
         //todo  error case runs out of indexes
 
     }
+    const quizStyle = {
+        width: '100%',
+        backgroundColor: 'white',
+        textAlign: 'center',
+    }
+    const quizTextStyle = {
+        fontSize: '30pt',
+
+    }
     return (
         <div>
-            <div>
-                <h6>{currentQuizName} quiz</h6>
-                <h6>question {index + 1} of {currentQuiz.length}</h6>
+            <div style={quizStyle}>
+                <p style={quizTextStyle}>{currentQuizName} quiz</p>
+                <p style={quizTextStyle}>question {index + 1} of {currentQuiz.length}</p>
             </div>
             <div>
                 <Question currentQuestion={currentQuiz[index]} setCurrentQuestion={setIndex} handleSubmit={handleSubmit}></Question>
