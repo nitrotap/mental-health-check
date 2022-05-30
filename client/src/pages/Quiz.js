@@ -36,12 +36,13 @@ const Quiz = (args) => {
     const [index, setIndex] = useState(0)
 
 
-    function handleSubmitQuiz() {
+    function handleSubmitQuiz(currentQuizSetId) {
         if (index >= quizzes.length - 1) {
-            // TODO end test, calculate scores, submit to database
-
             console.log('TEST FINISHED')
             //TODO  SEND USER TO QUIZ FINISHED PAGE
+
+            // window.location.replace(`/dashboard`);
+            window.location.replace(`/singlequiz/${currentQuizSetId}`)
 
         } else {
             setIndex(index + 1)
@@ -50,7 +51,7 @@ const Quiz = (args) => {
 
     return (
         <div>
-            {/* render modal here, quizselectform component within*/}
+            {/* todo render modal here, quizselectform component within*/}
             {/* <QuizSelectForm showForm={showQuizSelect} /> */}
 
 

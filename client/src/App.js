@@ -19,6 +19,7 @@ import Signup from './pages/Signup';
 import Header from './components/Header';
 import Homepage from './pages/Homepage'
 import Quiz from './pages/Quiz'
+import SingleQuiz from './components/SingleQuiz';
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
@@ -48,10 +49,15 @@ function App() {
           <div className="container">
             <Routes>
               {/* TODO finish react routing elements */}
-              <Route path="/" element={<Homepage />} />
+              <Route path="/" element={<Login />} />
               <Route path="login" element={<Login />} />
               <Route path="signup" element={<Signup />} />
               <Route path="quiz" element={<Quiz />} />
+              <Route path="singlequiz/:id" element={<SingleQuiz />} />
+              <Route path="dashboard" element={<Dashboard />} />
+
+
+
 
             </Routes>
           </div>
