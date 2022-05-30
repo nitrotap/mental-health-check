@@ -11,10 +11,7 @@ displays multiple SingleQuiz results
 
 depends on SingleQuiz.js JSX component
 
-assigned to:
-
 */
-
 import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
 
@@ -36,6 +33,7 @@ const Dashboard = () => {
 
     return (
         <main>
+
             <div className='flex-row justify-space-between'>
                 <div className='col-12 mb-3'>
                     {/* placeholder text below - need to loop through both quizzes array and quizResults array */}
@@ -45,6 +43,7 @@ const Dashboard = () => {
 
                 </div>
             </div>
+
         </main>
     );
 };
