@@ -122,7 +122,7 @@ const QuizSet = (props) => {
         textAlign: 'center',
     }
     const quizTextStyle = {
-        fontSize: '30pt',
+        fontSize: '24pt',
 
     }
     return (

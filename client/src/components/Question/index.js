@@ -12,7 +12,7 @@ const Question = (props) => {
         marginBottom: '400px',
     }
     const questionTextStyle = {
-        fontSize: '30pt',
+        fontSize: '24pt',
 
     }
     return (
