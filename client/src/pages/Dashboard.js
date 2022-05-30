@@ -37,9 +37,9 @@ const Dashboard = () => {
             <div className='flex-row justify-space-between'>
                 <div className='col-12 mb-3'>
                     {/* placeholder text below - need to loop through both quizzes array and quizResults array */}
-                    {user.quizzes[0].dateTaken}
+                    {/* {user.quizzes[0].dateTaken}
                     {user.quizzes[0].quizResults[0].quizAnswer}
-                    {user.quizzes[0].quizResults[0].quizTaken}
+                    {user.quizzes[0].quizResults[0].quizTaken} */}
 
                 </div>
             </div>

@@ -91,7 +91,9 @@ function Login(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" sx={{
+        backgroundColor: 'white', marginTop: '100px', marginBottom: '250px',
+      }}>
         <CssBaseline />
         <Box
           sx={{
