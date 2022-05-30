@@ -1,0 +1,31 @@
+/* .nav-tabs {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 15px;
+    background-image: linear-gradient(black, rgb(70, 70, 70));
+    margin: 0;
+    height: 100px;
+}
+
+.nav-item {
+    list-style: none;
+    font-size: 1.5rem;
+}
+
+.nav-item a {
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease 0s;
+    padding-left: 20px;
+}
+
+.nav-home {
+    margin-right: auto;
+    padding-left: 0px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease 0s;
+    font-size: 1.5rem;
+    padding: 20px;
+} */
