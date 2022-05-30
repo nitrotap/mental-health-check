@@ -146,19 +146,20 @@ export default function App() {
       text: 'Quiz',
       icon: <PsychologyIcon />,
       link: '/quiz',
-    }
-  ];
-
-  const listTwo = [
+    },
     {
       text: 'Legal',
       icon: <LightbulbIcon />,
       link: '',
     },
+  ];
+
+  const listTwo = [
+
     {
       text: 'Github',
       icon: <GitHubIcon />,
-      link: '',
+      link: 'https://github.com/nitrotap/mental-health-check',
     }
   ];
 
@@ -242,14 +243,14 @@ export default function App() {
                 {listTwo.map((item, index) => {
                   const { text, icon, link } = item;
                   return (
-                    <Link to={link}>
+                    <a href={link} target="_blank" rel="noreferrer">
                       <ListItem key={text} disablePadding>
-                        <ListItemButton>
+                        <ListItemButton >
                           {icon && <ListItemIcon sx={{ color: 'white' }}>{icon}</ListItemIcon>}
                           <ListItemText sx={{ color: 'white' }} primary={text} />
                         </ListItemButton>
                       </ListItem>
-                    </Link>
+                    </a>
                   )
                 })}
               </List>
