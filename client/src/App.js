@@ -48,8 +48,7 @@ import Signup from './pages/Signup';
 import Quiz from './pages/Quiz';
 import Dashboard from './pages/Dashboard';
 import SingleQuiz from './components/SingleQuiz';
-import Footer from './components/Elements/Footer';
-import Header from './components/Elements/Header';
+import Legal from './pages/Legal';
 //routes
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import Home from './pages/Homepage';
@@ -155,7 +154,7 @@ export default function App() {
     {
       text: 'Legal',
       icon: <LightbulbIcon />,
-      link: '',
+      link: '/legal',
     },
   ];
 
@@ -293,6 +292,7 @@ export default function App() {
               <Route path="quiz/:id" element={<Quiz />} />
               <Route path="singlequiz/:id" element={<SingleQuiz />} />
               <Route path="quizselect" element={<QuizSelectForm />} />
+              <Route path="legal" element={<Legal />} />
 
             </Routes>
           </Main>
