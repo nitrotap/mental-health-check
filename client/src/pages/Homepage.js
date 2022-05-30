@@ -52,6 +52,14 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
     },
+    cardButtons: {
+        display: 'flex',
+        flexDirection: 'row',
+        backgroundColor: '#255070',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+
+    },
     cardTitle: {
         color: '#f5f5f5',
         fontSize: '2.5rem',
@@ -78,6 +86,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const bstyle = {
+    margin: '10px',
+
+}
 function Homepage() {
     const classes = useStyles();
     return (
@@ -104,28 +116,22 @@ function Homepage() {
                     </Typography>
                 </CardContent>
 
-                <CardActions className={classes.card}>
-                    <Box onClick={() => {
+                <CardActions className={classes.cardButtons}>
+                    <button onClick={() => {
                         window.location.replace('/quizselect')
-                    }} sx={{ padding: '10px' }}>
-                        <Box sx={{ color: 'black', fontSize: '20pt', backgroundColor: 'white', p: .75 }}>
-                            Take the quiz!
-
-                        </Box>
-                    </Box>
-                    <Box onClick={() => {
+                    }} style={bstyle}>
+                        <h5>Take the quiz!</h5>
+                    </button>
+                    <button onClick={() => {
                         window.location.replace('/signup')
-                    }} sx={{ color: 'white', fontSize: '20pt' }}>
-                        <Box sx={{ color: 'black', fontSize: '20pt', backgroundColor: 'white', p: .75 }}>
-                            Create An Account
-
-                        </Box>
-                    </Box>
+                    }} >
+                        <h5>Create An Account</h5>
+                    </button>
 
                 </CardActions>
             </Box>
 
-        </Container>
+        </Container >
     )
 }
 
