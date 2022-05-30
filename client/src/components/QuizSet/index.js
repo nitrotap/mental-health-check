@@ -23,7 +23,7 @@ const QuizSet = (props) => {
                 return anxietyQuestions
             case 'ptsd':
                 return ptsdQuestions
-            case 'sch':
+            case 'schizophrenia':
                 return schQuestions
             case 'addiction':
                 return addictionQuestions

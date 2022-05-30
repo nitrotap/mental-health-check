@@ -11,9 +11,14 @@ assigned to:
 import questionBank from "../utils/questionBank"
 import { useState } from "react";
 import QuizSet from '../components/QuizSet'
+import QuizSelectForm from '../components/QuizSelectForm'
+
 
 // takes an array of quizzes from quiz selector
 const Quiz = (args) => {
+
+    const [showQuizSelect, setShowQuizSelect] = useState(true)
+    const [quizSelection, setQuizSelection] = useState()
 
     // todo replace with object from quiz selector
     let quizzes = ['depression', 'anxiety', 'ptsd']
@@ -21,12 +26,6 @@ const Quiz = (args) => {
     const { depressionQuestions, anxietyQuestions, ptsdQuestions, schQuestions, impairmentQuestions, addictionQuestions } = questionBank;
 
     const [currentQuiz, setCurrentQuiz] = useState(quizzes[0])
-
-
-    // todo front end modal setup here
-    // boolean, show or not show modal 
-    // const [showQuizSelect, setShowQuizSelect] = useState(true)
-
 
     const [index, setIndex] = useState(0)
 
@@ -47,7 +46,7 @@ const Quiz = (args) => {
     return (
         <div>
             {/* todo render modal here, quizselectform component within*/}
-            {/* <QuizSelectForm showForm={showQuizSelect} /> */}
+            <QuizSelectForm showQuizSelect={showQuizSelect} setQuizSelect={setShowQuizSelect} quizSelection={quizSelection} setQuizSelection={setQuizSelection} />
 
 
             <QuizSet
