@@ -121,6 +121,7 @@ const QuizSelectForm = (props) => {
                         variant="contained"
                         sx={{ mt: 3, mb: 2 }}
                         onClick={handleSubmit}
+                        disabled={!state.depression && !state.anxiety && !state.ptsd && !state.sch && !state.addiction}
                     >
                         Start Quiz
                     </Button>
