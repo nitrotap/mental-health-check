@@ -1,6 +1,6 @@
 import React from 'react';
 //mui
-import { Container, makeStyles, Typography, Card, CardActions, CardContent, Button, CardMedia } from '@material-ui/core';
+import { Container, makeStyles, Typography, Card, CardActions, Box, CardContent, Button, CardMedia } from '@material-ui/core';
 import jumbo from '../assets/images/jumbo.jpg';
 
 const useStyles = makeStyles((theme) => ({
@@ -12,7 +12,8 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         height: '100vh',
         width: '100vw',
-        margin: 0,
+        marginTop: '60px',
+        marginBottom: '60px',
         padding: 0,
     },
     title: {
@@ -51,6 +52,14 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'column',
     },
+    cardButtons: {
+        display: 'flex',
+        flexDirection: 'row',
+        backgroundColor: '#255070',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+
+    },
     cardTitle: {
         color: '#f5f5f5',
         fontSize: '2.5rem',
@@ -77,6 +86,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const bstyle = {
+    margin: '10px',
+
+}
 function Homepage() {
     const classes = useStyles();
     return (
@@ -87,7 +100,7 @@ function Homepage() {
             <Typography className={classes.text} variant='body1' >
                 Mental Health Check takes a simple quiz app format, using questions from mental illness screenings, to create a new quiz that focuses on co-morbidity by combining screening questions. Instead of screening for a diagnosis, Mental Health Check helps patients by using those screening questions to point the user to the applicable resources.
             </Typography>
-            <Card className={classes.hero}>
+            <Box className={classes.hero}>
                 <CardMedia className={classes.img}
                     component="img"
                     height="300"
@@ -102,13 +115,23 @@ function Homepage() {
                         Select from our question categories and begin taking your customized mental health check quiz!
                     </Typography>
                 </CardContent>
-                <CardActions className={classes.card}>
-                    <Button className={classes.button} size="large">Take the Quiz</Button>
-                    <Button className={classes.button} size="large">Learn More</Button>
-                </CardActions>
-            </Card>
 
-        </Container>
+                <CardActions className={classes.cardButtons}>
+                    <button onClick={() => {
+                        window.location.replace('/quizselect')
+                    }} style={bstyle}>
+                        <h5>Take the quiz!</h5>
+                    </button>
+                    <button onClick={() => {
+                        window.location.replace('/signup')
+                    }} >
+                        <h5>Create An Account</h5>
+                    </button>
+
+                </CardActions>
+            </Box>
+
+        </Container >
     )
 }
 

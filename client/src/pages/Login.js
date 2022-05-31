@@ -42,6 +42,7 @@ function Login(props) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    formState.email = formState.email.toLowerCase();
     try {
       const mutationResponse = await login({
         variables: { email: formState.email, password: formState.password },
@@ -91,7 +92,9 @@ function Login(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" sx={{
+        backgroundColor: 'white', marginTop: '100px', marginBottom: '250px',
+      }}>
         <CssBaseline />
         <Box
           sx={{
@@ -148,9 +151,9 @@ function Login(props) {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                {/* <Link href="#" variant="body2">
                   Forgot password?
-                </Link>
+                </Link> */}
               </Grid>
               <Grid item>
                 <Link href="/signup" variant="body2">

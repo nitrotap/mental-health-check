@@ -33,14 +33,6 @@ import Copyright from '../components/Elements/Copyright';
 
 const theme = createTheme();
 
-
-//         </Box>
-//         <Copyright sx={{ mt: 5 }} />
-//       </Container>
-//     </ThemeProvider>
-//   );
-// }
-
 function Signup(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [addUser] = useMutation(ADD_USER);
@@ -48,10 +40,12 @@ function Signup(props) {
   const [passwordState, setPasswordState] = useState(false);
   const [pwHelper, setPwHelper] = useState('');
   const [emailHelper, setEmailHelper] = useState('');
+  const [checked, setChecked] = useState(false);
 
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    formState.email = formState.email.toLowerCase();
 
     try {
       const mutationResponse = await addUser({
@@ -109,9 +103,20 @@ function Signup(props) {
   //   });
   // };
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setChecked(event.target.checked);
+
+    console.log(event.target.name + " isChecked: " + event.target.checked)
+
+  }
+
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" sx={{
+        backgroundColor: 'white', marginTop: '100px', marginBottom: '250px',
+      }}>
         <CssBaseline />
         <Box
           sx={{
@@ -128,56 +133,58 @@ function Signup(props) {
             Sign up
           </Typography>
 
-          <Box component="form" noValidate onSubmit={handleFormSubmit} sx={{ mt: 3 }}>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  onChange={handleChangeEmail}
-                  error={!emailState}
-                  helperText={emailHelper}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                  onChange={handleChangePw}
-                  error={!passwordState}
-                  helperText={pwHelper}
-                />
-              </Grid>
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="legal" color="primary" />}
-                label="I confirm that I have read the legal documents and agree to the terms."
-                checked={true}
-              />
-            </Grid>
+          <Box component="form" noValidate onSubmit={handleFormSubmit} sx={{ mt: 1 }}>
+            <TextField
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              onChange={handleChangeEmail}
+              error={!emailState}
+              helperText={emailHelper}
+              margin="normal"
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="new-password"
+              onChange={handleChangePw}
+              error={!passwordState}
+              helperText={pwHelper}
+            />
+            <Link to='/legal'>Terms and Conditions</Link>
+
+            <FormControlLabel
+              control={
+                <Checkbox
+                  value="legal"
+                  color="primary"
+                  checked={checked}
+                  onChange={handleChange}
+                />}
+              label="I confirm that I have read the legal documents and agree to the terms and conditions."
+            />
+
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              disabled={!(emailState && passwordState)}
+              disabled={!(emailState && passwordState && checked)}
             >
               Sign Up
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="/login" variant="body2">
-                  Already have an account? Sign in
+                  Already have an account? Log in
                 </Link>
               </Grid>
             </Grid>
@@ -187,9 +194,6 @@ function Signup(props) {
         <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
-
-
-
   )
 }
 export default Signup;
