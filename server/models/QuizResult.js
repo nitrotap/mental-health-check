@@ -26,9 +26,11 @@ const quizResultSchema = new Schema(
     },
     {
         toJSON: {
+            virtuals: true,
             getters: true
         }
-    })
+    }
+);
 
 const QuizResult = mongoose.model('QuizResult', quizResultSchema);
 

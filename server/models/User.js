@@ -22,7 +22,10 @@ const userSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'QuizSet'
     }],
-    recordings: [Recording.schema]
+    recordings: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Recording'
+    }]
 
 });
 
