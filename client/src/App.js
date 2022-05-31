@@ -13,14 +13,13 @@ import './components/CSS/App.css';
 
 //routes
 //import AudioRecorder from './components/AudioRecorder';
+import Header from './Elements/Header';
+import Footer from './Elements/Footer';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Quiz from './pages/Quiz';
 import Dashboard from './pages/Dashboard';
 import Homepage from './pages/Homepage'
-import Footer from './components/Elements/Footer';
-import Header from './components/Elements/Header';
-
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
@@ -47,13 +46,14 @@ function App() {
       <Router>
           <Header />
           <div className="container">
-          <Routes>
-              {/* <Route path="/" element={<Homepage />} /> */}
+            <Routes>
+              {/* TODO finish react routing elements */}
               <Route path="/" element={<Homepage />} />
-              <Route path="dashboard" element={<Dashboard />} />
               <Route path="login" element={<Login />} />
               <Route path="signup" element={<Signup />} />
-          </Routes>
+              <Route path="quiz" element={<Quiz />} />
+
+            </Routes>
           </div>
           <Footer />
       </Router>
