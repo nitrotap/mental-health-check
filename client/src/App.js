@@ -47,7 +47,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Quiz from './pages/Quiz';
 import Dashboard from './pages/Dashboard';
-import SingleQuiz from './components/SingleQuiz';
+import SingleQuiz from './pages/Result';
 import Footer from './components/Elements/Footer';
 import Header from './components/Elements/Header';
 //routes
