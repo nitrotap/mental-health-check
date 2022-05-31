@@ -49,6 +49,7 @@ import Quiz from './pages/Quiz';
 import Dashboard from './pages/Dashboard';
 import SingleQuiz from './components/SingleQuiz';
 import Legal from './pages/Legal';
+import Auth from './utils/auth';
 //routes
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import Home from './pages/Homepage';
@@ -176,11 +177,6 @@ export default function App() {
       icon: <LoginIcon />,
       link: '/login',
     },
-    {
-      text: 'Logout',
-      icon: <LogoutIcon />,
-      link: '/logout',
-    }
   ];
 
   return (
@@ -270,6 +266,14 @@ export default function App() {
                     </Link>
                   )
                 })}
+                <Link to={'/'} onClick={() => Auth.logout()}>
+                  <ListItem disablePadding>
+                    <ListItemButton>
+                      {<LogoutIcon /> && <ListItemIcon sx={{ color: 'white' }}>{<LogoutIcon />}</ListItemIcon>}
+                      <ListItemText sx={{ color: 'white' }} primary={'Logout'} />
+                    </ListItemButton>
+                  </ListItem>
+                </Link>
               </List>
             </Box>
           </Drawer>
