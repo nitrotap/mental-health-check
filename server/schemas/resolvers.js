@@ -9,6 +9,8 @@ const resolvers = {
         user: async (parent, args, context) => {
             if (context.user) {
                 const user = await User.findById({ _id: context.user._id })
+                    .populate('quizzes')
+                console.log(user)
 
                 return user;
             }
@@ -93,11 +95,11 @@ const resolvers = {
                 console.log(updatedQuizSet)
 
                 //
-                const updatedUser = await User.findOneAndUpdate(
-                    { _id: context.user._id },
-                    { $addToSet: { quizzes: updatedQuizSet } },
-                    { new: true }
-                )
+                // const updatedUser = await User.findOneAndUpdate(
+                //     { _id: context.user._id },
+                //     { $addToSet: { quizzes: updatedQuizSet } },
+                //     { new: true }
+                // )
                 // console.log(updatedUser)
                 return updatedQuizSet;
             }

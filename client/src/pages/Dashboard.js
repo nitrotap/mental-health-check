@@ -13,9 +13,11 @@ depends on SingleQuiz.js JSX component
 
 */
 import { useQuery } from '@apollo/client';
-import { QUERY_USER } from '../utils/queries';
+import { useEffect } from 'react';
+import { QUERY_USER, QUERY_QUIZSET } from '../utils/queries';
 
 const Dashboard = () => {
+
     const { loading, data } = useQuery(QUERY_USER);
 
     const user = data?.user || [];
@@ -24,7 +26,17 @@ const Dashboard = () => {
         return <div>Loading...</div>;
     }
 
-    console.log(user.quizzes)
+    console.log(user)
+    // let a = user.quizzes[0]._id
+
+    // console.log(a)
+
+
+
+
+
+
+
     // console.log(user.quizzes[0].dateTaken)
     // console.log(user.quizzes[0].quizResults[0].quizAnswer)
     // console.log(user.quizzes[0].quizResults[0].quizTaken)
