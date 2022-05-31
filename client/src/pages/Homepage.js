@@ -1,7 +1,13 @@
 import React from 'react';
 //mui
-import { Container, makeStyles, Typography, Card, CardActions, Box, CardContent, Button, CardMedia } from '@material-ui/core';
+import { Container, makeStyles, Typography, CardActions, Box, CardContent, CardMedia } from '@material-ui/core';
+import Button from '@mui/material/Button';
 import jumbo from '../assets/images/jumbo.jpg';
+
+//routes
+import { Link } from 'react-router-dom'
+import Quiz from './Quiz';
+import Signup from './Signup';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -12,9 +18,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         height: '100vh',
         width: '100vw',
-        marginTop: '60px',
-        marginBottom: '60px',
-        padding: 0,
+        padding: '0, 10px',
     },
     title: {
         fontSize: '4rem',
@@ -71,28 +75,25 @@ const useStyles = makeStyles((theme) => ({
     cardText: {
         fontSize: '1.3rem',
         textAlign: 'center',
-        color: '#f5f5f5',
+        color: 'white',
         [theme.breakpoints.down('md')]: {
             fontSize: '1rem',
         },
     },
     button: {
-        color: '#4798D6',
+        backgroundColor: '#18344A',
+        padding: '15px',
         fontSize: '1rem',
-        width: '100%',
     },
-    h1: {
-        fontSize: '9rem',
-    },
+    buttonTitle: {
+        color: 'white'
+    }
 }));
 
-const bstyle = {
-    margin: '10px',
-
-}
 function Homepage() {
     const classes = useStyles();
     return (
+        
         <Container className={classes.container}>
             <Typography className={classes.title}>
                 Take the First Step to Better Mental Health
@@ -115,23 +116,21 @@ function Homepage() {
                         Select from our question categories and begin taking your customized mental health check quiz!
                     </Typography>
                 </CardContent>
-
                 <CardActions className={classes.cardButtons}>
-                    <button onClick={() => {
-                        window.location.replace('/quizselect')
-                    }} style={bstyle}>
-                        <h5>Take the quiz!</h5>
-                    </button>
-                    <button onClick={() => {
-                        window.location.replace('/signup')
-                    }} >
-                        <h5>Create An Account</h5>
-                    </button>
-
+                    {/* change buttons to reactroutes */}
+                    <Link to = '/quiz'>
+                        <Button className={classes.button} >
+                            <h5 className={classes.buttonTitle}>Take the quiz</h5>
+                        </Button>
+                    </Link>
+                    <Link to = '/signup'>
+                        <Button className={classes.button} >
+                            <h5 className={classes.buttonTitle}>Create An Account</h5>
+                        </Button>
+                    </Link>
                 </CardActions>
             </Box>
-
-        </Container >
+        </Container>
     )
 }
 

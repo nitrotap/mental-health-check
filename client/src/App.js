@@ -27,7 +27,6 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import CreateIcon from '@mui/icons-material/Create';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
-import theme from './theme';
 
 //apollo
 import {
@@ -49,7 +48,7 @@ import Quiz from './pages/Quiz';
 import Dashboard from './pages/Dashboard';
 import SingleQuiz from './components/SingleQuiz';
 import Legal from './pages/Legal';
-//routes
+
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import Home from './pages/Homepage';
 import QuizSelectForm from './components/QuizSelectForm';
@@ -280,8 +279,7 @@ export default function App() {
             alignItems: 'center',
             justifyContent: 'center',
             padding: 0,
-            backgroundColor: '#18344A',
-            marginTop: '60px',
+            backgroundColor: '#18344A' 
           }}>
             <Routes>
               {/* TODO finish react routing elements */}
@@ -293,7 +291,6 @@ export default function App() {
               <Route path="singlequiz/:id" element={<SingleQuiz />} />
               <Route path="quizselect" element={<QuizSelectForm />} />
               <Route path="legal" element={<Legal />} />
-
             </Routes>
           </Main>
         </Box>
