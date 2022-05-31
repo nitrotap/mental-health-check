@@ -75,8 +75,6 @@ const client = new ApolloClient({
 
 const drawerWidth = 240;
 
-const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
-
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({

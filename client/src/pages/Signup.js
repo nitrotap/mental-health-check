@@ -40,6 +40,7 @@ function Signup(props) {
   const [passwordState, setPasswordState] = useState(false);
   const [pwHelper, setPwHelper] = useState('');
   const [emailHelper, setEmailHelper] = useState('');
+  const [checked, setChecked] = useState(false);
 
 
   const handleFormSubmit = async (event) => {
@@ -101,6 +102,15 @@ function Signup(props) {
   //   });
   // };
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setChecked(event.target.checked);
+
+    console.log(event.target.name + " isChecked: " + event.target.checked)
+
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs" sx={{
@@ -149,16 +159,22 @@ function Signup(props) {
               helperText={pwHelper}
             />
             <FormControlLabel
-              control={<Checkbox value="legal" color="primary" />}
+              control={
+                <Checkbox
+                  value="legal"
+                  color="primary"
+                  checked={checked}
+                  onChange={handleChange}
+                />}
               label="I confirm that I have read the legal documents and agree to the terms."
-              checked={true}
             />
+
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              disabled={!(emailState && passwordState)}
+              disabled={!(emailState && passwordState && checked)}
             >
               Sign Up
             </Button>
