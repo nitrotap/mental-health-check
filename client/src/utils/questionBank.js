@@ -35,7 +35,7 @@ const depressionQuestions = [ // an array of objects depressionQuestions[0].ques
         response: responseType.yesNo
     },
     {
-        question: "Are you feeling bad about yourself (ex. feel like a failure or const your family down)?",
+        question: "Are you feeling bad about yourself (ex. feel like a failure or constantly let your family down)?",
         response: responseType.yesNo
     },
     {

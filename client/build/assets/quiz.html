@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Compiled and minified MaterializeCSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+
+    <link rel="stylesheet" type="text/css" href="./assets/css/styles.css" />
+
+    <title>Quiz | Mental Health Check</title>
+  </head>
+  <body>
+    <header class="indigo darken-4 nav-wrapper">
+      <!-- Header Section -->
+      <a href="./index.html" class="brand-logo center"
+        ><h1>Mental Health Check</h1></a
+      >
+    </header>
+
+    <main class="container">
+      <div class="row">
+        <div class="col s12">
+          <h2>Mental Health Quiz</h2>
+        </div>
+      </div>
+
+      <div id="content">
+        <!-- QUIZ AREA -->
+      </div>
+
+      <!-- Modal -->
+      <div id="modal1 question-select-modal" class="modal">
+        <div class="modal-content">
+          <h4>Build your quiz</h4>
+          <p>Select the categories you would like to include in your quiz.</p>
+          <hr />
+          <div class="category-select center-align">
+            <h5>Categories</h5>
+          </div>
+          <div class="row">
+            <form action="#" class="category-list left-align col s12">
+              <div class="row">
+                <!-- Modal Checklist -->
+                <div class="col s12 l3 offset-l3 left-align">
+                  <p>
+                    <label>
+                      <input type="checkbox" id="depression" />
+                      <span>Depression</span>
+                    </label>
+                  </p>
+                  <p>
+                    <label>
+                      <input type="checkbox" id="anxiety" />
+                      <span>Anxiety</span>
+                    </label>
+                  </p>
+                  <p>
+                    <label>
+                      <input type="checkbox" id="ptsd" />
+                      <span>Post Traumatic Stress Disorder (PTSD)</span>
+                    </label>
+                  </p>
+                </div>
+                <div class="col s12 l3 offset-l1 left-align">
+                  <p>
+                    <label>
+                      <input type="checkbox" id="sch" />
+                      <span>Schizophrenia</span>
+                    </label>
+                  </p>
+                  <p>
+                    <label>
+                      <input type="checkbox" id="addiction" />
+                      <span>Addiction</span>
+                    </label>
+                  </p>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <a
+            id="questionCancelButton"
+            class="cancel waves-effect red lighten-1 btn"
+            href="./index.html"
+            >Cancel</a
+          >
+          <a
+            id="questionSubmitButton"
+            class="quiz-begin waves-effect indigo darken-4 btn"
+            >Begin</a
+          >
+        </div>
+      </div>
+    </main>
+    <!-- FOOTER -->
+    <footer class="indigo darken-4 page-footer">
+      <div class="row">
+        <h6 class="col s4 footer-item"><a href="./legal.html">Legal</a></h6>
+
+        <h6 class="col s4 footer-item"></h6>
+
+        <h6 class="col s4 footer-item">
+          Made with <span style="color: red">&#x2764;</span> in MN, ID, and CO.
+        </h6>
+      </div>
+    </footer>
+    <!-- Link Necessary Scripts for Semantic-UI -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- Link our scripts here -->
+    <script src="assets/js/quiz-dev.js"></script>
+    <script src="assets/js/quiz.js"></script>
+  </body>
+</html>

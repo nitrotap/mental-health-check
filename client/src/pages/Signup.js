@@ -9,13 +9,12 @@ assigned to:
 */
 
 
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 // import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { ADD_USER } from '../utils/mutations';
 
-import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -30,34 +29,94 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="/homepage">
-        Mental Health Check
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import Copyright from '../components/Elements/Copyright';
 
 const theme = createTheme();
 
-export default function SignUp() {
-  const handleSubmit = (event) => {
+function Signup(props) {
+  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [addUser] = useMutation(ADD_USER);
+  const [emailState, setEmailState] = useState(false);
+  const [passwordState, setPasswordState] = useState(false);
+  const [pwHelper, setPwHelper] = useState('');
+  const [emailHelper, setEmailHelper] = useState('');
+  const [checked, setChecked] = useState(false);
+
+
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+    formState.email = formState.email.toLowerCase();
+
+    try {
+      const mutationResponse = await addUser({
+        variables: {
+          email: formState.email,
+          password: formState.password,
+        },
+      });
+
+      const token = mutationResponse.data.addUser.token;
+      Auth.login(token);
+    } catch (error) {
+      setEmailState(false)
+      setEmailHelper('Email already exists. Please try logging in.')
+    }
+  };
+
+  const handleChangePw = (event) => {
+    const { name, value } = event.target;
+    if (value.length > 8) {
+      setPasswordState(true)
+    } else {
+      setPasswordState(false)
+      setPwHelper('Password must be at least 8 characters.')
+
+    }
+
+    setFormState({
+      ...formState,
+      [name]: value,
     });
   };
 
+  const handleChangeEmail = (event) => {
+    const { name, value } = event.target;
+    const validEmail = new RegExp(/^([a-zA-Z0-9_\.-]+)@([\da-zA-Z\.-]+)\.([a-zA-Z\.]{2,6})$/)
+    if (validEmail.test(value)) {
+      setEmailState(true)
+    } else {
+      setEmailState(false)
+      setEmailHelper('Please enter a valid email')
+    }
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     email: data.get('email'),
+  //     password: data.get('password'),
+  //   });
+  // };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setChecked(event.target.checked);
+
+    console.log(event.target.name + " isChecked: " + event.target.checked)
+
+  }
+
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" sx={{
+        backgroundColor: 'white', marginTop: '100px', marginBottom: '250px',
+      }}>
         <CssBaseline />
         <Box
           sx={{
@@ -73,136 +132,68 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I confirm that I have read the legal documents and agree to the terms."
-                />
-              </Grid>
-            </Grid>
+
+          <Box component="form" noValidate onSubmit={handleFormSubmit} sx={{ mt: 1 }}>
+            <TextField
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              onChange={handleChangeEmail}
+              error={!emailState}
+              helperText={emailHelper}
+              margin="normal"
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="new-password"
+              onChange={handleChangePw}
+              error={!passwordState}
+              helperText={pwHelper}
+            />
+            <Link to='/legal'>Terms and Conditions</Link>
+
+            <FormControlLabel
+              control={
+                <Checkbox
+                  value="legal"
+                  color="primary"
+                  checked={checked}
+                  onChange={handleChange}
+                />}
+              label="I confirm that I have read the legal documents and agree to the terms and conditions."
+            />
+
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={!(emailState && passwordState && checked)}
             >
               Sign Up
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="/login" variant="body2">
-                  Already have an account? Sign in
+                  Already have an account? Log in
                 </Link>
               </Grid>
             </Grid>
+
           </Box>
         </Box>
         <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
-  );
+  )
 }
-
-// function Signup(props) {
-//     const [formState, setFormState] = useState({ email: '', password: '' });
-//     const [addUser] = useMutation(ADD_USER);
-
-//     const handleFormSubmit = async (event) => {
-//         event.preventDefault();
-//         const mutationResponse = await addUser({
-//             variables: {
-//                 email: formState.email,
-//                 password: formState.password,
-//             },
-//         });
-//         const token = mutationResponse.data.addUser.token;
-//         Auth.login(token);
-//     };
-
-//     const handleChange = (event) => {
-//         const { name, value } = event.target;
-//         setFormState({
-//             ...formState,
-//             [name]: value,
-//         });
-//     };
-
-//     return (
-//         <div className="container my-1">
-//             <Link to="/login">← Go to Login</Link>
-
-//             <h2>Signup</h2>
-//             <form onSubmit={handleFormSubmit}>
-//                 <div className="flex-row space-between my-2">
-//                     <label htmlFor="email">Email:</label>
-//                     <input
-//                         placeholder="youremail@test.com"
-//                         name="email"
-//                         type="email"
-//                         id="email"
-//                         onChange={handleChange}
-//                     />
-//                 </div>
-//                 <div className="flex-row space-between my-2">
-//                     <label htmlFor="pwd">Password:</label>
-//                     <input
-//                         placeholder="******"
-//                         name="password"
-//                         type="password"
-//                         id="pwd"
-//                         onChange={handleChange}
-//                     />
-//                 </div>
-//                 <div className="flex-row flex-end">
-//                     <button type="submit">Submit</button>
-//                 </div>
-//             </form>
-//         </div>
-//     );
-// }
-
-// export default Signup;
+export default Signup;

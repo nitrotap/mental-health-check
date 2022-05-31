@@ -7,6 +7,7 @@ assigned to:
 
 // import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
+import { useState } from 'react';
 // import { Link } from 'react-router-dom';
 import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
@@ -27,34 +28,73 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-function Copyright(props) {
-    return (
-      <Typography variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
-        <Link color="inherit" href="/homepage">
-          Mental Health Check
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-    );
-  }
+import Copyright from '../components/Elements/Copyright';
 
-  const theme = createTheme();
+const theme = createTheme();
 
-export default function Login() {
-  const handleFormSubmit = (event) => {
+function Login(props) {
+  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [login, { error }] = useMutation(LOGIN);
+  const [emailState, setEmailState] = useState(false);
+  const [passwordState, setPasswordState] = useState(false);
+  const [pwHelper, setPwHelper] = useState('');
+  const [emailHelper, setEmailHelper] = useState('');
+
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+    formState.email = formState.email.toLowerCase();
+    try {
+      const mutationResponse = await login({
+        variables: { email: formState.email, password: formState.password },
+      });
+      const token = mutationResponse.data.login.token;
+      Auth.login(token);
+    } catch (e) {
+      setEmailState(false)
+      setEmailHelper('Error! No account with those credentials were found!')
+    }
+  };
+
+  const handleChangePw = (event) => {
+    const { name, value } = event.target;
+    if (value.length > 8) {
+      setPasswordState(true)
+      setPwHelper('Password is valid!')
+    } else {
+      setPasswordState(false)
+      setPwHelper('Password must be at least 8 characters.')
+    }
+
+    setFormState({
+      ...formState,
+      [name]: value,
     });
   };
 
+
+  const handleChangeEmail = (event) => {
+    const { name, value } = event.target;
+    const validEmail = new RegExp(/^([a-zA-Z0-9_\.-]+)@([\da-zA-Z\.-]+)\.([a-zA-Z\.]{2,6})$/)
+    if (validEmail.test(value)) {
+      setEmailState(true)
+      setEmailHelper('Email is valid!')
+    } else {
+      setEmailState(false)
+      setEmailHelper('Please enter a valid email')
+    }
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+
+
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" sx={{
+        backgroundColor: 'white', marginTop: '100px', marginBottom: '250px',
+      }}>
         <CssBaseline />
         <Box
           sx={{
@@ -80,6 +120,9 @@ export default function Login() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={handleChangeEmail}
+              error={!emailState}
+              helperText={emailHelper}
             />
             <TextField
               margin="normal"
@@ -90,6 +133,9 @@ export default function Login() {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={handleChangePw}
+              error={!passwordState}
+              helperText={pwHelper}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -105,9 +151,9 @@ export default function Login() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                {/* <Link href="#" variant="body2">
                   Forgot password?
-                </Link>
+                </Link> */}
               </Grid>
               <Grid item>
                 <Link href="/signup" variant="body2">
@@ -119,74 +165,7 @@ export default function Login() {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-    </ThemeProvider>
-  );
+    </ThemeProvider>);
 }
 
-
-// function Login(props) {
-//     const [formState, setFormState] = useState({ email: '', password: '' });
-//     const [login, { error }] = useMutation(LOGIN);
-
-//     const handleFormSubmit = async (event) => {
-//         event.preventDefault();
-//         try {
-//             const mutationResponse = await login({
-//                 variables: { email: formState.email, password: formState.password },
-//             });
-//             console.log(mutationResponse)
-//             const token = mutationResponse.data.login.token;
-//             Auth.login(token);
-//         } catch (e) {
-//             console.log(e);
-//         }
-//     };
-
-//     const handleChange = (event) => {
-//         const { name, value } = event.target;
-//         setFormState({
-//             ...formState,
-//             [name]: value,
-//         });
-//     };
-
-//     return (
-//         <div className="container my-1">
-//             <Link to="/signup">← Go to Signup</Link>
-
-//             <h2>Login</h2>
-//             <form onSubmit={handleFormSubmit}>
-//                 <div className="flex-row space-between my-2">
-//                     <label htmlFor="email">Email address:</label>
-//                     <input
-//                         placeholder="youremail@test.com"
-//                         name="email"
-//                         type="email"
-//                         id="email"
-//                         onChange={handleChange}
-//                     />
-//                 </div>
-//                 <div className="flex-row space-between my-2">
-//                     <label htmlFor="pwd">Password:</label>
-//                     <input
-//                         placeholder="******"
-//                         name="password"
-//                         type="password"
-//                         id="pwd"
-//                         onChange={handleChange}
-//                     />
-//                 </div>
-//                 {error ? (
-//                     <div>
-//                         <p className="error-text">The provided credentials are incorrect</p>
-//                     </div>
-//                 ) : null}
-//                 <div className="flex-row flex-end">
-//                     <button type="submit">Submit</button>
-//                 </div>
-//             </form>
-//         </div>
-//     );
-// }
-
-// export default Login;
+export default Login;
