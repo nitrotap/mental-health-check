@@ -45,6 +45,7 @@ function Signup(props) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    formState.email = formState.email.toLowerCase();
 
     try {
       const mutationResponse = await addUser({
