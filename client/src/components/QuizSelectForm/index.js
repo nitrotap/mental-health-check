@@ -11,6 +11,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Auth from '../../utils/auth'
 
 
 const style = {
@@ -30,6 +31,10 @@ const QuizSelectForm = (props) => {
     const [open, setOpen] = useState(true);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    if (!Auth.loggedIn()) {
+        window.location.assign('/login');
+    }
 
     const [state, setState] = useState({
         depression: false,
