@@ -18,8 +18,14 @@ const userSchema = new Schema({
         required: true,
         minlength: 8
     },
-    quizzes: [QuizSet.schema],
-    recordings: [Recording.schema]
+    quizzes: [{
+        type: Schema.Types.ObjectId,
+        ref: 'QuizSet'
+    }],
+    recordings: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Recording'
+    }]
 
 });
 
