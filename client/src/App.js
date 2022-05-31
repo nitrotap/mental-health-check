@@ -290,7 +290,7 @@ export default function App() {
               <Route path="/" element={<Home />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="signup" element={<Signup />} />
-              <Route path="login" element={<Login />} />
+              <Route path="/login" element={<Login />} />
               <Route path="quiz/:id" element={<Quiz />} />
               <Route path="singlequiz/:id" element={<SingleQuiz />} />
               <Route path="quizselect" element={<QuizSelectForm />} />
