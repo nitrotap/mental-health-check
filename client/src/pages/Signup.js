@@ -158,6 +158,8 @@ function Signup(props) {
               error={!passwordState}
               helperText={pwHelper}
             />
+            <Link to='/legal'>Terms and Conditions</Link>
+
             <FormControlLabel
               control={
                 <Checkbox
@@ -166,7 +168,7 @@ function Signup(props) {
                   checked={checked}
                   onChange={handleChange}
                 />}
-              label="I confirm that I have read the legal documents and agree to the terms."
+              label="I confirm that I have read the legal documents and agree to the terms and conditions."
             />
 
             <Button
