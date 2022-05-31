@@ -12,6 +12,7 @@ displays multiple SingleQuiz results
 depends on SingleQuiz.js JSX component
 
 */
+import React from 'react';
 import { useQuery } from '@apollo/client';
 import { useEffect } from 'react';
 import { QUERY_USER, QUERY_QUIZSET } from '../utils/queries';
