@@ -33,7 +33,7 @@ const QuizSelectForm = (props) => {
     const handleClose = () => setOpen(false);
 
     if (!Auth.loggedIn()) {
-        window.location.assign('/login');
+        window.location.replace('/login');
     }
 
     const [state, setState] = useState({
