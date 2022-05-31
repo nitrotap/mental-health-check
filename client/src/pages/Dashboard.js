@@ -27,10 +27,72 @@ const Dashboard = () => {
     }
 
     console.log(user)
-    // let a = user.quizzes[0]._id
 
-    // console.log(a)
+    let depCount = 0
+    for (let i = 0; i < user.quizzes.length; i++) {
+        console.log(user.quizzes[i].dateTaken)
 
+        for (let j = 0; j < user.quizzes[i].quizResults.length; j++) {
+            console.log(user.quizzes[i].quizResults[j].quizAnswer)
+            if (user.quizzes[i].quizResults[j].quizAnswer === 'positive for depression') {
+                depCount++
+            }
+        }
+    }
+    console.log(depCount)
+
+    let anxCount = 0
+    for (let i = 0; i < user.quizzes.length; i++) {
+        console.log(user.quizzes[i].dateTaken)
+
+        for (let j = 0; j < user.quizzes[i].quizResults.length; j++) {
+            console.log(user.quizzes[i].quizResults[j].quizAnswer)
+            if (user.quizzes[i].quizResults[j].quizAnswer === 'positive for anxiety') {
+                anxCount++
+            }
+        }
+    }
+    console.log(anxCount)
+
+    let ptsdCount = 0
+    for (let i = 0; i < user.quizzes.length; i++) {
+        console.log(user.quizzes[i].dateTaken)
+
+        for (let j = 0; j < user.quizzes[i].quizResults.length; j++) {
+            console.log(user.quizzes[i].quizResults[j].quizAnswer)
+            if (user.quizzes[i].quizResults[j].quizAnswer === 'positive for ptsd') {
+                ptsdCount++
+            }
+        }
+    }
+    console.log(ptsdCount)
+
+
+    let schCount = 0
+    for (let i = 0; i < user.quizzes.length; i++) {
+        console.log(user.quizzes[i].dateTaken)
+
+        for (let j = 0; j < user.quizzes[i].quizResults.length; j++) {
+            console.log(user.quizzes[i].quizResults[j].quizAnswer)
+            if (user.quizzes[i].quizResults[j].quizAnswer === 'positive for schizophrenia') {
+                schCount++
+            }
+        }
+    }
+    console.log(schCount)
+
+    let addictionCount = 0
+    for (let i = 0; i < user.quizzes.length; i++) {
+        console.log(user.quizzes[i].dateTaken)
+
+        for (let j = 0; j < user.quizzes[i].quizResults.length; j++) {
+            console.log(user.quizzes[i].quizResults[j].quizAnswer)
+            if (user.quizzes[i].quizResults[j].quizAnswer === 'positive for addiction') {
+                addictionCount++
+            }
+        }
+    }
+    console.log(addictionCount)
 
 
 
@@ -40,8 +102,6 @@ const Dashboard = () => {
     // console.log(user.quizzes[0].dateTaken)
     // console.log(user.quizzes[0].quizResults[0].quizAnswer)
     // console.log(user.quizzes[0].quizResults[0].quizTaken)
-
-
 
     return (
         <main>
