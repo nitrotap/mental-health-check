@@ -40,7 +40,7 @@ export const options = {
 const labels = ['Depression', 'Anxiety', 'PTSD', 'Schizophrenia', 'Addiction'];
 
 function Chart(props) {
-    let { count } = props;
+    let { count, quizCount } = props;
     const data = {
         labels,
         datasets: [
@@ -49,6 +49,11 @@ function Chart(props) {
                 data: count,
                 backgroundColor: '#326B96',
             },
+            {
+                label: '# of quizzes taken',
+                data: quizCount,
+                backgroundColor: '#FFCE56',
+            }
         ],
     };
 
