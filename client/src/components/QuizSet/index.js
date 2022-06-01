@@ -5,6 +5,8 @@ import Question from "../Question";
 import { QUERY_USER } from "../../utils/queries";
 import { ADD_QUIZRESULT, ADD_QUIZSET } from "../../utils/mutations";
 
+import { Container, makeStyles, Typography, Card, CardActions, Box, CardContent, Button, CardMedia } from '@material-ui/core';
+
 const { depressionQuestions, anxietyQuestions, ptsdQuestions, schQuestions, impairmentQuestions, addictionQuestions } = questionBank;
 
 const grader = function () {
@@ -125,16 +127,73 @@ const QuizSet = (props) => {
         fontSize: '24pt',
 
     }
+    const useStyles = makeStyles((theme) => ({
+        container: {
+            backgroundColor: '#18344A',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh',
+            width: '100vw',
+            marginTop: '60px',
+            marginBottom: '60px',
+            padding: 0,
+        },
+        title: {
+            fontSize: '4rem',
+            textAlign: 'center',
+            color: 'white',
+            paddingBottom: theme.spacing(3),
+            [theme.breakpoints.down('md')]: {
+                fontSize: '2rem',
+            },
+        },
+        text: {
+            fontSize: '1.3rem',
+            textAlign: 'center',
+            color: '#f5f5f5',
+            paddingBottom: theme.spacing(3),
+            [theme.breakpoints.down('md')]: {
+                fontSize: '1rem',
+            },
+        },
+        card: {
+            backgroundColor: '#255070',
+            display: 'flex',
+            flexDirection: 'column',
+        },
+        cardTitle: {
+            color: '#f5f5f5',
+            fontSize: '2.5rem',
+            textAlign: 'center',
+            [theme.breakpoints.down('md')]: {
+                fontSize: '1.5rem',
+            },
+        },
+        cardText: {
+            fontSize: '1.3rem',
+            textAlign: 'center',
+            color: '#f5f5f5',
+            [theme.breakpoints.down('md')]: {
+                fontSize: '1rem',
+            },
+        },
+    }));
+
+    const classes = useStyles();
     return (
-        <div>
-            <div style={quizStyle}>
-                <p style={quizTextStyle}>{currentQuizName} quiz</p>
-                <p style={quizTextStyle}>question {index + 1} of {currentQuiz.length}</p>
-            </div>
-            <div>
-                <Question currentQuestion={currentQuiz[index]} setCurrentQuestion={setIndex} handleSubmit={handleSubmit}></Question>
-            </div>
-        </div>
+
+    <Container className={classes.container}>
+        <Typography className={classes.title}>
+            {currentQuizName} quiz
+        </Typography>
+        <Typography className={classes.text} variant='body1'>
+            Question {index + 1} of {currentQuiz.length}
+        </Typography>
+        <Question currentQuestion={currentQuiz[index]} setCurrentQuestion={setIndex} handleSubmit={handleSubmit}>
+        </Question>
+    </Container>
     )
 }
 
