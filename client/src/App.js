@@ -48,7 +48,7 @@ import Quiz from './pages/Quiz';
 import Dashboard from './pages/Dashboard';
 import SingleQuiz from './pages/Result';
 import Legal from './pages/Legal';
-
+import HelpLineCard from './components/Elements/HelpLineCard';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import Home from './pages/Homepage';
 import QuizSelectForm from './components/QuizSelectForm';
@@ -301,6 +301,7 @@ export default function App() {
               <Route path="singlequiz/:id" element={<SingleQuiz />} />
               <Route path="quizselect" element={<QuizSelectForm />} />
               <Route path="legal" element={<Legal />} />
+              <Route path='helpCard' element={<HelpLineCard />} />
             </Routes>
           </Main>
         </Box>
