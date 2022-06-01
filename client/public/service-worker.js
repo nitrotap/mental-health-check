@@ -47,6 +47,7 @@ self.addEventListener('activate', event => {
       cacheKeeplist.push(CACHE_NAME);
 
       return Promise.all(
+        // eslint-disable-next-line array-callback-return
         keyList.map(function(key, i) {
           if (cacheKeeplist.indexOf(key) === -1) {
             console.log('deleting cache : ' + keyList[i]);
