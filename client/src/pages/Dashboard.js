@@ -11,15 +11,13 @@ depends on SingleQuiz/index.js JSX component
 */
 import React from 'react';
 import { useQuery } from '@apollo/client';
-
+import { QUERY_USER, QUERY_QUIZSET } from '../utils/queries';
 import QuizList from '../components/QuizList';
 
-import { QUERY_USER } from '../utils/queries';
-// import AuthService from '../utils/auth';
-
 const Dashboard = () => {
-	const { loading, data } = useQuery(QUERY_USER);
-	const user = data?.user || {};
+
+    const { loading, data } = useQuery(QUERY_USER);
+		const user = data?.user || {};
 
 	if (loading) {
 		return <div>Loading...</div>;

@@ -267,7 +267,7 @@ export default function App() {
                   )
                 })}
                 <Link to={'/'} onClick={() => Auth.logout()}>
-                  <ListItem disablePadding>
+                  <ListItem key='logout' disablePadding>
                     <ListItemButton>
                       {<LogoutIcon /> && <ListItemIcon sx={{ color: 'white' }}>{<LogoutIcon />}</ListItemIcon>}
                       <ListItemText sx={{ color: 'white' }} primary={'Logout'} />

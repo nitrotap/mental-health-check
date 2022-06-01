@@ -14,9 +14,9 @@ import React from 'react';
 import useCollapse from 'react-collapsed';
 
 const QuizList = ({ quizzes }) => {
-	// const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
-	console.log(quizzes)
-  return quizzes.map(quiz => <Child key={quiz._id} num={quiz} />);
+	// const quizResults = quizzes[0].quizResults;
+	// console.log(quizzes)
+  return quizzes.map(quiz => <Child key={quiz._id} quiz={quiz} />);
 };
 
 const Child = ({ quiz }) => {
@@ -24,19 +24,37 @@ const Child = ({ quiz }) => {
 	// console.log(quiz);
 
   return (
-    <div key={quiz} className="collapsible">
+    <div className="collapsible">
 			<div className="header" {...getToggleProps()}>
-				{isExpanded ? 'Collapse' : 'Expand'}
+				{quiz.dateTaken}
 			</div>
 			<div {...getCollapseProps()}>
 				<section className="content">
-					Now you can see the hidden content. <br/><br/>
-					Click again to hide...
+					{quiz.quizResults.map(quiz => <QuizSet key={quiz.quizTaken} quiz={quiz} />)}
+					{/* {quiz.quizResults[0].quizAnswer} <br/><br/> */}
 				</section>
 			</div>
 		</div>
   );
 };
+
+const QuizSet = (quizResult) => {
+	const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
+	console.log(quizResult);
+
+  return (
+    <div className="collapsible">
+			<div className="header" {...getToggleProps()}>
+				{quizResult.quiz.quizTaken}
+			</div>
+			<div {...getCollapseProps()}>
+				<section className="content">
+					{quizResult.quiz.quizAnswer} <br/><br/>
+				</section>
+			</div>
+		</div>
+  );
+}
 
 export default QuizList
 
