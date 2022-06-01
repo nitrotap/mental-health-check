@@ -27,7 +27,6 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import CreateIcon from '@mui/icons-material/Create';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
-import theme from './theme';
 
 //apollo
 import {
@@ -47,14 +46,14 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Quiz from './pages/Quiz';
 import Dashboard from './pages/Dashboard';
-import SingleQuiz from './components/SingleQuiz';
+import SingleQuiz from './pages/Result';
 import Legal from './pages/Legal';
-import Auth from './utils/auth';
 import HelpLineCard from './components/Elements/HelpLineCard';
-//routes
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import Home from './pages/Homepage';
 import QuizSelectForm from './components/QuizSelectForm';
+
+import Auth from './utils/auth';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -76,6 +75,8 @@ const client = new ApolloClient({
 });
 
 const drawerWidth = 240;
+
+const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -178,6 +179,11 @@ export default function App() {
       icon: <LoginIcon />,
       link: '/login',
     },
+    {
+      text: 'Logout',
+      icon: <LogoutIcon />,
+      link: '/logout',
+    }
   ];
 
   return (
@@ -268,7 +274,7 @@ export default function App() {
                   )
                 })}
                 <Link to={'/'} onClick={() => Auth.logout()}>
-                  <ListItem disablePadding>
+                  <ListItem key='logout' disablePadding>
                     <ListItemButton>
                       {<LogoutIcon /> && <ListItemIcon sx={{ color: 'white' }}>{<LogoutIcon />}</ListItemIcon>}
                       <ListItemText sx={{ color: 'white' }} primary={'Logout'} />
@@ -283,21 +289,19 @@ export default function App() {
             alignItems: 'center',
             justifyContent: 'center',
             padding: 0,
-            backgroundColor: '#18344A',
-            marginTop: '60px',
+            backgroundColor: '#18344A' 
           }}>
             <Routes>
               {/* TODO finish react routing elements */}
               <Route path="/" element={<Home />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="signup" element={<Signup />} />
-              <Route path="/login" element={<Login />} />
+              <Route path="login" element={<Login />} />
               <Route path="quiz/:id" element={<Quiz />} />
               <Route path="singlequiz/:id" element={<SingleQuiz />} />
               <Route path="quizselect" element={<QuizSelectForm />} />
               <Route path="legal" element={<Legal />} />
               <Route path='helpCard' element={<HelpLineCard />} />
-
             </Routes>
           </Main>
         </Box>
