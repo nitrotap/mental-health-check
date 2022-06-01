@@ -118,7 +118,7 @@ function Homepage() {
                 </CardContent>
                 <CardActions className={classes.cardButtons}>
                     {/* change buttons to reactroutes */}
-                    <Link to = '/quiz'>
+                    <Link to = '/quizselect'>
                         <Button className={classes.button} >
                             <h5 className={classes.buttonTitle}>Take the quiz</h5>
                         </Button>
