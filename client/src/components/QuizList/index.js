@@ -10,7 +10,7 @@ button to remove a single QuizSet
 assigned to:
 */
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useCollapse from 'react-collapsed';
 
 const QuizList = ({ quizzes }) => {
@@ -21,6 +21,7 @@ const QuizList = ({ quizzes }) => {
 
 const Child = ({ quiz }) => {
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
+	const addr = `/singlequiz/${quiz._id}`
 	// console.log(quiz);
 
   return (
@@ -30,6 +31,7 @@ const Child = ({ quiz }) => {
 			</div>
 			<div {...getCollapseProps()}>
 				<section className="content">
+					<Link to={addr}>See the results Page</Link>
 					{quiz.quizResults.map(quiz => <QuizSet key={quiz.quizTaken} quiz={quiz} />)}
 					{/* {quiz.quizResults[0].quizAnswer} <br/><br/> */}
 				</section>
@@ -40,7 +42,7 @@ const Child = ({ quiz }) => {
 
 const QuizSet = (quizResult) => {
 	const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
-	console.log(quizResult);
+	// console.log(quizResult);
 
   return (
     <div className="collapsible">
