@@ -6,58 +6,41 @@ very complicated query
 displays quizzes programmatically depending on quizzes.length
 each quiz in quizzes array has a quizResults array with quizTaken and quizAnswer
 
-
 displays multiple SingleQuiz results
-
-depends on SingleQuiz.js JSX component
-
+depends on SingleQuiz/index.js JSX component
 */
+import React from 'react';
 import { useQuery } from '@apollo/client';
-import { useEffect } from 'react';
 import { QUERY_USER, QUERY_QUIZSET } from '../utils/queries';
+import QuizList from '../components/QuizList';
 
 const Dashboard = () => {
 
     const { loading, data } = useQuery(QUERY_USER);
+		const user = data?.user || {};
 
-    const user = data?.user || [];
+	if (loading) {
+		return <div>Loading...</div>;
+	}
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+	// console.log(user);
+	// console.log(user.quizzes);
+	// console.log(user.quizzes[0].dateTaken);
+	// console.log(user.quizzes[0].quizResults[0].quizAnswer);
+	// console.log(user.quizzes[0].quizResults[0].quizTaken);
 
-    console.log(user)
-    // let a = user.quizzes[0]._id
-
-    // console.log(a)
-
-
-
-
-
-
-
-    // console.log(user.quizzes[0].dateTaken)
-    // console.log(user.quizzes[0].quizResults[0].quizAnswer)
-    // console.log(user.quizzes[0].quizResults[0].quizTaken)
-
-
-
-    return (
-        <main>
-
-            <div className='flex-row justify-space-between'>
-                <div className='col-12 mb-3'>
-                    {/* placeholder text below - need to loop through both quizzes array and quizResults array */}
-                    {/* {user.quizzes[0].dateTaken}
-                    {user.quizzes[0].quizResults[0].quizAnswer}
-                    {user.quizzes[0].quizResults[0].quizTaken} */}
-
-                </div>
-            </div>
-
-        </main>
-    );
+	return (
+		<main>
+			<h2 className="bg-dark text-primary p-3">
+				Dashboard
+			</h2>
+			<div className='flex-row text-primary justify-space-between'>
+				<div className='col-12 col-lg-8 mb-3'>
+					<QuizList quizzes={user.quizzes} />
+				</div>
+			</div>
+		</main>
+	);
 };
 
 export default Dashboard;

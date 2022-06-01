@@ -46,12 +46,14 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Quiz from './pages/Quiz';
 import Dashboard from './pages/Dashboard';
-import SingleQuiz from './components/SingleQuiz';
+import SingleQuiz from './pages/Result';
 import Legal from './pages/Legal';
 
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import Home from './pages/Homepage';
 import QuizSelectForm from './components/QuizSelectForm';
+
+import Auth from './utils/auth';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -271,6 +273,14 @@ export default function App() {
                     </Link>
                   )
                 })}
+                <Link to={'/'} onClick={() => Auth.logout()}>
+                  <ListItem key='logout' disablePadding>
+                    <ListItemButton>
+                      {<LogoutIcon /> && <ListItemIcon sx={{ color: 'white' }}>{<LogoutIcon />}</ListItemIcon>}
+                      <ListItemText sx={{ color: 'white' }} primary={'Logout'} />
+                    </ListItemButton>
+                  </ListItem>
+                </Link>
               </List>
             </Box>
           </Drawer>
