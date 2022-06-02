@@ -118,11 +118,9 @@ const QuizList = ({ quizzes }) => {
 
 const GChart = ({ quiz }) => {
 	const classes = useStyles();
-	// console.log(quiz)
 	let rating;
 	switch (quiz.quizAnswer.includes("positive")) {
 		case true:
-			console.log(quiz.quizAnswer)
 			rating = 0.67;
 			break;
 		case false:
@@ -178,7 +176,6 @@ const Child = ({ quiz }) => {
 					<Box {...getCollapseProps()}>
 						<Box className="content">
 							{quiz.quizResults.map((quiz) => {
-								console.log(quiz)
 								return (
 									<>
 										<QuizSet
