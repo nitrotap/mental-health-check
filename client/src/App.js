@@ -183,7 +183,7 @@ export default function App() {
 
   return (
     <ApolloProvider client={client}>
-      <Box sx={{ marginTop: '60px' }}>
+      <Box sx={{ marginTop: '30px', marginBottom: '60px' }}>
         <Router>
           <Box sx={{ display: 'flex', }}>
             <CssBaseline />
