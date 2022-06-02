@@ -178,11 +178,6 @@ export default function App() {
       text: 'Login',
       icon: <LoginIcon />,
       link: '/login',
-    },
-    {
-      text: 'Logout',
-      icon: <LogoutIcon />,
-      link: '/logout',
     }
   ];
 
@@ -289,7 +284,7 @@ export default function App() {
             alignItems: 'center',
             justifyContent: 'center',
             padding: 0,
-            backgroundColor: '#18344A' 
+            backgroundColor: '#18344A'
           }}>
             <Routes>
               {/* TODO finish react routing elements */}
