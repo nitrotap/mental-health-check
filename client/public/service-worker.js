@@ -16,7 +16,7 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(function (cache) {
-        // console.log('Opened cache');
+        console.log('Opened cache');
         return cache.addAll(urlsToCache);
       })
   );
@@ -50,7 +50,7 @@ self.addEventListener('activate', event => {
         // eslint-disable-next-line array-callback-return
         keyList.map(function (key, i) {
           if (cacheKeeplist.indexOf(key) === -1) {
-            // console.log('deleting cache : ' + keyList[i]);
+            console.log('deleting cache : ' + keyList[i]);
             return caches.delete(keyList[i]);
           }
         })

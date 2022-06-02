@@ -70,6 +70,12 @@ const useStyles = makeStyles((theme) => ({
 		display: 'flex',
 		flexDirection: 'column',
 	},
+	card1: {
+		backgroundColor: '#255070',
+		display: 'flex',
+		flexDirection: 'column',
+		width: '200px'
+	},
 	cardButtons: {
 		display: 'flex',
 		flexDirection: 'row',
