@@ -12,6 +12,7 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import GaugeChart from 'react-gauge-chart'
 import { Container, makeStyles } from '@material-ui/core';
+import HelpCard from "../components/Elements/HelpLineCard";
 
 import { QUERY_QUIZSET } from "../utils/queries";
 
@@ -161,6 +162,7 @@ const Results = () => {
       <div className={classes.container2}>
         {quiz.quizResults.map(quiz => <Child key={quiz.quizTaken} quiz={quiz} />)}
       </div>
+      <HelpCard />
     </Container>
   );
 };
