@@ -4,6 +4,8 @@ import { QUERY_USER } from '../utils/queries';
 import QuizList from '../components/QuizList';
 import Chart from '../components/Chart';
 import { Container, makeStyles, Box, Grid } from '@material-ui/core';
+import Auth from '../utils/auth';
+
 
 const useStyles = makeStyles((theme) => ({
 	container: {
@@ -89,6 +91,10 @@ const useStyles = makeStyles((theme) => ({
 
 
 const Dashboard = () => {
+	if (!Auth.loggedIn()) {
+		window.location.replace('/login');
+	}
+
 	const classes = useStyles();
 
 	const { loading, data } = useQuery(QUERY_USER);
