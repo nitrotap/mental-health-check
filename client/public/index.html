@@ -10,20 +10,14 @@
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  <link
-  rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-  />
-  <link
-  rel="stylesheet"
-  href="https://fonts.googleapis.com/icon?family=Material+Icons"
-  />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
   <title>Mental Health Check</title>
 </head>
 
 <body>
-  
+
   <div id="root"></div>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -32,12 +26,12 @@
 </body>
 <script>
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-      navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
         console.log('serviceWorker registration successful', registration.scope);
-      }, function(err) {
+      }, function (err) {
         console.log('serviceWorker registration failed', err);
-      }).catch(function(err) {
+      }).catch(function (err) {
         console.log(err);
       });
     });
@@ -45,4 +39,5 @@
     console.log('Service Worker is not supported by browser.');
   }
 </script>
+
 </html>

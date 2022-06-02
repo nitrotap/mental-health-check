@@ -1,9 +1,9 @@
-const { faker }  = require('@faker-js/faker');
+const { faker } = require('@faker-js/faker');
 
 const db = require('../config/connection');
 const { User, QuizResult, QuizSet } = require('../models');
 
-const possibleNegatives = [  
+const possibleNegatives = [
     {
         quizTaken: 'depression',
         quizAnswer: 'negative for depression'
@@ -89,13 +89,11 @@ db.once('open', async () => {
     // );
 
     // create results
-    
+
     for (let i = 0; i < 20; i += 1) {
         const randomUserIndex = Math.floor(Math.random() * createdUsers.length);
         const { _id: userId } = createdUsers[randomUserIndex]._id;
-
         const createdResult = await QuizSet.create({});
-        // console.log(createdResult._id)
 
         const updatedUser = await User.findOneAndUpdate(
             { _id: userId },
@@ -109,7 +107,7 @@ db.once('open', async () => {
         while (nums.size !== numberQuizzesTaken) {
             nums.add(Math.floor(Math.random() * 4) + 1);
         };
-        
+
         for (index of nums) {
             const categorySelector = Math.floor(Math.random() * 2) + 1;
             let category;
@@ -121,9 +119,9 @@ db.once('open', async () => {
             const quizTaken = category[index].quizTaken;
             const quizAnswer = category[index].quizAnswer;
             const updatedQuizSet = await QuizSet.findOneAndUpdate(
-               { _id: createdResult },
-               { $push: { quizResults: { quizTaken, quizAnswer } } },
-               { new: true }
+                { _id: createdResult },
+                { $push: { quizResults: { quizTaken, quizAnswer } } },
+                { new: true }
             );
         };
 

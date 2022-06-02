@@ -8,8 +8,6 @@ import { Grid } from '@mui/material';
 
 //routes
 import { Link } from 'react-router-dom'
-import Quiz from './Quiz';
-import Signup from './Signup';
 
 const useStyles = makeStyles((theme) => ({
     container: {

@@ -1,21 +1,9 @@
-/* pulls data from server to show previous quiz results 
-data is user.quizzes[0].quizResults[0]
-
-very complicated query
-
-displays quizzes programmatically depending on quizzes.length
-each quiz in quizzes array has a quizResults array with quizTaken and quizAnswer
-
-displays multiple SingleQuiz results
-depends on SingleQuiz/index.js JSX component
-*/
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { QUERY_USER, QUERY_QUIZSET } from '../utils/queries';
+import { QUERY_USER } from '../utils/queries';
 import QuizList from '../components/QuizList';
 import Chart from '../components/Chart';
-import { Box } from '@mui/system';
-import { Container, makeStyles } from '@material-ui/core';
+import { Container, makeStyles, Box, Grid } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
 	container: {
@@ -119,10 +107,7 @@ const Dashboard = () => {
 		let depCount = 0
 		let depQuizCount = 0
 		for (let i = 0; i < user.quizzes.length; i++) {
-			console.log(user.quizzes[i].dateTaken)
-
 			for (let j = 0; j < user.quizzes[i].quizResults.length; j++) {
-				console.log(user.quizzes[i].quizResults[j].quizAnswer)
 				if (user.quizzes[i].quizResults[j].quizAnswer === 'positive for depression') {
 					depCount++
 					depQuizCount++
@@ -131,16 +116,11 @@ const Dashboard = () => {
 				}
 			}
 		}
-		console.log(depCount)
 
 		let anxCount = 0
 		let anxQuizCount = 0
 		for (let i = 0; i < user.quizzes.length; i++) {
-			console.log(user.quizzes[i].dateTaken)
-
 			for (let j = 0; j < user.quizzes[i].quizResults.length; j++) {
-				console.log(user.quizzes[i].quizResults[j].quizAnswer)
-
 				if (user.quizzes[i].quizResults[j].quizAnswer === 'positive for anxiety') {
 					anxCount++
 					anxQuizCount++
@@ -149,16 +129,11 @@ const Dashboard = () => {
 				}
 			}
 		}
-		console.log(anxCount)
 
 		let ptsdCount = 0
 		let ptsdQuizCount = 0
 		for (let i = 0; i < user.quizzes.length; i++) {
-			console.log(user.quizzes[i].dateTaken)
-
 			for (let j = 0; j < user.quizzes[i].quizResults.length; j++) {
-
-				console.log(user.quizzes[i].quizResults[j].quizAnswer)
 				if (user.quizzes[i].quizResults[j].quizAnswer === 'positive for ptsd') {
 					ptsdCount++
 					ptsdQuizCount++
@@ -167,17 +142,11 @@ const Dashboard = () => {
 				}
 			}
 		}
-		console.log(ptsdCount)
-
 
 		let schCount = 0
 		let schQuizCount = 0
 		for (let i = 0; i < user.quizzes.length; i++) {
-			console.log(user.quizzes[i].dateTaken)
-
 			for (let j = 0; j < user.quizzes[i].quizResults.length; j++) {
-				console.log(user.quizzes[i].quizResults[j].quizAnswer)
-
 				if (user.quizzes[i].quizResults[j].quizAnswer === 'positive for schizophrenia') {
 					schCount++
 					schQuizCount++
@@ -186,16 +155,11 @@ const Dashboard = () => {
 				}
 			}
 		}
-		console.log(schCount)
 
 		let addictionCount = 0
 		let addictionQuizCount = 0
 		for (let i = 0; i < user.quizzes.length; i++) {
-			console.log(user.quizzes[i].dateTaken)
-
 			for (let j = 0; j < user.quizzes[i].quizResults.length; j++) {
-				console.log(user.quizzes[i].quizResults[j].quizAnswer)
-
 				if (user.quizzes[i].quizResults[j].quizAnswer === 'positive for addiction') {
 					addictionCount++
 					addictionQuizCount++
@@ -204,17 +168,9 @@ const Dashboard = () => {
 				}
 			}
 		}
-		console.log(addictionCount)
-
 		count = [depCount, anxCount, ptsdCount, schCount, addictionCount]
 		quizCount = [depQuizCount, anxQuizCount, ptsdQuizCount, schQuizCount, addictionQuizCount]
-		console.log(quizCount)
-		console.log(count)
-
 	}
-
-
-
 
 	const chartHandler = (len) => {
 		if (len > 0) {
@@ -237,7 +193,9 @@ const Dashboard = () => {
 			{chartHandler(user.quizzes.length)}
 			<div className='flex-row text-primary justify-space-between'>
 				<div className='col-12 col-lg-8 mb-3'>
-					<QuizList quizzes={user.quizzes} />
+					<Grid container spacing={3} >
+						<QuizList quizzes={user.quizzes} />
+					</Grid>
 				</div>
 			</div>
 		</Container>

@@ -2,23 +2,12 @@
  * programmatically displays answer boxes
 */
 import * as React from 'react';
-import { Container, makeStyles, Typography, Card, CardActions, Box, CardContent, CardMedia, } from '@material-ui/core';
+import { makeStyles, CardActions, } from '@material-ui/core';
 import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
 
 const Question = (props) => {
-    const { currentQuestion, setCurrentQuestion, handleSubmit } = props;
+    const { currentQuestion, handleSubmit } = props;
 
-    const questionStyle = {
-        width: '100%',
-        textAlign: 'center',
-        backgroundColor: 'white',
-        marginBottom: '400px',
-    }
-    const questionTextStyle = {
-        fontSize: '24pt',
-
-    }
     const useStyles = makeStyles((theme) => ({
         container: {
             backgroundColor: '#18344A',
@@ -106,7 +95,7 @@ const Question = (props) => {
                         return (
                             <Button variant="contained" onClick={() => {
                                 handleSubmit(currentQuestion.response[index])
-                            }} style={bstyle}>
+                            }} key={currentQuestion.response[index].text} style={bstyle}>
                                 <h5>{currentQuestion.response[index].text}</h5>
                             </Button>
                         )
