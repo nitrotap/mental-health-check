@@ -12,6 +12,8 @@ assigned to:
 import React from 'react';
 import { Link } from 'react-router-dom';
 import useCollapse from 'react-collapsed';
+import GaugeChart from 'react-gauge-chart'
+
 
 import { useMutation } from '@apollo/client'
 
@@ -114,6 +116,35 @@ const QuizList = ({ quizzes }) => {
 	return quizzes.map(quiz => <Child key={quiz._id} quiz={quiz} />);
 };
 
+const GChart = ({ quiz }) => {
+	const classes = useStyles();
+	// console.log(quiz)
+	let rating;
+	switch (quiz.quizAnswer.includes("positive")) {
+		case true:
+			console.log(quiz.quizAnswer)
+			rating = 0.67;
+			break;
+		case false:
+			rating = 0.34;
+			break;
+		default:
+			throw new Error('Rating Error!')
+	}
+
+	return (
+		<section>
+			<GaugeChart id="gauge-chart1"
+				nrOfLevels={2}
+				percent={rating}
+				hideText={true}
+				needleColor='white'
+			/>
+			<span className={classes.text}>Results: {quiz.quizAnswer}</span>
+		</section >
+	);
+}
+
 const Child = ({ quiz }) => {
 	const classes = useStyles();
 	const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
@@ -137,8 +168,6 @@ const Child = ({ quiz }) => {
 		window.location.replace('/dashboard');
 	}
 
-
-
 	return (
 		<Grid item xs={4} >
 			<Box className="collapsible">
@@ -148,10 +177,20 @@ const Child = ({ quiz }) => {
 					</Typography>
 					<Box {...getCollapseProps()}>
 						<Box className="content">
-							{quiz.quizResults.map(quiz => <QuizSet
-								key={quiz.quizTaken}
-								quiz={quiz}
-							/>)}
+							{quiz.quizResults.map((quiz) => {
+								console.log(quiz)
+								return (
+									<>
+										<QuizSet
+											key={quiz.quizTaken}
+											quiz={quiz}
+										/>
+										<GChart key={quiz} quiz={quiz} />
+
+									</>)
+							}
+
+							)}
 							{/* {quiz.quizResults[0].quizAnswer} <br/><br/> */}
 							<Grid container spacing={3} sx={{ display: 'flex', flexDirection: 'row' }}>
 								<Grid item xs={6}>
@@ -164,12 +203,14 @@ const Child = ({ quiz }) => {
 										<span className={classes.buttonTitle}>Delete this Quiz Set</span>
 									</Button>
 								</Grid>
+
 							</Grid>
 
 						</Box>
 					</Box>
 				</CardContent>
 			</Box>
+
 		</Grid>
 	);
 };

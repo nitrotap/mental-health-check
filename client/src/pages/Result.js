@@ -136,7 +136,7 @@ const Child = ({ quiz }) => {
   return (
     <section className={classes.container3}>
       <GaugeChart id="gauge-chart1"
-        nrOfLevels={3}
+        nrOfLevels={2}
         percent={rating}
         hideText={true}
       />
