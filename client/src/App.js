@@ -183,124 +183,126 @@ export default function App() {
 
   return (
     <ApolloProvider client={client}>
-      <Router>
-        <Box sx={{ display: 'flex', }}>
-          <CssBaseline />
-          <AppBar position="fixed" z-index='1400' open={open} sx={{ backgroundColor: '#326B96' }}>
-            <Toolbar>
-              <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                onClick={handleDrawerOpen}
-                edge="start"
-                sx={{ mr: 2, ...(open && { display: 'none' }) }}
-              >
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="h6" noWrap component="div">
-                Mental Health Check
-              </Typography>
-            </Toolbar>
-          </AppBar>
-          <Drawer
-            sx={{
-              width: drawerWidth,
-              flexShrink: 0,
-              '& .MuiDrawer-paper': {
-                width: drawerWidth,
-                boxSizing: 'border-box',
-              },
-            }}
-            variant="persistent"
-            anchor="left"
-            open={open}
-          >
-            <Box sx={{ backgroundColor: '#326B96', height: '100%', color: 'white', border: 'none', }}>
-              <DrawerHeader>
-                <IconButton onClick={handleDrawerClose} sx={{ color: 'white' }}>
-                  {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+      <Box sx={{ marginTop: '60px' }}>
+        <Router>
+          <Box sx={{ display: 'flex', }}>
+            <CssBaseline />
+            <AppBar position="fixed" z-index='1400' open={open} sx={{ backgroundColor: '#326B96' }}>
+              <Toolbar>
+                <IconButton
+                  color="inherit"
+                  aria-label="open drawer"
+                  onClick={handleDrawerOpen}
+                  edge="start"
+                  sx={{ mr: 2, ...(open && { display: 'none' }) }}
+                >
+                  <MenuIcon />
                 </IconButton>
-              </DrawerHeader>
-              <Divider variant='middle' color='white' />
-              <List>
-                {listOne.map((item, index) => {
-                  const { text, icon, link } = item;
-                  return (
-                    <Link to={link}>
-                      <ListItem key={text} disablePadding>
-                        <ListItemButton>
-                          {icon && <ListItemIcon sx={{ color: 'white' }}>{icon}</ListItemIcon>}
-                          <ListItemText sx={{ color: 'white' }} primary={text} />
-                        </ListItemButton>
-                      </ListItem>
-                    </Link>
-                  )
-                })}
-              </List>
-              <Divider variant='middle' color='white' />
-              <List>
-                {listTwo.map((item, index) => {
-                  const { text, icon, link } = item;
-                  return (
-                    <a href={link} target="_blank" rel="noreferrer">
-                      <ListItem key={text} disablePadding>
-                        <ListItemButton >
-                          {icon && <ListItemIcon sx={{ color: 'white' }}>{icon}</ListItemIcon>}
-                          <ListItemText sx={{ color: 'white' }} primary={text} />
-                        </ListItemButton>
-                      </ListItem>
-                    </a>
-                  )
-                })}
-              </List>
-              <Divider variant='middle' color='white' />
-              <List>
-                {listThree.map((item, index) => {
-                  const { text, icon, link } = item;
-                  return (
-                    <Link to={link}>
-                      <ListItem key={text} disablePadding>
-                        <ListItemButton>
-                          {icon && <ListItemIcon sx={{ color: 'white' }}>{icon}</ListItemIcon>}
-                          <ListItemText sx={{ color: 'white' }} primary={text} />
-                        </ListItemButton>
-                      </ListItem>
-                    </Link>
-                  )
-                })}
-                <Link to={'/'} onClick={() => Auth.logout()}>
-                  <ListItem key='logout' disablePadding>
-                    <ListItemButton>
-                      {<LogoutIcon /> && <ListItemIcon sx={{ color: 'white' }}>{<LogoutIcon />}</ListItemIcon>}
-                      <ListItemText sx={{ color: 'white' }} primary={'Logout'} />
-                    </ListItemButton>
-                  </ListItem>
-                </Link>
-              </List>
-            </Box>
-          </Drawer>
-          <Main open={open} sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: 0,
-            backgroundColor: '#18344A'
-          }}>
-            <Routes>
-              {/* TODO finish react routing elements */}
-              <Route path="/" element={<Home />} />
-              <Route path="dashboard" element={<Dashboard />} />
-              <Route path="signup" element={<Signup />} />
-              <Route path="login" element={<Login />} />
-              <Route path="quiz/:id" element={<Quiz />} />
-              <Route path="singlequiz/:id" element={<SingleQuiz />} />
-              <Route path="quizselect" element={<QuizSelectForm />} />
-              <Route path="legal" element={<Legal />} />
-              <Route path='helpCard' element={<HelpLineCard />} />
-            </Routes>
-          </Main>
-        </Box>
-      </Router >
+                <Typography variant="h6" noWrap component="div">
+                  Mental Health Check
+                </Typography>
+              </Toolbar>
+            </AppBar>
+            <Drawer
+              sx={{
+                width: drawerWidth,
+                flexShrink: 0,
+                '& .MuiDrawer-paper': {
+                  width: drawerWidth,
+                  boxSizing: 'border-box',
+                },
+              }}
+              variant="persistent"
+              anchor="left"
+              open={open}
+            >
+              <Box sx={{ backgroundColor: '#326B96', height: '100%', color: 'white', border: 'none', }}>
+                <DrawerHeader>
+                  <IconButton onClick={handleDrawerClose} sx={{ color: 'white' }}>
+                    {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                  </IconButton>
+                </DrawerHeader>
+                <Divider variant='middle' color='white' />
+                <List>
+                  {listOne.map((item, index) => {
+                    const { text, icon, link } = item;
+                    return (
+                      <Link to={link}>
+                        <ListItem key={text} disablePadding>
+                          <ListItemButton>
+                            {icon && <ListItemIcon sx={{ color: 'white' }}>{icon}</ListItemIcon>}
+                            <ListItemText sx={{ color: 'white' }} primary={text} />
+                          </ListItemButton>
+                        </ListItem>
+                      </Link>
+                    )
+                  })}
+                </List>
+                <Divider variant='middle' color='white' />
+                <List>
+                  {listTwo.map((item, index) => {
+                    const { text, icon, link } = item;
+                    return (
+                      <a href={link} target="_blank" rel="noreferrer">
+                        <ListItem key={text} disablePadding>
+                          <ListItemButton >
+                            {icon && <ListItemIcon sx={{ color: 'white' }}>{icon}</ListItemIcon>}
+                            <ListItemText sx={{ color: 'white' }} primary={text} />
+                          </ListItemButton>
+                        </ListItem>
+                      </a>
+                    )
+                  })}
+                </List>
+                <Divider variant='middle' color='white' />
+                <List>
+                  {listThree.map((item, index) => {
+                    const { text, icon, link } = item;
+                    return (
+                      <Link to={link}>
+                        <ListItem key={text} disablePadding>
+                          <ListItemButton>
+                            {icon && <ListItemIcon sx={{ color: 'white' }}>{icon}</ListItemIcon>}
+                            <ListItemText sx={{ color: 'white' }} primary={text} />
+                          </ListItemButton>
+                        </ListItem>
+                      </Link>
+                    )
+                  })}
+                  <Link to={'/'} onClick={() => Auth.logout()}>
+                    <ListItem key='logout' disablePadding>
+                      <ListItemButton>
+                        {<LogoutIcon /> && <ListItemIcon sx={{ color: 'white' }}>{<LogoutIcon />}</ListItemIcon>}
+                        <ListItemText sx={{ color: 'white' }} primary={'Logout'} />
+                      </ListItemButton>
+                    </ListItem>
+                  </Link>
+                </List>
+              </Box>
+            </Drawer>
+            <Main open={open} sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: 0,
+              backgroundColor: '#18344A'
+            }}>
+              <Routes>
+                {/* TODO finish react routing elements */}
+                <Route path="/" element={<Home />} />
+                <Route path="dashboard" element={<Dashboard />} />
+                <Route path="signup" element={<Signup />} />
+                <Route path="login" element={<Login />} />
+                <Route path="quiz/:id" element={<Quiz />} />
+                <Route path="singlequiz/:id" element={<SingleQuiz />} />
+                <Route path="quizselect" element={<QuizSelectForm />} />
+                <Route path="legal" element={<Legal />} />
+                <Route path='helpCard' element={<HelpLineCard />} />
+              </Routes>
+            </Main>
+          </Box>
+        </Router >
+      </Box>
     </ApolloProvider >
   );
 };
