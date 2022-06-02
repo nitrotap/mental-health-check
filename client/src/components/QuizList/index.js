@@ -9,13 +9,13 @@ show a single QuizSet
 button to remove a single QuizSet
 assigned to:
 */
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import useCollapse from 'react-collapsed';
 
-import { useQuery, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 
-import { Container, makeStyles, Typography, CardActions, Box, CardContent, CardMedia, Grid } from '@material-ui/core';
+import { makeStyles, Typography, Box, CardContent, Grid } from '@material-ui/core';
 import Button from '@mui/material/Button';
 
 import { REMOVE_QUIZSET } from '../../utils/mutations';
@@ -105,8 +105,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const QuizList = ({ quizzes }) => {
-	// const quizResults = quizzes[0].quizResults;
-	// console.log(quizzes)
 	return quizzes.map(quiz => <Child key={quiz._id} quiz={quiz} />);
 };
 
@@ -172,7 +170,6 @@ const Child = ({ quiz }) => {
 
 const QuizSet = (quizResult) => {
 	const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
-	// console.log(quizResult);
 	const classes = useStyles();
 
 

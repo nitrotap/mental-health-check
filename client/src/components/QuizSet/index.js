@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { useQuery, useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import questionBank from "../../utils/questionBank"
 import Question from "../Question";
-import { QUERY_USER } from "../../utils/queries";
 import { ADD_QUIZRESULT, ADD_QUIZSET } from "../../utils/mutations";
 
-import { Container, makeStyles, Typography, Card, CardActions, Box, CardContent, Button, CardMedia } from '@material-ui/core';
+import { Container, makeStyles, Typography } from '@material-ui/core';
 
 const { depressionQuestions, anxietyQuestions, ptsdQuestions, schQuestions, impairmentQuestions, addictionQuestions } = questionBank;
 
@@ -53,7 +52,6 @@ const QuizSet = (props) => {
         async function startQuiz() {
             try {
                 const { data } = await addQuizSet()
-                console.log(data.addQuizSet._id)
                 setCurrentQuizSetId(data.addQuizSet._id)
             } catch (e) {
                 window.location.replace('/login')
@@ -66,16 +64,11 @@ const QuizSet = (props) => {
     const [addQuizResult] = useMutation(ADD_QUIZRESULT)
 
     async function handleSubmit(response) {
-        // console.log(response);
         // end of quiz
         if (index >= currentQuiz.length - 1) {
             setIndex(0)
-            console.log('END OF QUIZ ' + currentQuizName)
-            //todo calculate score bug: score is -1 somehow
             if (quizSetScore >= (currentQuiz.length / 2)) {
-                console.log('positive for ' + currentQuizName)
                 const currentQuizResult = 'positive for ' + currentQuizName
-
                 try {
                     const { data } = await addQuizResult({
                         variables: {
@@ -90,9 +83,7 @@ const QuizSet = (props) => {
                 }
 
             } else {
-                console.log('negative for ' + currentQuizName)
                 const currentQuizResult = 'negative for ' + currentQuizName
-
                 try {
                     const { data } = await addQuizResult({
                         variables: {
@@ -111,22 +102,11 @@ const QuizSet = (props) => {
 
         } else {
             setIndex(index + 1)
-            // console.log(response.score + quizSetScore)
             let newScore = response.score + quizSetScore
             setQuizSetScore(newScore)
         }
-        //todo  error case runs out of indexes
+    }
 
-    }
-    const quizStyle = {
-        width: '100%',
-        backgroundColor: 'white',
-        textAlign: 'center',
-    }
-    const quizTextStyle = {
-        fontSize: '24pt',
-
-    }
     const useStyles = makeStyles((theme) => ({
         container: {
             backgroundColor: '#18344A',

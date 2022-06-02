@@ -97,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '2.5rem',
     textAlign: 'center',
     [theme.breakpoints.down('md')]: {
-    fontSize: '1.5rem',
+      fontSize: '1.5rem',
     },
   },
   cardText: {
@@ -121,7 +121,7 @@ const useStyles = makeStyles((theme) => ({
 const Child = ({ quiz }) => {
   const classes = useStyles();
   let rating;
-  switch(quiz.quizAnswer.includes("positive")){
+  switch (quiz.quizAnswer.includes("positive")) {
     case true:
       rating = 0.67;
       break;
@@ -131,12 +131,11 @@ const Child = ({ quiz }) => {
     default:
       throw new Error('Rating Error!')
   }
-  // console.log(quiz);
 
   return (
     <section className={classes.container3}>
       <GaugeChart id="gauge-chart1"
-        nrOfLevels={3} 
+        nrOfLevels={3}
         percent={rating}
         hideText={true}
       />
@@ -147,8 +146,8 @@ const Child = ({ quiz }) => {
 
 const Results = () => {
   const classes = useStyles();
-	const { id: quizSetId } = useParams();
-	const { loading, data } = useQuery(QUERY_QUIZSET, { variables: { quizSetId: quizSetId } });
+  const { id: quizSetId } = useParams();
+  const { loading, data } = useQuery(QUERY_QUIZSET, { variables: { quizSetId: quizSetId } });
 
   const quiz = data?.quizSet || [];
 
@@ -156,16 +155,11 @@ const Results = () => {
     return <div>Loading...</div>;
   }
 
-  // console.log(data)
-  // console.log(quiz)
-
   return (
     <Container className={classes.container}>
       <h1 className={classes.title}>Here are your Results:</h1>
       <div className={classes.container2}>
         {quiz.quizResults.map(quiz => <Child key={quiz.quizTaken} quiz={quiz} />)}
-        {/* {user.quizzes[0].quizResults[0].quizAnswer}
-        {user.quizzes[0].quizResults[0].quizTaken} */}
       </div>
     </Container>
   );

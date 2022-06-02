@@ -10,8 +10,6 @@ const resolvers = {
             if (context.user) {
                 const user = await User.findById({ _id: context.user._id })
                     .populate('quizzes')
-                console.log(user)
-
                 return user;
             }
 
@@ -65,8 +63,6 @@ const resolvers = {
                     // null uses context
                     args
                 });
-                // console.log(quizSet)
-                // console.log(context.user)
                 // add quizSet to user
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
@@ -74,17 +70,13 @@ const resolvers = {
                     { new: true }
 
                 )
-                // console.log(updatedUser)
-
                 return quizSet
-
             }
 
             throw new AuthenticationError('Not logged in');
         },
         // creates new record for quiz taken
         addQuizResult: async (parent, { quizSetId, quizTaken, quizAnswer }, context) => {
-            // console.log("quiz" + quizSetId)
             if (context.user) {
                 // create new quiz result
                 const updatedQuizSet = await QuizSet.findOneAndUpdate(
@@ -92,15 +84,6 @@ const resolvers = {
                     { $push: { quizResults: { quizTaken, quizAnswer } } },
                     { new: true }
                 );
-                console.log(updatedQuizSet)
-
-                //
-                // const updatedUser = await User.findOneAndUpdate(
-                //     { _id: context.user._id },
-                //     { $addToSet: { quizzes: updatedQuizSet } },
-                //     { new: true }
-                // )
-                // console.log(updatedUser)
                 return updatedQuizSet;
             }
 

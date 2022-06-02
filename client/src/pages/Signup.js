@@ -21,8 +21,6 @@ import { makeStyles } from '@material-ui/core'
 import Copyright from '../components/Elements/Copyright';
 
 import { Link } from 'react-router-dom';
-import Login from './Login';
-import Legal from './Legal';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -86,7 +84,7 @@ function Signup(props) {
 
   const handleChangeEmail = (event) => {
     const { name, value } = event.target;
-    const validEmail = new RegExp(/^([a-zA-Z0-9_\.-]+)@([\da-zA-Z\.-]+)\.([a-zA-Z\.]{2,6})$/)
+    const validEmail = new RegExp(/^([a-zA-Z0-9_.-]+)@([\da-zA-Z.-]+)\.([a-zA-Z.]{2,6})$/)
     if (validEmail.test(value)) {
       setEmailState(true)
     } else {
@@ -98,15 +96,6 @@ function Signup(props) {
       [name]: value,
     });
   };
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const data = new FormData(event.currentTarget);
-  //   console.log({
-  //     email: data.get('email'),
-  //     password: data.get('password'),
-  //   });
-  // };
 
   return (
     <Container className={classes.container}>
