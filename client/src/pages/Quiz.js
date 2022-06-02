@@ -14,6 +14,7 @@ import { useParams } from "react-router-dom";
 
 import QuizSet from '../components/QuizSet'
 import QuizSelectForm from '../components/QuizSelectForm'
+import { Container } from "@mui/material";
 
 
 // takes an array of quizzes from quiz selector
@@ -65,7 +66,7 @@ const Quiz = (args) => {
     }
 
     return (
-        <div>
+        <Container>
             {/* todo render modal here, quizselectform component within
             <QuizSelectForm showQuizSelect={showQuizSelect} setQuizSelect={setShowQuizSelect} quizSelection={quizSelection} setQuizSelection={setQuizSelection} /> */}
 
@@ -78,7 +79,7 @@ const Quiz = (args) => {
                 handleSubmitQuiz={handleSubmitQuiz}
             ></QuizSet>
 
-        </div >
+        </Container >
     )
 
 

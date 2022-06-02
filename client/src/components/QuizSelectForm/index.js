@@ -90,31 +90,37 @@ const QuizSelectForm = (props) => {
                     <FormGroup>
                         <FormControlLabel
                             control={
-                                <Checkbox checked={state.depression} onChange={handleChange} name="depression" />
+                                <Checkbox checked={state.depression} onChange={handleChange} name="depression"
+                                    sx={{ '& .MuiSvgIcon-root': { fontSize: 28 } }} />
                             }
                             label="depression"
                         />
                         <FormControlLabel
                             control={
-                                <Checkbox checked={state.anxiety} onChange={handleChange} name="anxiety" />
+                                <Checkbox checked={state.anxiety} onChange={handleChange} name="anxiety"
+                                    sx={{ '& .MuiSvgIcon-root': { fontSize: 28 } }} />
                             }
                             label="anxiety"
                         />
                         <FormControlLabel
                             control={
-                                <Checkbox checked={state.ptsd} onChange={handleChange} name="ptsd" />
+                                <Checkbox checked={state.ptsd} onChange={handleChange} name="ptsd"
+                                    sx={{ '& .MuiSvgIcon-root': { fontSize: 28 } }} />
                             }
-                            label="ptsd"
+                            label={"ptsd"}
+                            sx={{ fontSize: 34 }}
                         />
                         <FormControlLabel
                             control={
-                                <Checkbox checked={state.sch} onChange={handleChange} name="sch" />
+                                <Checkbox checked={state.sch} onChange={handleChange} name="sch"
+                                    sx={{ '& .MuiSvgIcon-root': { fontSize: 28 } }} />
                             }
                             label="schizophrenia"
                         />
                         <FormControlLabel
                             control={
-                                <Checkbox checked={state.addiction} onChange={handleChange} name="addiction" />
+                                <Checkbox checked={state.addiction} onChange={handleChange} name="addiction"
+                                    sx={{ '& .MuiSvgIcon-root': { fontSize: 28 } }} />
                             }
                             label="addiction"
                         />
