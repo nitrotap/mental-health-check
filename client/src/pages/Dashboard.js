@@ -14,8 +14,7 @@ import { useQuery } from '@apollo/client';
 import { QUERY_USER, QUERY_QUIZSET } from '../utils/queries';
 import QuizList from '../components/QuizList';
 import Chart from '../components/Chart';
-import { Box } from '@mui/system';
-import { Container, makeStyles } from '@material-ui/core';
+import { Container, makeStyles, Box, Grid } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
 	container: {
@@ -237,7 +236,9 @@ const Dashboard = () => {
 			{chartHandler(user.quizzes.length)}
 			<div className='flex-row text-primary justify-space-between'>
 				<div className='col-12 col-lg-8 mb-3'>
-					<QuizList quizzes={user.quizzes} />
+					<Grid container spacing={3} >
+						<QuizList quizzes={user.quizzes} />
+					</Grid>
 				</div>
 			</div>
 		</Container>
