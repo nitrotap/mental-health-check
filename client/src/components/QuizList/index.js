@@ -143,7 +143,7 @@ const Child = ({ quiz }) => {
 		<Grid item xs={4} >
 			<Box className="collapsible">
 				<CardContent className={classes.card}>
-					<Typography className={classes.text} variant='body1'  {...getToggleProps()}>
+					<Typography className={classes.cardText} variant='body1'  {...getToggleProps()}>
 						{quiz.dateTaken}
 					</Typography>
 					<Box {...getCollapseProps()}>
@@ -181,11 +181,11 @@ const QuizSet = (quizResult) => {
 
 	return (
 		<Box className="collapsible">
-			<Typography className={classes.text} {...getToggleProps()}>
+			<Typography className={classes.cardText} {...getToggleProps()}>
 				{quizResult.quiz.quizTaken}
 			</Typography>
 			<Box  {...getCollapseProps()}>
-				<Typography className={classes.text}>
+				<Typography className={classes.cardText}>
 					{quizResult.quiz.quizAnswer} <br /><br />
 				</Typography>
 			</Box>
