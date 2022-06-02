@@ -24,7 +24,7 @@ const possibleNegatives = [
         quizTaken: 'addiction',
         quizAnswer: 'negative for addiction'
     },
-]
+];
 
 const possiblePositives = [
     {
@@ -47,7 +47,7 @@ const possiblePositives = [
         quizTaken: 'addiction',
         quizAnswer: 'positive for addiction'
     },
-]
+];
 
 // todo create seeds for QuizResults (quizTaken, quizAnswer), QuizSets (quizResults)
 db.once('open', async () => {
@@ -55,16 +55,14 @@ db.once('open', async () => {
     await QuizSet.deleteMany({});
 
     // create user data
-    const userData = [];
-
+    const createdUsers = []
     for (let i = 0; i < 5; i += 1) {
-        const email = faker.internet.email();
+        const email = faker.internet.email().toLowerCase();
         const password = 'password123';
 
-        userData.push({ email, password });
+        const userData = await User.create({ email, password });
+        createdUsers.push(userData);
     }
-
-    const createdUsers = await User.collection.insertMany(userData);
 
     // create user QuizSet
 
@@ -92,9 +90,9 @@ db.once('open', async () => {
 
     // create results
     
-    for (let i = 0; i < 10; i += 1) {
-        const randomUserIndex = Math.floor(Math.random() * Object.keys(createdUsers.insertedIds).length);
-        const { _id: userId } = createdUsers.insertedIds[randomUserIndex];
+    for (let i = 0; i < 20; i += 1) {
+        const randomUserIndex = Math.floor(Math.random() * createdUsers.length);
+        const { _id: userId } = createdUsers[randomUserIndex]._id;
 
         const createdResult = await QuizSet.create({});
         // console.log(createdResult._id)
@@ -106,20 +104,36 @@ db.once('open', async () => {
         );
 
         //quizzes taken, 1-5
-        // const numberQuizzesTaken = (Math.floor(Math.random() * 5) + 1)
-        // const nums = new Set();
-        // while (nums.size !== numberQuizzesTaken) {
-        //     nums.add(Math.floor(Math.random() * 5) + 1)
-        // };
-        // console.log(nums);
+        const numberQuizzesTaken = Math.floor(Math.random() * 4) + 1;
+        const nums = new Set();
+        while (nums.size !== numberQuizzesTaken) {
+            nums.add(Math.floor(Math.random() * 4) + 1);
+        };
+        
+        for (index of nums) {
+            const categorySelector = Math.floor(Math.random() * 2) + 1;
+            let category;
+            if (categorySelector === 1) {
+                category = possiblePositives
+            } else if (categorySelector === 2) {
+                category = possibleNegatives
+            };
+            const quizTaken = category[index].quizTaken;
+            const quizAnswer = category[index].quizAnswer;
+            const updatedQuizSet = await QuizSet.findOneAndUpdate(
+               { _id: createdResult },
+               { $push: { quizResults: { quizTaken, quizAnswer } } },
+               { new: true }
+            );
+        };
 
         // const updatedUser = await User.updateOne(
         // { _id: userId },
         // { $push: { Results: createdResult._id } }
         // );
-    }
+    };
 
 
-    console.log('all done! ', createdUsers);
+    console.log('Database Seeded!');
     process.exit(0);
 })
