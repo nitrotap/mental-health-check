@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 		width: '100vw',
 		marginTop: '60px',
 		padding: '0, 10px',
+		marginBottom: 300,
 	},
 	title: {
 		fontSize: '4rem',
@@ -122,7 +123,6 @@ const Dashboard = () => {
 
 			for (let j = 0; j < user.quizzes[i].quizResults.length; j++) {
 				console.log(user.quizzes[i].quizResults[j].quizAnswer)
-				depQuizCount++
 				if (user.quizzes[i].quizResults[j].quizAnswer === 'positive for depression') {
 					depCount++
 					depQuizCount++

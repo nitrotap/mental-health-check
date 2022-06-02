@@ -1,8 +1,26 @@
-# Mental Health Check
+# Mental Health Check   
 
-A mental health quiz app addressing comorbidities in mental illness
+## Description   
 
-https://nitrotap.github.io/mental-health-check/
+A mental health quiz app that helps users track their moods using standardized screening tests. Mental Health Check tests users with multiple quiz options to help users understand and identify their feelings. The app is a Progressive Web Application including the ability to take and save quiz results offline.  The application uses a React.js front-end with MongoDB and Express.js running the back-end and Node.js as the package manager.
+
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+ ![badmath](https://img.shields.io/github/languages/top/nitrotap/mental-health-check)   
+
+https://mh-check.herokuapp.com/   
+
+
+## Table of Contents   
+* [Overview](#overview)
+* [Features](#features)
+* [Installation](#Installation)   
+* [Usage](#Usage)   
+* [Preview](#preview)
+* [Made By](#made-by)
+* [Questions](#Questions)    
+* [License](#License)   
+
 
 ## Overview
 
@@ -10,28 +28,65 @@ Mental Health Check is a quiz app that helps users identify their feelings and d
 
 ## Features
 
+- Create an account to take your quiz today
 - Put together your own quiz by selecting from multiple supported mental health categories
-- Video, audio, and book suggestions based on the results from your quiz
 - Science-backed questions create an approachable app to help identify your feelings and direct you to useful resources
+- View previous quiz results by logging in
+- Take your quizzes offline and upload your results when you're back online!
+
+
+## Installation
+```npm install```   
+
+## Usage
+```npm run develop```     
+
+
+
+## Preview
+
+#### Landing   
+
+<img src="./client/src/assets/images/home-preview.png" width="50%" height="50%">
+
+
+
+#### Quiz
+
+<img src="./client/src/assets/images/quizselect-preview.png" width="50%" height="50%">   
+
+<img src="./client/src/assets/images/quiz-preview.png" width="50%" height="50%">
+
+
+
+#### Quiz Results
+
+<img src="./client/src/assets/images/results-preview.png" width="50%" height="50%">
+
 
 ## Made By:
 [Nitrotap](https://github.com/nitrotap) - Kartik Jevaji   
 [Harabushi](https://github.com/Harabushi) - Colby Harris   
-[Meshtatsuo](https://github.com/Meshtatsuo) - Dominic Misasi   
-[kakudiego](https://github.com/kakudiego) - Diego Kaku   
+[ChaVue91](https://github.com/chavue91) - Cha Vue   
+[WillYazdani](https://github.com/WillYazdani) - Will Yazdani
 
-## Preview
+## Questions   
 
-#### Landing
+Please reach out to me on [GitHub](https://github.com/nitrotap) or by email at kartikinpublic@gmail.com for any additional questions. 
 
-![Landing Page Preview](./assets/README-images/landing-preview.gif)
+## License   
+MIT   
 
-#### Quiz
+Copyright 2022 Kartik Jevaji
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-![Quiz Page Preview](./assets/README-images/quiz-preview.png)
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-#### Quiz Results
-
-![Quiz Results Preview](./assets/README-images/quiz-result-screen-shot.png)
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
 
 
+
+
+## Past contributors:   
+[Meshtatsuo](https://github.com/Meshtatsuo)   
+[kakudiego](https://github.com/kakudiego)

@@ -133,11 +133,9 @@ const QuizSet = (props) => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            alignItems: 'center',
+            // alignItems: 'center',
             height: '100vh',
             width: '100vw',
-            marginTop: '60px',
-            marginBottom: '60px',
             padding: 0,
         },
         title: {
@@ -184,16 +182,18 @@ const QuizSet = (props) => {
     const classes = useStyles();
     return (
 
-    <Container className={classes.container}>
-        <Typography className={classes.title}>
-            {currentQuizName} quiz
-        </Typography>
-        <Typography className={classes.text} variant='body1'>
-            Question {index + 1} of {currentQuiz.length}
-        </Typography>
-        <Question currentQuestion={currentQuiz[index]} setCurrentQuestion={setIndex} handleSubmit={handleSubmit}>
-        </Question>
-    </Container>
+        <Container className={classes.container}>
+            <Typography className={classes.title}>
+                {currentQuizName} quiz
+            </Typography>
+            <Question currentQuestion={currentQuiz[index]} setCurrentQuestion={setIndex} handleSubmit={handleSubmit}>
+            </Question>
+
+            <Typography className={classes.text} >
+                Question {index + 1} of {currentQuiz.length}
+            </Typography>
+
+        </Container>
     )
 }
 
