@@ -1,6 +1,9 @@
 {
   "name": "mental-health-check",
   "version": "0.1.0",
+  "engines": {
+    "node": "16.14.0"
+  },
   "description": "mental health check",
   "main": "server/server.js",
   "scripts": {
