@@ -16,7 +16,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {makeStyles} from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
 
 import Copyright from '../components/Elements/Copyright';
 
@@ -26,13 +26,13 @@ import Legal from './Legal';
 
 const useStyles = makeStyles((theme) => ({
   container: {
-      backgroundColor: '#18344A',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: '100vh',
-      padding: '0, 10px',
+    backgroundColor: '#18344A',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+    padding: '0, 10px',
   },
 }));
 
@@ -50,6 +50,7 @@ function Signup(props) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    formState.email = formState.email.toLowerCase();
 
     try {
       const mutationResponse = await addUser({
@@ -174,7 +175,7 @@ function Signup(props) {
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>
-                  <Link to = "/login" variant="body2">
+                  <Link to="/login" variant="body2">
                     Already have an account? Log in
                   </Link>
                 </Grid>
