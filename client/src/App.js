@@ -228,7 +228,7 @@ export default function App() {
                     const { text, icon, link } = item;
                     return (
                       <Link to={link}>
-                        <ListItem key={text} disablePadding>
+                        <ListItem key={index} disablePadding>
                           <ListItemButton>
                             {icon && <ListItemIcon sx={{ color: 'white' }}>{icon}</ListItemIcon>}
                             <ListItemText sx={{ color: 'white' }} primary={text} />

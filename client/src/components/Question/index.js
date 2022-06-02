@@ -106,7 +106,7 @@ const Question = (props) => {
                         return (
                             <Button variant="contained" onClick={() => {
                                 handleSubmit(currentQuestion.response[index])
-                            }} style={bstyle}>
+                            }} key={currentQuestion.response[index].text} style={bstyle}>
                                 <h5>{currentQuestion.response[index].text}</h5>
                             </Button>
                         )
