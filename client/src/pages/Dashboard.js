@@ -5,6 +5,7 @@ import QuizList from '../components/QuizList';
 import Chart from '../components/Chart';
 import { Container, makeStyles, Box, Grid } from '@material-ui/core';
 import Auth from '../utils/auth';
+import HelpCard from '../components/Elements/HelpLineCard';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -204,6 +205,7 @@ const Dashboard = () => {
 					</Grid>
 				</div>
 			</div>
+			<HelpCard />
 		</Container>
 	);
 };
