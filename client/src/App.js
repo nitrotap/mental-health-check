@@ -52,7 +52,7 @@ import HelpLineCard from './components/Elements/HelpLineCard';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import Home from './pages/Homepage';
 import QuizSelectForm from './components/QuizSelectForm';
-
+import Therapy from './pages/Therapy';
 import Auth from './utils/auth';
 
 const httpLink = createHttpLink({
@@ -148,6 +148,11 @@ export default function App() {
       text: 'Quiz',
       icon: <PsychologyIcon />,
       link: '/quizselect',
+    },
+    {
+      text: 'Therapy',
+      icon: <PsychologyIcon />,
+      link: '/therapy',
     },
     {
       text: 'Legal',
@@ -295,6 +300,7 @@ export default function App() {
                 <Route path="quizselect" element={<QuizSelectForm />} />
                 <Route path="legal" element={<Legal />} />
                 <Route path='helpCard' element={<HelpLineCard />} />
+                <Route path='therapy' element={<Therapy />} />
               </Routes>
             </Main>
           </Box>

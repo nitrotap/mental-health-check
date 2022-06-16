@@ -10,6 +10,7 @@ const resolvers = {
             if (context.user) {
                 const user = await User.findById({ _id: context.user._id })
                     .populate('quizzes')
+                    .populate('therapyNotes');
                 return user;
             }
 
@@ -166,13 +167,16 @@ const resolvers = {
         removeTherapyNote: async (parent, { therapyNoteId }, context) => {
             if (context.user) {
                 const deletedTherapyNote = await TherapyNote.findByIdAndDelete(
-                    { _id: therapyNoteId },
+                    { _id: therapyNoteId }
                 )
 
-                const updatedUser = await User.findOneAndUpdate(
+                // console.log(therapyNoteId)
+                const updatedUser = await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $pull: { therapyNotes: deletedTherapyNote } }
+                    { $pull: { therapyNotes: therapyNoteId } },
+                    { new: true }
                 )
+                // console.log(updatedUser)
                 return deletedTherapyNote;
             }
             throw new AuthenticationError('You need to be logged in!');

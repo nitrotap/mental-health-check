@@ -74,3 +74,33 @@ export const REMOVE_QUIZSET = gql`
     }
   }
 `
+
+export const ADD_THERAPY_NOTE = gql`
+mutation addTherapyNote($doingQuestion: String!, $feelingQuestion: String!, $nextQuestion: String!, $feelingRating: Int, $helpfulRating: Int, $notes: String) {
+  addTherapyNote(doingQuestion: $doingQuestion, feelingQuestion: $feelingQuestion, nextQuestion: $nextQuestion, feelingRating: $feelingRating, helpfulRating: $helpfulRating, notes: $notes) {
+    _id
+    dateTaken
+    doingQuestion
+    feelingQuestion
+    nextQuestion
+    feelingRating
+    helpfulRating
+    notes
+  }
+}
+`
+
+export const REMOVE_THERAPY_NOTE = gql`
+mutation removeTherapyNote($therapyNoteId: ID) {
+  removeTherapyNote(therapyNoteId: $therapyNoteId) {
+    _id
+    dateTaken
+    doingQuestion
+    feelingQuestion
+    nextQuestion
+    feelingRating
+    helpfulRating
+    notes
+  }
+}
+`

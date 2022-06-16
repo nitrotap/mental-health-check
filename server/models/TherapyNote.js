@@ -10,15 +10,12 @@ const therapyNoteSchema = new Schema(
         },
         doingQuestion: {
             type: String,
-            // default: 'Since the last appointment, I have done the following:',
         },
         feelingQuestion: {
             type: String,
-            // default: 'I am feeling: '
         },
         nextQuestion: {
             type: String,
-            // default: 'Next, I want to do the following: ',
         },
         feelingRating: {
             type: Number
