@@ -25,7 +25,12 @@ const userSchema = new Schema({
     recordings: [{
         type: Schema.Types.ObjectId,
         ref: 'Recording'
-    }]
+    }],
+    therapyNotes: [{
+        type: Schema.Types.ObjectId,
+        ref: 'TherapyNote'
+    }],
+
 
 });
 

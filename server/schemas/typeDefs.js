@@ -33,10 +33,23 @@ const typeDefs = gql`
 
     }
 
+    type TherapyNote {
+        _id: ID
+        dateTaken: String
+        doingQuestion: String
+        feelingQuestion: String
+        nextQuestion: String
+        feelingRating: Int
+        helpfulRating: Int
+        notes: String
+    }
+
+
     type Query {
         user: User
         quizSet(quizSetId: String): QuizSet
         recording(recordingId: String): Recording
+        therapyNote(therapyNoteId: String): TherapyNote
     }
 
     type Mutation {
@@ -48,6 +61,7 @@ const typeDefs = gql`
         removeQuizSet(quizSetId: ID): QuizSet
         addRecording(audio: String!, title: String!): Recording
         removeRecording(recordingId: ID): Recording
+        addTherapyNote(
     }
 `
 //todo queries
