@@ -61,7 +61,8 @@ const typeDefs = gql`
         removeQuizSet(quizSetId: ID): QuizSet
         addRecording(audio: String!, title: String!): Recording
         removeRecording(recordingId: ID): Recording
-        addTherapyNote(
+        addTherapyNote(doingQuestion: String!, feelingQuestion: String!, nextQuestion: String!, feelingRating: Int!, helpfulRating: Int!, notes: String!): TherapyNote
+        removeTherapyNote(therapyNoteId: ID): TherapyNote
     }
 `
 //todo queries
