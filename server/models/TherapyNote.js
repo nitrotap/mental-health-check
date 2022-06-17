@@ -18,10 +18,10 @@ const therapyNoteSchema = new Schema(
             type: String,
         },
         feelingRating: {
-            type: Number
+            type: String
         },
         helpfulRating: {
-            type: Number
+            type: String
         },
         notes: {
             type: String,

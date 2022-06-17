@@ -41,8 +41,8 @@ const typeDefs = gql`
         doingQuestion: String
         feelingQuestion: String
         nextQuestion: String
-        feelingRating: Int
-        helpfulRating: Int
+        feelingRating: String
+        helpfulRating: String
         notes: String
     }
 
@@ -63,7 +63,7 @@ const typeDefs = gql`
         removeQuizSet(quizSetId: ID): QuizSet
         addRecording(audio: String!, title: String!): Recording
         removeRecording(recordingId: ID): Recording
-        addTherapyNote(doingQuestion: String!, feelingQuestion: String!, nextQuestion: String!, feelingRating: Int, helpfulRating: Int, notes: String): TherapyNote
+        addTherapyNote(doingQuestion: String, feelingQuestion: String, nextQuestion: String, feelingRating: String, helpfulRating: String, notes: String): TherapyNote
         removeTherapyNote(therapyNoteId: ID): TherapyNote
     }
 `
