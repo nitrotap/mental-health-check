@@ -11,6 +11,8 @@ const resolvers = {
                 const user = await User.findById({ _id: context.user._id })
                     .populate('quizzes')
                     .populate('therapyNotes');
+
+                console.log(user)
                 return user;
             }
 

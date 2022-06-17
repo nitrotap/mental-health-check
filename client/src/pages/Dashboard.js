@@ -106,6 +106,7 @@ const Dashboard = () => {
 		return <div>Loading...</div>;
 	}
 
+	console.log(user)
 
 
 	let count = [];
