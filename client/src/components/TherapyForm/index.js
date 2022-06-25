@@ -16,7 +16,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import { Rating, Stack } from '@mui/material';
+import { ButtonGroup, CardContent, Rating, Stack } from '@mui/material';
 
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -95,8 +95,8 @@ function TherapyForm(props) {
     }
 
     const handleChangeFeelingRating = (event) => {
-        const { name, value } = event.target;
-        console.log(value)
+        const { name, value } = event;
+        console.log(event)
         setFormState({
             ...formState,
             [name]: value,
@@ -136,6 +136,16 @@ function TherapyForm(props) {
         }
     }
 
+    const handleButtonClick = (event) => {
+        const { name, value } = event.target;
+        console.log(value)
+
+        setFormState({
+            ...formState,
+            [name]: value,
+        });
+    }
+
 
     return (
         <Container>
@@ -152,58 +162,112 @@ function TherapyForm(props) {
                             alignItems: 'center',
                         }}
                     >
-                        <Typography component="h1" variant="h5">
+                        <Typography component="main" sx={{ fontSize: '30pt' }}>
                             Therapy Evaluator
                         </Typography>
+                    </Box>
+                    <Box
+                        sx={{
+                            marginTop: 8,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'left',
+                        }}
+                    >
+
+
+
 
                         <Box component="form" noValidate sx={{ width: '1000px' }}>
-                            <TextField
-                                required
-                                multiline
-                                fullWidth
-                                id="doingQuestion"
-                                label="What have you done since the last appointment?"
-                                name="doingQuestion"
-                                margin="normal"
-                                onChange={handleChangeDoingQuestion}
-                            />
-                            <TextField
-                                required
-                                multiline
-                                fullWidth
-                                id="feelingQuestion"
-                                label="How does that make you feel?"
-                                name="feelingQuestion"
-                                margin="normal"
-                                onChange={handleChangeFeelingQuestion}
-                            />
-                            <TextField
-                                required
-                                multiline
-                                fullWidth
-                                id="nextQuestion"
-                                label="What do you want to do next?"
-                                name="nextQuestion"
-                                margin="normal"
-                                onChange={handleChangeNextQuestion}
-                            />
 
-                            <Typography >
-                                Am I feeling better or worse after my appointment?
-                            </Typography>
-                            <Rating
-                                name="feelingRating"
-                                value={formState.feelingRating}
-                                onChange={handleChangeFeelingRating}
-                            />
-                            <Typography >
-                                Was my therapist helpful today in processing my feelings?
-                            </Typography>
-                            <Rating
-                                name="helpfulRating"
-                                value={formState.helpfulRating}
-                                onChange={handleChangeHelpfulRating}
-                            />
+                            <CardContent>
+                                <Typography component="main" sx={{ fontSize: '20pt' }}>
+                                    What have you been doing since your last appointment?
+                                </Typography>
+                                <TextField
+                                    required
+                                    multiline
+                                    fullWidth
+                                    id="doingQuestion"
+                                    label=""
+                                    name="doingQuestion"
+                                    margin="normal"
+                                    onChange={handleChangeDoingQuestion}
+                                    minRows={3}
+                                    defaultValue={'Since my last appointment, I have done the following: \n 1. \n 2. \n 3. '}
+
+                                />
+                            </CardContent>
+
+                            <CardContent>
+
+                                <Typography component="main" sx={{ fontSize: '20pt' }}>
+                                    How does that make you feel?
+                                </Typography>
+                                <TextField
+                                    required
+                                    multiline
+                                    fullWidth
+                                    id="feelingQuestion"
+                                    name="feelingQuestion"
+                                    margin="normal"
+                                    onChange={handleChangeFeelingQuestion}
+                                    minRows={3}
+                                    defaultValue={'I have been feeling: \n 1. \n 2. \n 3. '}
+
+
+                                />
+                            </CardContent>
+
+                            <CardContent>
+
+                                <Typography component="main" sx={{ fontSize: '20pt' }}>
+                                    What do you want to do next?
+                                </Typography>
+                                <TextField
+                                    required
+                                    multiline
+                                    fullWidth
+                                    id="nextQuestion"
+                                    label=""
+                                    name="nextQuestion"
+                                    margin="normal"
+                                    onChange={handleChangeNextQuestion}
+                                    defaultValue={'In the future, I want to try: '}
+                                    minRows={3}
+
+
+                                />
+                            </CardContent>
+
+                            {/* <CardContent>
+
+
+                                <Typography >
+                                    Am I feeling better or worse after my appointment?
+                                </Typography>
+                                <Rating
+                                    value={formState.feelingRating}
+                                    onChange={handleChangeFeelingRating}
+                                />
+                                {/* <ButtonGroup name="feelingRating">
+                                    <Button onClick={handleButtonClick} >Worse</Button>
+                                    <Button>Slightly Worse</Button>
+                                    <Button>Neutral</Button>
+                                    <Button>Slightly Better</Button>
+                                    <Button>Better</Button>
+                                </ButtonGroup> */}
+                            {/* <Typography >
+                                    Was my therapist helpful today in processing my feelings?
+                                </Typography>
+                                <Rating
+                                    name="helpfulRating"
+                                    value={formState.helpfulRating}
+                                    onChange={handleChangeHelpfulRating}
+                                />
+
+                            </CardContent> */}
+
                             <Button
                                 type="submit"
                                 fullWidth

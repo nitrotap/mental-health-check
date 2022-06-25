@@ -7,7 +7,6 @@ used in Dashboard.js
 returns some type of quiz answers display
 show a single QuizSet
 button to remove a single QuizSet
-assigned to:
 */
 import React from 'react';
 import { Link } from 'react-router-dom';

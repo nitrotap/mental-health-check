@@ -1,11 +1,4 @@
-/* pulls data from server to show quiz results 
-data is user.quizzes[0].quizResults[0]
-
-very complicated query
-
-displays a single SingleQuiz results
-
-depends on SingleQuiz/index.js JSX component*/
+/* */
 
 import React from "react";
 import { useParams } from "react-router-dom";

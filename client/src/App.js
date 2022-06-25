@@ -27,6 +27,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import CreateIcon from '@mui/icons-material/Create';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
+import NotesIcon from '@mui/icons-material/Notes';
 
 //apollo
 import {
@@ -151,7 +152,7 @@ export default function App() {
     },
     {
       text: 'Therapy',
-      icon: <PsychologyIcon />,
+      icon: <NotesIcon />,
       link: '/therapy',
     },
     {
@@ -230,7 +231,7 @@ export default function App() {
                     const { text, icon, link } = item;
                     return (
                       <Link to={link}>
-                        <ListItem key={index} disablePadding>
+                        <ListItem key={item} disablePadding>
                           <ListItemButton>
                             {icon && <ListItemIcon sx={{ color: 'white' }}>{icon}</ListItemIcon>}
                             <ListItemText sx={{ color: 'white' }} primary={text} />
