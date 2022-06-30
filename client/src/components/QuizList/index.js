@@ -143,6 +143,11 @@ const GChart = ({ quiz }) => {
 	);
 }
 
+const dateStamp = (unixTimestamp) => {
+	const a = new Date(unixTimestamp * 1);
+	return a.toLocaleDateString('en-US') + " " + a.toLocaleTimeString('en-US');
+}
+
 const Child = ({ quiz }) => {
 	const classes = useStyles();
 	const { getCollapseProps, getToggleProps, isExpanded } = useCollapse();
@@ -171,7 +176,7 @@ const Child = ({ quiz }) => {
 			<Box className="collapsible">
 				<CardContent className={classes.card}>
 					<Typography className={classes.cardText} variant='body1'  {...getToggleProps()}>
-						{quiz.dateTaken}
+						{dateStamp(quiz.dateTaken)}
 					</Typography>
 					<Box {...getCollapseProps()}>
 						<Box className="content">

@@ -6,6 +6,7 @@ import Chart from '../components/Chart';
 import { Container, makeStyles, Box, Grid } from '@material-ui/core';
 import Auth from '../utils/auth';
 import HelpCard from '../components/Elements/HelpLineCard';
+import { Typography } from '@mui/material';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -196,9 +197,9 @@ const Dashboard = () => {
 
 	return (
 		<Container className={classes.container}>
-			<h2 className="bg-dark text-primary p-3">
+			<Typography variant='h2' color={'white'} style={{ marginBottom: 10 }}>
 				Dashboard
-			</h2>
+			</Typography>
 			{chartHandler(user.quizzes.length)}
 			<Container>
 				<Grid container spacing={3}>
