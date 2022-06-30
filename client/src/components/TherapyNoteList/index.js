@@ -113,7 +113,7 @@ const TherapyNoteList = () => {
         return <div>Loading...</div>;
     }
 
-    console.log(user)
+    // console.log(user)
 
 
 

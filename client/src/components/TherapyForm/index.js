@@ -71,7 +71,7 @@ function TherapyForm(props) {
     const handleChangeFeelingRating = (event, newRating) => {
 
         const name = 'feelingRating';
-        console.log(event.target.innerText)
+        // console.log(event.target.innerText)
         let value = 0;
 
         switch (event.target.innerText) {
@@ -102,13 +102,8 @@ function TherapyForm(props) {
     }
 
     const handleChangeHelpfulRating = (event) => {
-        // const { name, value } = event.target;
-        // console.log(value)
-
-        // todo - turn switch statement into useState https://mui.com/material-ui/react-toggle-button/
-
         const name = 'helpfulRating';
-        console.log(event.target.innerText)
+        // console.log(event.target.innerText)
         let value = 0;
 
         switch (event.target.innerText) {
@@ -140,7 +135,7 @@ function TherapyForm(props) {
 
     const handleFormSubmit = async (event) => {
 
-        console.log(formState);
+        // console.log(formState);
 
 
         try {
@@ -266,11 +261,11 @@ function TherapyForm(props) {
                             Am I feeling better or worse after my appointment?
                         </Typography>
                         <ToggleButtonGroup name="feelingRating" sx={{ display: 'flex', justifyContent: 'center' }}>
-                            <ToggleButton onClick={handleChangeFeelingRating} >Worse</ToggleButton>
-                            <ToggleButton onClick={handleChangeFeelingRating}>Slightly Worse</ToggleButton>
-                            <ToggleButton onClick={handleChangeFeelingRating}>Neutral</ToggleButton>
-                            <ToggleButton onClick={handleChangeFeelingRating}>Slightly Better</ToggleButton>
-                            <ToggleButton onClick={handleChangeFeelingRating}>Better</ToggleButton>
+                            <ToggleButton onClick={handleChangeFeelingRating} value={formState.feelingRating}>Worse</ToggleButton>
+                            <ToggleButton onClick={handleChangeFeelingRating} value={formState.feelingRating}>Slightly Worse</ToggleButton>
+                            <ToggleButton onClick={handleChangeFeelingRating} value={formState.feelingRating}>Neutral</ToggleButton>
+                            <ToggleButton onClick={handleChangeFeelingRating} value={formState.feelingRating}>Slightly Better</ToggleButton>
+                            <ToggleButton onClick={handleChangeFeelingRating} value={formState.feelingRating}>Better</ToggleButton>
                         </ToggleButtonGroup>
                         <Divider sx={{ margin: 3 }}></Divider>
                         <Typography variant='h6' sx={{ display: 'flex', justifyContent: 'center' }}>

@@ -175,20 +175,17 @@ const Child = ({ quiz }) => {
 					</Typography>
 					<Box {...getCollapseProps()}>
 						<Box className="content">
-							{quiz.quizResults.map((quiz) => {
+							{quiz.quizResults.map((quiz, index) => {
 								return (
-									<>
+									<div key={index}>
 										<QuizSet
 											key={quiz.quizTaken}
 											quiz={quiz}
 										/>
 										<GChart key={quiz} quiz={quiz} />
-
-									</>)
-							}
-
-							)}
-							{/* {quiz.quizResults[0].quizAnswer} <br/><br/> */}
+									</div>
+								)
+							})}
 							<Grid container spacing={3} sx={{ display: 'flex', flexDirection: 'row' }}>
 								<Grid item xs={6}>
 									<Button sx={{ backgroundColor: '#18344A', borderColor: 'white', border: 1 }}>
