@@ -160,7 +160,7 @@ const Results = () => {
       <Button sx={{ backgroundColor: '#18344A', borderColor: 'white', border: 1, fontSize: 30, backgroundColor: 'white', marginBottom: 7 }}>
         <Link to='/dashboard' style={{ textDecoration: 'none' }}>
           <span className={classes.buttonTitle}>
-            Return to Dashboard
+            Go to Dashboard
           </span>
         </Link>
       </Button>

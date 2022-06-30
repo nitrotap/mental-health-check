@@ -5,7 +5,7 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 
 const useStyles = makeStyles((theme) => ({
     card: {
-        backgroundColor: '#18344A',
+        backgroundColor: 'white',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
