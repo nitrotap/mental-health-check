@@ -4,10 +4,10 @@ const VERSION = 'version_01';
 const CACHE_NAME = APP_PREFIX + VERSION;
 const urlsToCache = [
   '/',
-  '/index.html',
   '/dashboard',
   '/quizselect',
   '/legal',
+  '/therapy'
 ];
 
 // Install a service worker
@@ -17,6 +17,7 @@ self.addEventListener('install', event => {
     caches.open(CACHE_NAME)
       .then(function (cache) {
         console.log('Opened cache');
+        cache.add('/legal')
         return cache.addAll(urlsToCache);
       })
   );
