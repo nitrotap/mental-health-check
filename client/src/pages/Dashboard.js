@@ -201,7 +201,7 @@ const Dashboard = () => {
 				Dashboard
 			</Typography>
 			{chartHandler(user.quizzes.length)}
-			<Container>
+			<Container style={{ marginBottom: 20 }}>
 				<Grid container spacing={3}>
 					<QuizList quizzes={user.quizzes} />
 				</Grid>

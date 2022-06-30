@@ -230,7 +230,7 @@ export default function App() {
                   {listOne.map((item) => {
                     const { text, icon, link } = item;
                     return (
-                      <Link to={link} key={text}>
+                      <Link to={link} key={text} style={{ textDecoration: 'none' }}>
                         <ListItem disablePadding>
                           <ListItemButton>
                             {icon && <ListItemIcon sx={{ color: 'white' }}>{icon}</ListItemIcon>}
@@ -246,7 +246,7 @@ export default function App() {
                   {listTwo.map((item, index) => {
                     const { text, icon, link } = item;
                     return (
-                      <a href={link} key={index} target="_blank" rel="noreferrer">
+                      <a href={link} key={index} target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
                         <ListItem key={text} disablePadding>
                           <ListItemButton >
                             {icon && <ListItemIcon sx={{ color: 'white' }}>{icon}</ListItemIcon>}
@@ -262,7 +262,7 @@ export default function App() {
                   {listThree.map((item, index) => {
                     const { text, icon, link } = item;
                     return (
-                      <Link to={link} key={index}>
+                      <Link to={link} key={index} style={{ textDecoration: 'none' }}>
                         <ListItem key={text} disablePadding>
                           <ListItemButton>
                             {icon && <ListItemIcon sx={{ color: 'white' }}>{icon}</ListItemIcon>}
@@ -272,7 +272,7 @@ export default function App() {
                       </Link>
                     )
                   })}
-                  <Link to={'/'} onClick={() => Auth.logout()}>
+                  <Link to={'/'} onClick={() => Auth.logout()} style={{ textDecoration: 'none' }}>
                     <ListItem key='logout' disablePadding>
                       <ListItemButton>
                         {<LogoutIcon /> && <ListItemIcon sx={{ color: 'white' }}>{<LogoutIcon />}</ListItemIcon>}

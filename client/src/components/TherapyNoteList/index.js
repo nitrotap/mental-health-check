@@ -142,21 +142,21 @@ const TherapyNoteList = () => {
     return (
         <Container sx={{ backgroundColor: 'white' }}>
             <Box >
-                <h3>Previous Therapy Notes</h3>
+                <Typography variant='h2'>Previous Therapy Notes</Typography>
                 {user.therapyNotes.map((note) => {
                     return (
                         <Card key={note.dateTaken.toString()} sx={{ minWidth: 275 }}>
                             <CardContent>
-                                <Typography variant="h4">{dateStamp(note.dateTaken)}</Typography>
-                                <h5>What have I been doing?</h5>
+                                <Typography variant="h5">{dateStamp(note.dateTaken)}</Typography>
+                                <Typography variant="h6">What have I been doing?</Typography>
                                 <p>{note.doingQuestion}</p>
-                                <h5>How does that make me feel?</h5>
+                                <Typography variant="h6">How does that make me feel?</Typography>
                                 <p>{note.feelingQuestion}</p>
-                                <h5>What would I like to do next?</h5>
+                                <Typography variant="h6">What would I like to do next?</Typography>
                                 <p>{note.nextQuestion}</p>
-                                <h5>How did I feel after my appointment?</h5>
+                                <Typography variant="h6">How did I feel after my appointment?</Typography>
                                 <p>{note.feelingRating}</p>
-                                <h5>How helpful was the therapist?</h5>
+                                <Typography variant="h6">How helpful was the therapist?</Typography>
                                 <p>{note.helpfulRating}</p>
                                 <p>{note.notes}</p>
                             </CardContent>
