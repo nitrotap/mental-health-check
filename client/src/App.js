@@ -227,11 +227,11 @@ export default function App() {
                 </DrawerHeader>
                 <Divider variant='middle' color='white' />
                 <List>
-                  {listOne.map((item, index) => {
+                  {listOne.map((item) => {
                     const { text, icon, link } = item;
                     return (
-                      <Link to={link}>
-                        <ListItem key={item} disablePadding>
+                      <Link to={link} key={text}>
+                        <ListItem disablePadding>
                           <ListItemButton>
                             {icon && <ListItemIcon sx={{ color: 'white' }}>{icon}</ListItemIcon>}
                             <ListItemText sx={{ color: 'white' }} primary={text} />
@@ -246,7 +246,7 @@ export default function App() {
                   {listTwo.map((item, index) => {
                     const { text, icon, link } = item;
                     return (
-                      <a href={link} target="_blank" rel="noreferrer">
+                      <a href={link} key={index} target="_blank" rel="noreferrer">
                         <ListItem key={text} disablePadding>
                           <ListItemButton >
                             {icon && <ListItemIcon sx={{ color: 'white' }}>{icon}</ListItemIcon>}
@@ -262,7 +262,7 @@ export default function App() {
                   {listThree.map((item, index) => {
                     const { text, icon, link } = item;
                     return (
-                      <Link to={link}>
+                      <Link to={link} key={index}>
                         <ListItem key={text} disablePadding>
                           <ListItemButton>
                             {icon && <ListItemIcon sx={{ color: 'white' }}>{icon}</ListItemIcon>}
@@ -291,7 +291,6 @@ export default function App() {
               backgroundColor: '#18344A'
             }}>
               <Routes>
-                {/* TODO finish react routing elements */}
                 <Route path="/" element={<Home />} />
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="signup" element={<Signup />} />
