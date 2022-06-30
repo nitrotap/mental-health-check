@@ -2,7 +2,6 @@
 
 add new therapy note
 
-
 see all therapy notes
 
 */
@@ -32,22 +31,8 @@ import Copyright from '../components/Elements/Copyright';
 
 import { Link } from 'react-router-dom';
 import { Input } from '@mui/material';
-import { DangerousChangeType } from 'graphql';
 import TherapyNoteList from '../components/TherapyNoteList';
 import TherapyForm from '../components/TherapyForm';
-
-const useStyles = makeStyles((theme) => ({
-    container: {
-        backgroundColor: '#18344A',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-        padding: '0, 10px',
-    },
-}));
-const theme = createTheme();
 
 
 function Therapy(props) {
@@ -60,13 +45,8 @@ function Therapy(props) {
 
     return (
         <Container>
-            <ThemeProvider>
-                <TherapyForm />
-                <TherapyNoteList />
-
-
-            </ThemeProvider>
-
+            <TherapyForm />
+            <TherapyNoteList />
         </Container >
     );
 }

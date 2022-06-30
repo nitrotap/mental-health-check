@@ -187,6 +187,7 @@ const Dashboard = () => {
 					backgroundColor: 'white',
 					position: 'relative',
 					width: '30vw',
+					marginBottom: 20
 				}}>
 					<Chart count={count} quizCount={quizCount} />
 				</Box>)
@@ -199,13 +200,11 @@ const Dashboard = () => {
 				Dashboard
 			</h2>
 			{chartHandler(user.quizzes.length)}
-			<div className='flex-row text-primary justify-space-between'>
-				<div className='col-12 col-lg-8 mb-3'>
-					<Grid container spacing={3} >
-						<QuizList quizzes={user.quizzes} />
-					</Grid>
-				</div>
-			</div>
+			<Container>
+				<Grid container spacing={3}>
+					<QuizList quizzes={user.quizzes} />
+				</Grid>
+			</Container>
 			<HelpCard />
 		</Container>
 	);

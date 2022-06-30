@@ -2,9 +2,6 @@
 
 add new therapy note
 
-
-see all therapy notes
-
 */
 import React, { useState } from 'react';
 // import { Link } from 'react-router-dom';
@@ -16,7 +13,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import { ButtonGroup, CardContent, Rating, Stack } from '@mui/material';
+import { ButtonGroup, Card, CardContent, Divider, Rating, Stack, ToggleButtonGroup, ToggleButton } from '@mui/material';
 
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -33,23 +30,8 @@ import { Link } from 'react-router-dom';
 import { Input } from '@mui/material';
 
 
-const useStyles = makeStyles((theme) => ({
-    container: {
-        backgroundColor: '#18344A',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-        padding: '0, 10px',
-    },
-}));
-const theme = createTheme();
-
-
 function TherapyForm(props) {
 
-    const classes = useStyles();
     const [formState, setFormState] = useState({
         doingQuestion: 'Since the last appointment, I have done the following:',
         feelingQuestion: 'I am feeling:',
@@ -58,14 +40,6 @@ function TherapyForm(props) {
         helpfulRating: '',
         notes: ''
     });
-
-
-    // const [doingQuestionState, setDoingQuestionState] = useState('');
-    // const [feelingQuestionState, setFeelingQuestionState] = useState('');
-    // const [nextQuestionState, setNextQuestionState] = useState('');
-    // const [feelingRatingState, setFeelingRatingState] = useState(3);
-    // const [helpfulRatingState, setHelpfulRatingState] = useState(3);
-    // const [notesState, setNotesState] = useState(false);
 
     const [addTherapyNote] = useMutation(ADD_THERAPY_NOTE);
 
@@ -94,9 +68,33 @@ function TherapyForm(props) {
         });
     }
 
-    const handleChangeFeelingRating = (event) => {
-        const { name, value } = event;
-        console.log(event)
+    const handleChangeFeelingRating = (event, newRating) => {
+
+        const name = 'feelingRating';
+        console.log(event.target.innerText)
+        let value = 0;
+
+        switch (event.target.innerText) {
+            case 'WORSE':
+                value = '1'
+                break;
+            case 'SLIGHTLY WORSE':
+                value = '2'
+                break;
+            case 'NEUTRAL':
+                value = '3'
+                break;
+            case 'SLIGHTLY BETTER':
+                value = '4'
+                break;
+            case 'BETTER':
+                value = '5'
+                break;
+            default:
+                value = ''
+                break;
+        }
+
         setFormState({
             ...formState,
             [name]: value,
@@ -104,8 +102,35 @@ function TherapyForm(props) {
     }
 
     const handleChangeHelpfulRating = (event) => {
-        const { name, value } = event.target;
-        console.log(value)
+        // const { name, value } = event.target;
+        // console.log(value)
+
+        // todo - turn switch statement into useState https://mui.com/material-ui/react-toggle-button/
+
+        const name = 'helpfulRating';
+        console.log(event.target.innerText)
+        let value = 0;
+
+        switch (event.target.innerText) {
+            case 'NOT HELPFUL':
+                value = '1'
+                break;
+            case 'SLIGHTLY HELPFUL':
+                value = '2'
+                break;
+            case 'HELPFUL':
+                value = '3'
+                break;
+            case 'VERY HELPFUL':
+                value = '4'
+                break;
+            case 'EXTREMELY HELPFUL':
+                value = '5'
+                break;
+            default:
+                value = ''
+                break;
+        }
         setFormState({
             ...formState,
             [name]: value,
@@ -114,7 +139,6 @@ function TherapyForm(props) {
 
 
     const handleFormSubmit = async (event) => {
-        event.preventDefault();
 
         console.log(formState);
 
@@ -148,135 +172,129 @@ function TherapyForm(props) {
 
 
     return (
-        <Container>
-            <ThemeProvider theme={theme}>
-
-                <Container component="main" sx={{
-                    backgroundColor: 'white', marginTop: '100px', marginBottom: '250px',
-                }}>
-                    <Box
-                        sx={{
-                            marginTop: 8,
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                        }}
-                    >
-                        <Typography component="main" sx={{ fontSize: '30pt' }}>
-                            Therapy Evaluator
+        <Container component="main" sx={{
+            backgroundColor: 'white', marginTop: '100px', marginBottom: '250px',
+        }}>
+            <Box
+                sx={{
+                    marginTop: 8,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}
+            >
+                <Typography component="main" sx={{ fontSize: '30pt' }}>
+                    Therapy Notes
+                </Typography>
+            </Box>
+            <Box
+                sx={{
+                    marginTop: 8,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'left',
+                }}
+            >
+                <Box component="form" noValidate sx={{ width: '1000px' }}>
+                    <CardContent>
+                        <Typography component="main" sx={{ fontSize: '20pt' }}>
+                            What have you been doing since your last appointment?
                         </Typography>
-                    </Box>
-                    <Box
-                        sx={{
-                            marginTop: 8,
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'left',
-                        }}
+                        <TextField
+                            required
+                            multiline
+                            fullWidth
+                            id="doingQuestion"
+                            label=""
+                            name="doingQuestion"
+                            margin="normal"
+                            onChange={handleChangeDoingQuestion}
+                            minRows={3}
+                            defaultValue={'Since my last appointment, I have done the following: \n 1. \n 2. \n 3. '}
+
+                        />
+                    </CardContent>
+                    <Divider sx={{ margin: 3 }}></Divider>
+
+
+                    <CardContent>
+
+                        <Typography component="main" sx={{ fontSize: '20pt' }}>
+                            How does that make you feel?
+                        </Typography>
+                        <TextField
+                            required
+                            multiline
+                            fullWidth
+                            id="feelingQuestion"
+                            name="feelingQuestion"
+                            margin="normal"
+                            onChange={handleChangeFeelingQuestion}
+                            minRows={3}
+                            defaultValue={'I have been feeling: \n 1. \n 2. \n 3. '}
+
+
+                        />
+                    </CardContent>
+                    <Divider sx={{ margin: 3 }}></Divider>
+
+
+                    <CardContent>
+
+                        <Typography component="main" sx={{ fontSize: '20pt' }}>
+                            What do you want to do next?
+                        </Typography>
+                        <TextField
+                            required
+                            multiline
+                            fullWidth
+                            id="nextQuestion"
+                            label=""
+                            name="nextQuestion"
+                            margin="normal"
+                            onChange={handleChangeNextQuestion}
+                            defaultValue={'In the future, I want to try: '}
+                            minRows={3}
+
+
+                        />
+                    </CardContent>
+                    <Divider sx={{ margin: 3 }}></Divider>
+
+                    <CardContent>
+                        <Typography variant='h6' sx={{ display: 'flex', justifyContent: 'center' }}>
+                            Am I feeling better or worse after my appointment?
+                        </Typography>
+                        <ToggleButtonGroup name="feelingRating" sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <ToggleButton onClick={handleChangeFeelingRating} >Worse</ToggleButton>
+                            <ToggleButton onClick={handleChangeFeelingRating}>Slightly Worse</ToggleButton>
+                            <ToggleButton onClick={handleChangeFeelingRating}>Neutral</ToggleButton>
+                            <ToggleButton onClick={handleChangeFeelingRating}>Slightly Better</ToggleButton>
+                            <ToggleButton onClick={handleChangeFeelingRating}>Better</ToggleButton>
+                        </ToggleButtonGroup>
+                        <Divider sx={{ margin: 3 }}></Divider>
+                        <Typography variant='h6' sx={{ display: 'flex', justifyContent: 'center' }}>
+                            How helpful was my therapist in helping me process my feelings?
+                        </Typography>
+                        <ToggleButtonGroup name="helpfulRating" sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <ToggleButton onClick={handleChangeHelpfulRating} value={formState.helpfulRating}>Not Helpful</ToggleButton>
+                            <ToggleButton onClick={handleChangeHelpfulRating} value={formState.helpfulRating}>Slightly Helpful</ToggleButton>
+                            <ToggleButton onClick={handleChangeHelpfulRating} value={formState.helpfulRating}>Helpful</ToggleButton>
+                            <ToggleButton onClick={handleChangeHelpfulRating} value={formState.helpfulRating}>Very Helpful</ToggleButton>
+                            <ToggleButton onClick={handleChangeHelpfulRating} value={formState.helpfulRating}>Extremely Helpful</ToggleButton>
+                        </ToggleButtonGroup>
+
+                    </CardContent>
+
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        sx={{ mt: 3, mb: 2 }}
+                        onClick={handleFormSubmit}
                     >
-
-
-
-
-                        <Box component="form" noValidate sx={{ width: '1000px' }}>
-
-                            <CardContent>
-                                <Typography component="main" sx={{ fontSize: '20pt' }}>
-                                    What have you been doing since your last appointment?
-                                </Typography>
-                                <TextField
-                                    required
-                                    multiline
-                                    fullWidth
-                                    id="doingQuestion"
-                                    label=""
-                                    name="doingQuestion"
-                                    margin="normal"
-                                    onChange={handleChangeDoingQuestion}
-                                    minRows={3}
-                                    defaultValue={'Since my last appointment, I have done the following: \n 1. \n 2. \n 3. '}
-
-                                />
-                            </CardContent>
-
-                            <CardContent>
-
-                                <Typography component="main" sx={{ fontSize: '20pt' }}>
-                                    How does that make you feel?
-                                </Typography>
-                                <TextField
-                                    required
-                                    multiline
-                                    fullWidth
-                                    id="feelingQuestion"
-                                    name="feelingQuestion"
-                                    margin="normal"
-                                    onChange={handleChangeFeelingQuestion}
-                                    minRows={3}
-                                    defaultValue={'I have been feeling: \n 1. \n 2. \n 3. '}
-
-
-                                />
-                            </CardContent>
-
-                            <CardContent>
-
-                                <Typography component="main" sx={{ fontSize: '20pt' }}>
-                                    What do you want to do next?
-                                </Typography>
-                                <TextField
-                                    required
-                                    multiline
-                                    fullWidth
-                                    id="nextQuestion"
-                                    label=""
-                                    name="nextQuestion"
-                                    margin="normal"
-                                    onChange={handleChangeNextQuestion}
-                                    defaultValue={'In the future, I want to try: '}
-                                    minRows={3}
-
-
-                                />
-                            </CardContent>
-
-                            {/* <CardContent>
-
-
-                                <Typography >
-                                    Am I feeling better or worse after my appointment?
-                                </Typography>
-                                <Rating
-                                    value={formState.feelingRating}
-                                    onChange={handleChangeFeelingRating}
-                                />
-                                {/* <ButtonGroup name="feelingRating">
-                                    <Button onClick={handleButtonClick} >Worse</Button>
-                                    <Button>Slightly Worse</Button>
-                                    <Button>Neutral</Button>
-                                    <Button>Slightly Better</Button>
-                                    <Button>Better</Button>
-                                </ButtonGroup> */}
-                            {/* <Typography >
-                                    Was my therapist helpful today in processing my feelings?
-                                </Typography>
-                                <Rating
-                                    name="helpfulRating"
-                                    value={formState.helpfulRating}
-                                    onChange={handleChangeHelpfulRating}
-                                />
-
-                            </CardContent> */}
-
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                sx={{ mt: 3, mb: 2 }}
-                                onClick={handleFormSubmit}
-                            >
-                                Save Note
-                            </Button>
+                        Save Note
+                    </Button>
 
 
 
@@ -284,16 +302,13 @@ function TherapyForm(props) {
 
 
 
-                        </Box>
+                </Box>
 
-                    </Box>
+            </Box>
 
 
-                </Container>
+        </Container>
 
-            </ThemeProvider>
-
-        </Container >
     );
 }
 

@@ -136,8 +136,9 @@ const GChart = ({ quiz }) => {
 				percent={rating}
 				hideText={true}
 				needleColor='white'
+				colors={["#FF0000", "#00FF00"]}
 			/>
-			<span className={classes.text}>Results: {quiz.quizAnswer}</span>
+			<Typography style={{ color: 'white', marginBottom: 10 }}>Results: {quiz.quizAnswer}</Typography>
 		</section >
 	);
 }
@@ -166,7 +167,7 @@ const Child = ({ quiz }) => {
 	}
 
 	return (
-		<Grid item xs={4} >
+		<Grid item xs={12} md={6} lg={4}>
 			<Box className="collapsible">
 				<CardContent className={classes.card}>
 					<Typography className={classes.cardText} variant='body1'  {...getToggleProps()}>
@@ -190,12 +191,17 @@ const Child = ({ quiz }) => {
 							{/* {quiz.quizResults[0].quizAnswer} <br/><br/> */}
 							<Grid container spacing={3} sx={{ display: 'flex', flexDirection: 'row' }}>
 								<Grid item xs={6}>
-									<Button className={classes.button}>
-										<Link to={addr}>See the results Page</Link>
+									<Button sx={{ backgroundColor: '#18344A', borderColor: 'white', border: 1 }}>
+										<Link to={addr}>
+											<span className={classes.buttonTitle}>
+												See the results page
+											</span>
+
+										</Link>
 									</Button>
 								</Grid>
 								<Grid item xs={6}>
-									<Button className={classes.button} onClick={handleDelete}>
+									<Button sx={{ backgroundColor: '#18344A', borderColor: 'white', border: 1 }} onClick={handleDelete}>
 										<span className={classes.buttonTitle}>Delete this Quiz Set</span>
 									</Button>
 								</Grid>

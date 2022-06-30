@@ -1,3 +1,6 @@
+/*eslint no-undef: "error"*/
+/*eslint-env node*/
+
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
@@ -21,7 +24,7 @@ const startServer = async () => {
     console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
 };
 
-startServer()
+startServer();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
