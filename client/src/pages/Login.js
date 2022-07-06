@@ -19,19 +19,19 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {makeStyles} from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
 
 import Copyright from '../components/Elements/Copyright';
 
 const useStyles = makeStyles((theme) => ({
   container: {
-      backgroundColor: '#18344A',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: '100vh',
-      padding: '0, 10px',
+    backgroundColor: '#18344A',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+    padding: '0, 10px',
   },
 }));
 
@@ -45,6 +45,8 @@ function Login(props) {
   const [passwordState, setPasswordState] = useState(false);
   const [pwHelper, setPwHelper] = useState('');
   const [emailHelper, setEmailHelper] = useState('');
+  const [checked, setChecked] = useState(false);
+
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -147,6 +149,8 @@ function Login(props) {
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
+                checked={checked}
+                onChange={() => setChecked(!checked)}
               />
               <Button
                 type="submit"

@@ -133,16 +133,20 @@ function Homepage() {
                         </CardContent>
                         <CardActions className={classes.cardButtons}>
                             {/* change buttons to reactroutes */}
-                            <Link to='/quizselect'>
-                                <Button className={classes.button} >
-                                    <h5 className={classes.buttonTitle}>Take the quiz</h5>
-                                </Button>
-                            </Link>
-                            <Link to='/signup'>
-                                <Button className={classes.button} >
-                                    <h5 className={classes.buttonTitle}>Create An Account</h5>
-                                </Button>
-                            </Link>
+                            <Button sx={{ backgroundColor: '#18344A', borderColor: 'white', border: 1, fontSize: 30 }}>
+                                <Link to='/quizselect' style={{ textDecoration: 'none' }} >
+                                    <span className={classes.buttonTitle} >
+                                        Take the quiz
+                                    </span>
+                                </Link>
+                            </Button>
+                            <Button sx={{ backgroundColor: '#18344A', borderColor: 'white', border: 1, fontSize: 30 }}>
+                                <Link to='/signup' style={{ textDecoration: 'none' }}>
+                                    <span className={classes.buttonTitle}>
+                                        Create An Account
+                                    </span>
+                                </Link>
+                            </Button>
                         </CardActions>
                     </Box>
                 </Grid>

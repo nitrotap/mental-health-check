@@ -27,6 +27,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import CreateIcon from '@mui/icons-material/Create';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
+import NotesIcon from '@mui/icons-material/Notes';
 
 //apollo
 import {
@@ -52,7 +53,7 @@ import HelpLineCard from './components/Elements/HelpLineCard';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import Home from './pages/Homepage';
 import QuizSelectForm from './components/QuizSelectForm';
-
+import Therapy from './pages/Therapy';
 import Auth from './utils/auth';
 
 const httpLink = createHttpLink({
@@ -150,6 +151,11 @@ export default function App() {
       link: '/quizselect',
     },
     {
+      text: 'Therapy',
+      icon: <NotesIcon />,
+      link: '/therapy',
+    },
+    {
       text: 'Legal',
       icon: <LightbulbIcon />,
       link: '/legal',
@@ -221,11 +227,11 @@ export default function App() {
                 </DrawerHeader>
                 <Divider variant='middle' color='white' />
                 <List>
-                  {listOne.map((item, index) => {
+                  {listOne.map((item) => {
                     const { text, icon, link } = item;
                     return (
-                      <Link to={link}>
-                        <ListItem key={index} disablePadding>
+                      <Link to={link} key={text} style={{ textDecoration: 'none' }}>
+                        <ListItem disablePadding>
                           <ListItemButton>
                             {icon && <ListItemIcon sx={{ color: 'white' }}>{icon}</ListItemIcon>}
                             <ListItemText sx={{ color: 'white' }} primary={text} />
@@ -240,7 +246,7 @@ export default function App() {
                   {listTwo.map((item, index) => {
                     const { text, icon, link } = item;
                     return (
-                      <a href={link} target="_blank" rel="noreferrer">
+                      <a href={link} key={index} target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
                         <ListItem key={text} disablePadding>
                           <ListItemButton >
                             {icon && <ListItemIcon sx={{ color: 'white' }}>{icon}</ListItemIcon>}
@@ -256,7 +262,7 @@ export default function App() {
                   {listThree.map((item, index) => {
                     const { text, icon, link } = item;
                     return (
-                      <Link to={link}>
+                      <Link to={link} key={index} style={{ textDecoration: 'none' }}>
                         <ListItem key={text} disablePadding>
                           <ListItemButton>
                             {icon && <ListItemIcon sx={{ color: 'white' }}>{icon}</ListItemIcon>}
@@ -266,7 +272,7 @@ export default function App() {
                       </Link>
                     )
                   })}
-                  <Link to={'/'} onClick={() => Auth.logout()}>
+                  <Link to={'/'} onClick={() => Auth.logout()} style={{ textDecoration: 'none' }}>
                     <ListItem key='logout' disablePadding>
                       <ListItemButton>
                         {<LogoutIcon /> && <ListItemIcon sx={{ color: 'white' }}>{<LogoutIcon />}</ListItemIcon>}
@@ -285,7 +291,6 @@ export default function App() {
               backgroundColor: '#18344A'
             }}>
               <Routes>
-                {/* TODO finish react routing elements */}
                 <Route path="/" element={<Home />} />
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="signup" element={<Signup />} />
@@ -295,6 +300,7 @@ export default function App() {
                 <Route path="quizselect" element={<QuizSelectForm />} />
                 <Route path="legal" element={<Legal />} />
                 <Route path='helpCard' element={<HelpLineCard />} />
+                <Route path='therapy' element={<Therapy />} />
               </Routes>
             </Main>
           </Box>

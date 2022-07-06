@@ -2,8 +2,6 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
-const QuizSet = require('./QuizSet');
-const Recording = require('./Recording')
 
 
 const userSchema = new Schema({
@@ -25,7 +23,12 @@ const userSchema = new Schema({
     recordings: [{
         type: Schema.Types.ObjectId,
         ref: 'Recording'
-    }]
+    }],
+    therapyNotes: [{
+        type: Schema.Types.ObjectId,
+        ref: 'TherapyNote'
+    }],
+
 
 });
 

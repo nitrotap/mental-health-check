@@ -6,6 +6,7 @@ import Chart from '../components/Chart';
 import { Container, makeStyles, Box, Grid } from '@material-ui/core';
 import Auth from '../utils/auth';
 import HelpCard from '../components/Elements/HelpLineCard';
+import { Typography } from '@mui/material';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -106,6 +107,7 @@ const Dashboard = () => {
 		return <div>Loading...</div>;
 	}
 
+	// console.log(user)
 
 
 	let count = [];
@@ -186,6 +188,7 @@ const Dashboard = () => {
 					backgroundColor: 'white',
 					position: 'relative',
 					width: '30vw',
+					marginBottom: 20
 				}}>
 					<Chart count={count} quizCount={quizCount} />
 				</Box>)
@@ -194,17 +197,15 @@ const Dashboard = () => {
 
 	return (
 		<Container className={classes.container}>
-			<h2 className="bg-dark text-primary p-3">
+			<Typography variant='h2' color={'white'} style={{ marginBottom: 10 }}>
 				Dashboard
-			</h2>
+			</Typography>
 			{chartHandler(user.quizzes.length)}
-			<div className='flex-row text-primary justify-space-between'>
-				<div className='col-12 col-lg-8 mb-3'>
-					<Grid container spacing={3} >
-						<QuizList quizzes={user.quizzes} />
-					</Grid>
-				</div>
-			</div>
+			<Container style={{ marginBottom: 20 }}>
+				<Grid container spacing={3}>
+					<QuizList quizzes={user.quizzes} />
+				</Grid>
+			</Container>
 			<HelpCard />
 		</Container>
 	);

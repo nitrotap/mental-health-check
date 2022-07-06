@@ -6,7 +6,10 @@ A mental health quiz app that helps users track their moods using standardized s
 
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
- ![badmath](https://img.shields.io/github/languages/top/nitrotap/mental-health-check)   
+![badmath](https://img.shields.io/github/languages/top/nitrotap/mental-health-check)   
+![badmath](https://img.shields.io/github/issues/nitrotap/mental-health-check) 
+![badmath](https://img.shields.io/github/forks/nitrotap/mental-health-check)   
+![badmath](https://img.shields.io/github/stars/nitrotap/mental-health-check)
 
 https://mh-check.herokuapp.com/   
 

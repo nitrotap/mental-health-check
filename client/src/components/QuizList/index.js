@@ -7,7 +7,6 @@ used in Dashboard.js
 returns some type of quiz answers display
 show a single QuizSet
 button to remove a single QuizSet
-assigned to:
 */
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -137,10 +136,16 @@ const GChart = ({ quiz }) => {
 				percent={rating}
 				hideText={true}
 				needleColor='white'
+				colors={["#FF0000", "#00FF00"]}
 			/>
-			<span className={classes.text}>Results: {quiz.quizAnswer}</span>
+			<Typography style={{ color: 'white', marginBottom: 10 }}>Results: {quiz.quizAnswer}</Typography>
 		</section >
 	);
+}
+
+const dateStamp = (unixTimestamp) => {
+	const a = new Date(unixTimestamp * 1);
+	return a.toLocaleDateString('en-US') + " " + a.toLocaleTimeString('en-US');
 }
 
 const Child = ({ quiz }) => {
@@ -167,36 +172,38 @@ const Child = ({ quiz }) => {
 	}
 
 	return (
-		<Grid item xs={4} >
+		<Grid item xs={12} md={6} lg={4}>
 			<Box className="collapsible">
 				<CardContent className={classes.card}>
 					<Typography className={classes.cardText} variant='body1'  {...getToggleProps()}>
-						{quiz.dateTaken}
+						{dateStamp(quiz.dateTaken)}
 					</Typography>
 					<Box {...getCollapseProps()}>
 						<Box className="content">
-							{quiz.quizResults.map((quiz) => {
+							{quiz.quizResults.map((quiz, index) => {
 								return (
-									<>
+									<div key={index}>
 										<QuizSet
 											key={quiz.quizTaken}
 											quiz={quiz}
 										/>
 										<GChart key={quiz} quiz={quiz} />
-
-									</>)
-							}
-
-							)}
-							{/* {quiz.quizResults[0].quizAnswer} <br/><br/> */}
+									</div>
+								)
+							})}
 							<Grid container spacing={3} sx={{ display: 'flex', flexDirection: 'row' }}>
 								<Grid item xs={6}>
-									<Button className={classes.button}>
-										<Link to={addr}>See the results Page</Link>
+									<Button sx={{ backgroundColor: '#18344A', borderColor: 'white', border: 1 }}>
+										<Link to={addr}>
+											<span className={classes.buttonTitle}>
+												See the results page
+											</span>
+
+										</Link>
 									</Button>
 								</Grid>
 								<Grid item xs={6}>
-									<Button className={classes.button} onClick={handleDelete}>
+									<Button sx={{ backgroundColor: '#18344A', borderColor: 'white', border: 1 }} onClick={handleDelete}>
 										<span className={classes.buttonTitle}>Delete this Quiz Set</span>
 									</Button>
 								</Grid>

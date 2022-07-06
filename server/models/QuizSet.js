@@ -8,8 +8,7 @@ const quizSetSchema = new Schema(
     {
         dateTaken: {
             type: Date,
-            default: Date.now,
-            get: timestamp => dateFormat(timestamp)
+            default: Date.now
         },
         // for each quiz taken, have a result
         // quizzes taken on this record

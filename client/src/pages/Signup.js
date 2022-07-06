@@ -44,6 +44,8 @@ function Signup(props) {
   const [passwordState, setPasswordState] = useState(false);
   const [pwHelper, setPwHelper] = useState('');
   const [emailHelper, setEmailHelper] = useState('');
+  const [checked, setChecked] = useState(false);
+
 
 
   const handleFormSubmit = async (event) => {
@@ -151,14 +153,15 @@ function Signup(props) {
               <FormControlLabel
                 control={<Checkbox value="legal" color="primary" />}
                 label="I confirm that I have read the legal documents and agree to the terms."
-                checked={true}
+                checked={checked}
+                onChange={() => setChecked(!checked)}
               />
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                disabled={!(emailState && passwordState)}
+                disabled={!(emailState && passwordState && checked)}
               >
                 Sign Up
               </Button>

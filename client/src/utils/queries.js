@@ -40,3 +40,20 @@ export const QUERY_QUIZSET = gql`
         }
     }
 `
+
+export const QUERY_USER_THERAPY_NOTES = gql`
+query Notes {
+    user {
+      therapyNotes {
+        _id
+        dateTaken
+        doingQuestion
+        feelingQuestion
+        nextQuestion
+        feelingRating
+        helpfulRating
+        notes
+      }
+    }
+  }
+`;

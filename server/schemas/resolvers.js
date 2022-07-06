@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, QuizSet, QuizResult } = require('../models');
+const { User, QuizSet, QuizResult, TherapyNote } = require('../models');
 const Recording = require('../models/Recording');
 const { signToken } = require('../utils/auth');
 
@@ -10,6 +10,9 @@ const resolvers = {
             if (context.user) {
                 const user = await User.findById({ _id: context.user._id })
                     .populate('quizzes')
+                    .populate('therapyNotes');
+
+                console.log(user)
                 return user;
             }
 
@@ -21,6 +24,14 @@ const resolvers = {
                     { _id: quizSetId }
                 )
                 return quizSet
+            }
+        },
+        therapyNote: async (parent, { therapyNoteId }, context) => {
+            if (context.user) {
+                const therapyNote = await TherapyNote.findById(
+                    { _id: therapyNoteId }
+                )
+                return therapyNote
             }
         }
     },
@@ -138,6 +149,40 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
         },
+        addTherapyNote: async (parent, { doingQuestion, feelingQuestion, nextQuestion, feelingRating, helpfulRating, notes }, context) => {
+            if (context.user) {
+                const newTherapyNote = await TherapyNote.create({
+                    doingQuestion, feelingQuestion, nextQuestion, feelingRating, helpfulRating, notes
+                });
+
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { therapyNotes: newTherapyNote } },
+                    { new: true }
+
+                )
+
+                return newTherapyNote;
+            }
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        removeTherapyNote: async (parent, { therapyNoteId }, context) => {
+            if (context.user) {
+                const deletedTherapyNote = await TherapyNote.findByIdAndDelete(
+                    { _id: therapyNoteId }
+                )
+
+                // console.log(therapyNoteId)
+                const updatedUser = await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { therapyNotes: therapyNoteId } },
+                    { new: true }
+                )
+                // console.log(updatedUser)
+                return deletedTherapyNote;
+            }
+            throw new AuthenticationError('You need to be logged in!');
+        }
     }
 }
 
