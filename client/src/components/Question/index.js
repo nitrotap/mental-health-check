@@ -75,13 +75,14 @@ const Question = (props) => {
         },
         button: {
             color: '#4798D6',
-            fontSize: '1rem',
+            fontSize: '2rem',
             width: '100%',
         },
     }));
 
     const bstyle = {
         margin: '10px',
+        width: '100%',
     }
     const classes = useStyles();
     return (
@@ -96,7 +97,7 @@ const Question = (props) => {
                             <Button variant="contained" onClick={() => {
                                 handleSubmit(currentQuestion.response[index])
                             }} key={currentQuestion.response[index].text} style={bstyle}>
-                                <h5>{currentQuestion.response[index].text}</h5>
+                                <h2>{currentQuestion.response[index].text}</h2>
                             </Button>
                         )
                     })}
