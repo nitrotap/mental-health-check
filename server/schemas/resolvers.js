@@ -19,12 +19,12 @@ const resolvers = {
             throw new AuthenticationError('Not logged in');
         },
         quizSet: async (parent, { quizSetId }, context) => {
-            if (context.user) {
-                const quizSet = await QuizSet.findById(
-                    { _id: quizSetId }
-                )
-                return quizSet
-            }
+            // if (context.user) {
+            const quizSet = await QuizSet.findById(
+                { _id: quizSetId }
+            )
+            return quizSet
+            // }
         },
         therapyNote: async (parent, { therapyNoteId }, context) => {
             if (context.user) {
@@ -68,35 +68,36 @@ const resolvers = {
         },
         // creates a single quiz set
         addQuizSet: async (parent, args, context) => {
-            if (context.user) {
+            try {
                 // creates a single quiz
                 const quizSet = await QuizSet.create({
                     // null uses context
                     args
                 });
-                // add quizSet to user
-                const updatedUser = await User.findOneAndUpdate(
-                    { _id: context.user._id },
-                    { $addToSet: { quizzes: quizSet } },
-                    { new: true }
-
-                )
+                if (context.user) {
+                    // add quizSet to user
+                    const updatedUser = await User.findOneAndUpdate(
+                        { _id: context.user._id },
+                        { $addToSet: { quizzes: quizSet } },
+                        { new: true }
+                    )
+                }
                 return quizSet
+            } catch (err) {
+                throw new AuthenticationError('Not logged in');
             }
-
-            throw new AuthenticationError('Not logged in');
         },
         // creates new record for quiz taken
         addQuizResult: async (parent, { quizSetId, quizTaken, quizAnswer }, context) => {
-            if (context.user) {
-                // create new quiz result
-                const updatedQuizSet = await QuizSet.findOneAndUpdate(
-                    { _id: quizSetId },
-                    { $push: { quizResults: { quizTaken, quizAnswer } } },
-                    { new: true }
-                );
-                return updatedQuizSet;
-            }
+            // if (context.user) {
+            // create new quiz result
+            const updatedQuizSet = await QuizSet.findOneAndUpdate(
+                { _id: quizSetId },
+                { $push: { quizResults: { quizTaken, quizAnswer } } },
+                { new: true }
+            );
+            return updatedQuizSet;
+            // }
 
             throw new AuthenticationError('You need to be logged in!');
         },

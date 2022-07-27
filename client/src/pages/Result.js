@@ -152,6 +152,8 @@ const Results = () => {
     return <div>Loading...</div>;
   }
 
+  console.log(quiz.quizResults)
+
   return (
     <Container className={classes.container}>
       <h1 className={classes.title}>Here are your Results:</h1>
@@ -160,9 +162,9 @@ const Results = () => {
       </div>
 
       <Button sx={{ borderColor: 'white', border: 1, fontSize: 30, backgroundColor: '#255070', marginBottom: 7 }}>
-        <Link to='/dashboard' style={{ textDecoration: 'none', color: 'white', }}>
+        <Link to='/quizselect' style={{ textDecoration: 'none', color: 'white', }}>
           <span className={classes.buttonTitle}>
-            Go to Dashboard
+            Take Another Quiz
           </span>
         </Link>
       </Button>
