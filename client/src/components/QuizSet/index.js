@@ -54,7 +54,8 @@ const QuizSet = (props) => {
                 const { data } = await addQuizSet()
                 setCurrentQuizSetId(data.addQuizSet._id)
             } catch (e) {
-                window.location.replace('/login')
+                // window.location.replace('/login')
+                window.alert('You must be logged in to save a quiz')
             }
         }
         startQuiz()

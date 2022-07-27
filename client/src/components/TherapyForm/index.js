@@ -254,7 +254,7 @@ function TherapyForm(props) {
 
                         />
                     </CardContent>
-                    <Divider sx={{ margin: 3 }}></Divider>
+                    {/* <Divider sx={{ margin: 3 }}></Divider>
 
                     <CardContent>
                         <Typography variant='h6' sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -279,7 +279,7 @@ function TherapyForm(props) {
                             <ToggleButton onClick={handleChangeHelpfulRating} value={formState.helpfulRating}>Extremely Helpful</ToggleButton>
                         </ToggleButtonGroup>
 
-                    </CardContent>
+                    </CardContent> */}
 
                     <Button
                         type="submit"
@@ -290,12 +290,6 @@ function TherapyForm(props) {
                     >
                         Save Note
                     </Button>
-
-
-
-
-
-
 
                 </Box>
 

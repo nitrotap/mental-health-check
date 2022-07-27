@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 import QuizSet from '../components/QuizSet'
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 
 
 // takes an array of quizzes from quiz selector
@@ -46,6 +46,10 @@ const Quiz = (args) => {
         } else {
             setIndex(index + 1)
         }
+
+        return (
+            <Typography variant="h4">Quiz Complete!</Typography>
+        )
     }
 
     return (

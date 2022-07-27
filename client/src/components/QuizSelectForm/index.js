@@ -8,13 +8,12 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
-import Auth from '../../utils/auth'
 
 const QuizSelectForm = (props) => {
 
-    if (!Auth.loggedIn()) {
-        window.location.replace('/login');
-    }
+    // if (!Auth.loggedIn()) {
+    //     window.location.replace('/login');
+    // }
 
     const [state, setState] = useState({
         depression: false,
@@ -51,7 +50,7 @@ const QuizSelectForm = (props) => {
                     sx={{ m: 3 }}
                     variant="standard"
                 >
-                    <FormLabel component="legend">Pick one</FormLabel>
+                    <FormLabel component="legend">Pick one or more</FormLabel>
                     <FormGroup>
                         <FormControlLabel
                             control={
