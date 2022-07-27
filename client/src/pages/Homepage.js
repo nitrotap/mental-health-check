@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import jumbo from '../assets/images/jumbo.jpg';
 import jumbo2 from '../assets/images/jumbo2.jpg';
 import { Grid } from '@mui/material';
+import Copyright from '../components/Elements/Copyright';
 
 //routes
 import { Link } from 'react-router-dom'
@@ -19,7 +20,8 @@ const useStyles = makeStyles((theme) => ({
         height: '100vh',
         width: '100vw',
         padding: '0, 10px',
-        marginBottom: 300
+        marginBottom: 300,
+        marginTop: 36,
     },
     title: {
         fontSize: '4rem',
@@ -110,8 +112,14 @@ function Homepage() {
             <Grid spacing={10} container sx={{ alignItems: 'center' }}>
                 <Grid item xs={12} md={4}>
                     <CardContent className={classes.card}>
-                        <Typography className={classes.text} variant='body1' >
-                            Mental Health Check takes a simple quiz app format, using questions from mental illness screenings, to create a new quiz that focuses on co-morbidity by combining screening questions. Instead of screening for a diagnosis, Mental Health Check helps patients by using those screening questions to point the user to the applicable resources.
+                        <Typography className={classes.text} variant='body1'>
+                            Use Mental Health Check to check-in with yourself and how you're feeling.
+                        </Typography>
+                        <Typography className={classes.text} variant='body1'>
+                            Mental Health Check uses questions from mental illness screenings, but with Yes/No questions.
+                        </Typography>
+                        <Typography className={classes.text} variant='body1'>
+                            Instead of screening for a diagnosis, Mental Health Check uses those questions to help the user identify their feelings.
                         </Typography>
                     </CardContent>
                 </Grid>
@@ -151,7 +159,11 @@ function Homepage() {
                     </Box>
                 </Grid>
             </Grid>
+            <Box>
+                <Copyright sx={{ color: 'white', marginTop: '50px', fontSize: '20px' }} />
+            </Box>
         </Container>
+
     )
 }
 

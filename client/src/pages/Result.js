@@ -168,6 +168,14 @@ const Results = () => {
           </span>
         </Link>
       </Button>
+
+      <Button sx={{ borderColor: 'white', border: 1, fontSize: 30, backgroundColor: '#255070', marginBottom: 7 }}>
+        <Link to='/dashboard' style={{ textDecoration: 'none', color: 'white', }}>
+          <span className={classes.buttonTitle}>
+            Dashboard
+          </span>
+        </Link>
+      </Button>
       <HelpCard />
     </Container>
   );
