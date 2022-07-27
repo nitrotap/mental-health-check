@@ -1,0 +1,59 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.collapsible .content {
+  padding: 6px;
+  background-color: rgb(240, 240, 240);
+  font-size: 14px;
+}
+.collapsible .header {
+  background-color: rgb(200, 200, 200);
+  padding: 6px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid rgb(220, 220, 220);
+}
+.collapsible .header .title {
+  font-weight: 400;
+}
+.preferences label {
+  display: block;
+  padding-bottom: 4px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

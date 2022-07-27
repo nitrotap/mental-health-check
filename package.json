@@ -1,0 +1,36 @@
+{
+  "name": "mental-health-check",
+  "version": "0.1.0",
+  "engines": {
+    "node": "16.14.0"
+  },
+  "description": "mental health check",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "seed": "cd server && npm run seed",
+    "build": "cd client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nitrotap/mental-health-check.git"
+  },
+  "keywords": [
+    "mental-health",
+    "depression",
+    "anxiety",
+    "schizophrenia",
+    "post-traumatic-stress"
+  ],
+  "author": "nitrotap",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nitrotap/mental-health-check/issues"
+  },
+  "homepage": "https://github.com/nitrotap/mental-health-check#readme",
+  "devDependencies": {
+    "concurrently": "^7.2.0"
+  }
+}

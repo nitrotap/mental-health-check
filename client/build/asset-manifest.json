@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d8b30695.css",
+    "main.js": "/static/js/main.112eb147.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/static/js/787.c4e7f8f9.chunk.js",
+    "static/media/jumbo.jpg": "/static/media/jumbo.11a954645e8d3a4faf9c.jpg",
+    "static/media/jumbo2.jpg": "/static/media/jumbo2.14a46e2b018e51fa67ef.jpg",
+    "index.html": "/index.html",
+    "main.d8b30695.css.map": "/static/css/main.d8b30695.css.map",
+    "main.112eb147.js.map": "/static/js/main.112eb147.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/static/js/787.c4e7f8f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d8b30695.css",
+    "static/js/main.112eb147.js"
+  ]
+}
