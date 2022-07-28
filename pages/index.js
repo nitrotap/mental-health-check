@@ -8,6 +8,8 @@ import jumbo2 from '../public/images/jumbo2.jpg'
 import Link from 'next/link'
 import Copyright from '../components/Copyright'
 
+// styles container, main, footer, title, description, code, grid, card, logo
+
 export default function Home() {
 
   const picRandomizer = () => {
@@ -28,13 +30,16 @@ export default function Home() {
 
       <Container className={styles.container}>
         <Typography className={styles.title}>
+          Mental Health Check
+        </Typography>
+        <Typography className={styles.description}>
           Take the First Step to Better Mental Health
         </Typography>
-        <Grid spacing={10} container sx={{ alignItems: 'center' }}>
+        <Grid spacing={10} container >
           <Grid item xs={12} md={4}>
             <CardContent className={styles.card}>
               <Typography className={styles.text} variant='body1'>
-                Use Mental Health Check to check-in with yourself and how you're feeling.
+                Use Mental Health Check to check-in with yourself and how you are feeling.
               </Typography>
               <Typography className={styles.text} variant='body1'>
                 Mental Health Check uses questions from mental illness screenings, but with Yes/No questions.
@@ -61,14 +66,14 @@ export default function Home() {
                 </Typography>
               </CardContent>
               <CardActions className={styles.cardButtons}>
-                <Button sx={{ backgroundColor: '#18344A', borderColor: 'white', border: 1, fontSize: 30 }}>
-                  <Link href='/quizselect' style={{ textDecoration: 'none' }} >
+                <Button>
+                  <Link href='/quiz' style={{ textDecoration: 'none' }} >
                     <span className={styles.buttonTitle} >
                       Take the quiz
                     </span>
                   </Link>
                 </Button>
-                <Button sx={{ backgroundColor: '#18344A', borderColor: 'white', border: 1, fontSize: 30 }}>
+                <Button>
                   <Link href='/signup' style={{ textDecoration: 'none' }}>
                     <span className={styles.buttonTitle}>
                       Create An Account
