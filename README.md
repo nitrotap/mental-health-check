@@ -39,7 +39,7 @@ Mental Health Check is a quiz app that helps users identify their feelings and d
 
 ## Usage
 
-`npm run develop`
+`npm run dev`
 
 ## Preview
 
