@@ -45,17 +45,17 @@ Mental Health Check is a quiz app that helps users identify their feelings and d
 
 #### Landing
 
-<img src="./client/src/assets/images/home-preview.png" width="50%" height="50%">
+<img src="./public/images/home-preview.png" width="50%" height="50%">
 
 #### Quiz
 
-<img src="./client/src/assets/images/quizselect-preview.png" width="50%" height="50%">
+<img src="./public/images/quizselect-preview.png" width="50%" height="50%">
 
-<img src="./client/src/assets/images/quiz-preview.png" width="50%" height="50%">
+<img src="./public/images/quiz-preview.png" width="50%" height="50%">
 
 #### Quiz Results
 
-<img src="./client/src/assets/images/results-preview.png" width="50%" height="50%">
+<img src="./public/images/results-preview.png" width="50%" height="50%">
 
 ## Made By:
 
