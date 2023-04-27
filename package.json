@@ -32,8 +32,5 @@
   "homepage": "https://github.com/nitrotap/mental-health-check#readme",
   "devDependencies": {
     "concurrently": "^7.2.0"
-  },
-  "dependencies": {
-    "@material-ui/styles": "^4.11.5"
   }
 }
