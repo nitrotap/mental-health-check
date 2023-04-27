@@ -35,6 +35,10 @@ Mental Health Check is a quiz app that helps users identify their feelings and d
 
 ## Installation
 
+Please install Node.js and MongoDB prior to installing the application.
+
+Use the .env.example file to ensure proper database setup. Replace the environment variables with your MongoDB connection string.
+
 `npm install`
 
 ## Usage
