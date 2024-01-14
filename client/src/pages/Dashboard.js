@@ -6,7 +6,7 @@ import Chart from '../components/Chart';
 import { Container, makeStyles, Box, Grid } from '@material-ui/core';
 import Auth from '../utils/auth';
 import HelpCard from '../components/Elements/HelpLineCard';
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -107,9 +107,6 @@ const Dashboard = () => {
 		return <div>Loading...</div>;
 	}
 
-	// console.log(user)
-
-
 	let count = [];
 	let quizCount = []
 	if (user.quizzes.length > 0) {
@@ -195,6 +192,28 @@ const Dashboard = () => {
 		}
 	}
 
+	function downloadFile(data, filename) {
+		const blob = new Blob([data], { type: 'text/plain' });
+		const url = URL.createObjectURL(blob);
+		const link = document.createElement('a');
+		link.href = url;
+		link.download = filename;
+		document.body.appendChild(link);
+		link.click();
+		document.body.removeChild(link);
+		URL.revokeObjectURL(url);
+	}
+
+
+	function handleDownloadClick() {
+		const data = JSON.stringify(user);
+		const defaultFilename = 'myData.json';
+		const userFilename = window.prompt('Enter a filename', defaultFilename);
+		const filename = userFilename || defaultFilename;
+
+		downloadFile(data, filename);
+	}
+
 	return (
 		<Container className={classes.container}>
 			<Typography variant='h2' color={'white'} style={{ marginBottom: 10 }}>
@@ -206,7 +225,10 @@ const Dashboard = () => {
 					<QuizList quizzes={user.quizzes} />
 				</Grid>
 			</Container>
+			<Button onClick={handleDownloadClick} aria-label='Download Data'><Typography className={classes.buttonTitle}>Download My Data</Typography></Button>
 			<HelpCard />
+
+
 		</Container>
 	);
 };

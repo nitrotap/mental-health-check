@@ -152,7 +152,7 @@ const Results = () => {
     return <div>Loading...</div>;
   }
 
-  console.log(quiz.quizResults)
+  // console.log(quiz.quizResults)
 
   return (
     <Container className={classes.container}>

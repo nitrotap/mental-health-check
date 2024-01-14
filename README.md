@@ -10,7 +10,8 @@ A mental health quiz app that helps users track their moods using standardized s
 ![badmath](https://img.shields.io/github/forks/nitrotap/mental-health-check)  
 ![badmath](https://img.shields.io/github/stars/nitrotap/mental-health-check)
 
-https://mh-check.herokuapp.com/
+https://mh-check.herokuapp.com/  
+https://www.mhcheck.app/
 
 ## Table of Contents
 
@@ -34,6 +35,13 @@ Mental Health Check is a quiz app that helps users identify their feelings and d
 - View previous quiz results by logging in
 
 ## Installation
+
+Please install Node.js and MongoDB prior to installing the application.
+
+[Node.js](https://nodejs.org/en/download)  
+[MongoDB](https://www.mongodb.com/docs/manual/administration/install-community/)
+
+Use the .env.example file to ensure proper database setup. Replace the environment variables with your MongoDB connection string.
 
 `npm install`
 
